@@ -82,11 +82,11 @@ public class ProductDTO {
         return punctuation;
     }
 
-    public Set<DetailsDTO> getDetails() {
+    public List<DetailsDTO> getDetails() {
         return details;
     }
 
-    public Set<CommentDTO> getComments() {
+    public List<CommentDTO> getComments() {
         return comments;
     }
 }
