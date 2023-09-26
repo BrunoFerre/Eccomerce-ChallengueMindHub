@@ -5,6 +5,10 @@ import com.example.mate.Eccomerce.models.ColorProduct;
 import com.example.mate.Eccomerce.models.Product;
 import com.example.mate.Eccomerce.models.Punctuation;
 
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 public class ProductDTO {
 
     private long id;
@@ -78,11 +82,11 @@ public class ProductDTO {
         return punctuation;
     }
 
-    public List<DetailsDTO> getDetails() {
+    public Set<DetailsDTO> getDetails() {
         return details;
     }
 
-    public List<CommentDTO> getComments() {
+    public Set<CommentDTO> getComments() {
         return comments;
     }
 }
