@@ -1,5 +1,6 @@
 /*Google Fonts*/
 @import url('https://fonts.googleapis.com/css2?family=Mooli&family=Poppins:wght@200;300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Croissant+One&display=swap');
 
 * {
     margin: 0;
@@ -24,6 +25,7 @@
 section {
     padding: 50px 10%;
 }
+
 
 img {
     width: 100%;
@@ -100,6 +102,16 @@ h1 {
     gap: 1rem
 }
 
+a h1{
+    font-family: 'Croissant One', cursive;
+    font-style: italic;
+}
+
+.main_login{
+    background-color: #ebdbc8;
+    background-image: url("data:image/svg+xml,%3Csvg width='42' height='44' viewBox='0 0 42 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Page-1' fill='none' fill-rule='evenodd'%3E%3Cg id='brick-wall' fill='%23a792ac' fill-opacity='0.4'%3E%3Cpath d='M0 0h42v44H0V0zm1 1h40v20H1V1zM0 23h20v20H0V23zm22 0h20v20H22V23z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
 .home-text {
     flex: 1 1 17rem;
 }
@@ -154,6 +166,19 @@ h1 {
     border-radius: 40px;
     color: var(--second-color);
     font-weight: 500;
+}
+
+.btn_login{
+    padding: 7px 16px;
+    border: 2px solid var(--second-color);
+    border-radius: 40px;
+    color: var(--second-color);
+    font-weight: 500;
+}
+
+.btn_login:hover{
+    color: #fff;
+    background-color: var(--main-color);
 }
 
 .btn:hover {

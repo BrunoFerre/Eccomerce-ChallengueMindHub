@@ -6,39 +6,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--Favicon-->
     <link rel="shortcut icon" href="../images/favicon.png" type="image/x-icon">
+    <!--Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <!--Remixicons-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
+    <!--Boxicons-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="../style/style.css">
     <title>Log In | Matoffee</title>
 </head>
 
 <body>
-    
-    <div class="login">
-        <img src="../images/backgroung_logIn.jpg" alt="image" class="login_bg">
-        <form action="" class="login_form">
-            <h1 class="login_title">Login</h1>
+    <!--Navbar-->
+    <header>
+        <a href="#" class="logo fs-1"><img src="../images/favicon_mate.png" alt="logo">
+            <h1>Matoffee</h1>
+        </a>
+        <div class="bx bx-menu" id="menu-icon"></div>
 
-            <div class="login_inputs">
-                <div class="login_box">
-                    <input type="email" placeholder="Email" required class="login_input">
-                    <i class="ri-mail-fill"></i>
-                </div>
+        <ul class="navbar">
+            <li><a href="../../index.html">Home</a></li>
+        </ul>
+    </header>
 
-                <div class="login_box">
-                    <input type="password" placeholder="Password" required class="login_input">
-                    <i class="ri-lock-password-fill"></i>
-                </div>
+    <main class=" main_login">
+        <div class="d-flex align-items-center justify-content-evenly">
+            <div class="login d-flex">
+                <form action="" class="login_form">
+                    <h1 class="login_title">Login</h1>
+
+                    <div class="login_inputs">
+                        <div class="login_box">
+                            <input type="email" placeholder="Email" required class="login_input">
+                            <i class="ri-mail-fill"></i>
+                        </div>
+
+                        <div class="login_box">
+                            <input type="password" placeholder="Password" required class="login_input">
+                            <i class="ri-lock-password-fill"></i>
+                        </div>
+                    </div>
+                    <button type="submit" class="login_button btn_login">Login</button>
+
+                    <div class="login_register">
+                        <p>Don't have an account?</p> <a href="#">Register</a>
+                    </div>
+                </form>
             </div>
-            <button type="submit" class="login_button btn">Login</button>
+            <video muted autoplay loop class="rounded-4" width="700">
+                <source src="../images/coffe_video.mp4" type="video/mp4">
+            </video>
+        </div>
+    </main>
+    <footer class="contact mt-4" id="contact">
+        <div class="social">
+            <a href="https://www.facebook.com/"><i class='bx bxl-facebook'></i></a>
+            <a href="https://www.whatsapp.com/"><i class='bx bxl-whatsapp'></i></a>
+            <a href="https://www.youtube.com/"><i class='bx bxl-youtube'></i></a>
+            <a href=""><i class='bx bxl-github'></i></a>
+            <a href="https://www.instagram.com/"><i class='bx bxl-instagram'></i></a>
+        </div>
+        <div class="links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms Of Use </a>
+            <a href="#">Our Company</a>
+        </div>
+        <p>&#169; Cohort-49 All Right Reserved </p>
+    </footer>
 
-            <div class="login_register">
-                <p>Don't have an account?</p> <a href="#">Register</a>
-            </div>
-        </form>
-
-    </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
