@@ -17,15 +17,18 @@ public class CreateProductDTO {
 
     private ColorProduct color;
 
+    private double discount;
+
     public CreateProductDTO(){}
 
-    public CreateProductDTO(String name, String description, double price, int stock, CategoryProduct category, ColorProduct color) {
+    public CreateProductDTO(String name, String description, double price, int stock, CategoryProduct category, ColorProduct color,double discount) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.stock = stock;
         this.category = category;
         this.color = color;
+        this.discount = discount;
     }
 
     //Getters
@@ -52,5 +55,9 @@ public class CreateProductDTO {
 
     public ColorProduct getColor() {
         return color;
+    }
+
+    public double getDiscount() {
+        return discount;
     }
 }

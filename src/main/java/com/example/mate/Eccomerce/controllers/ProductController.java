@@ -1,15 +1,15 @@
 package com.example.mate.Eccomerce.controllers;
 
+import com.example.mate.Eccomerce.dtos.CreateProductDTO;
 import com.example.mate.Eccomerce.dtos.ProductDTO;
 import com.example.mate.Eccomerce.models.CategoryProduct;
+import com.example.mate.Eccomerce.models.Product;
 import com.example.mate.Eccomerce.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 
@@ -34,7 +34,7 @@ public class ProductController {
         if (id<=0){
             return new ResponseEntity<>("The id cannot be 0 or less than 0", HttpStatus.BAD_REQUEST);
         }
-        ProductDTO productDTO=productService.findById(id);
+        ProductDTO productDTO=productService.getDtoById(id);
         if (productDTO==null){
             return new ResponseEntity<>("The product was not found", HttpStatus.NOT_FOUND);
         }
@@ -52,5 +52,99 @@ public class ProductController {
         }catch (IllegalArgumentException e){
             return new ResponseEntity<>("The category was not found",HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @PatchMapping("/products/{id}")
+    public ResponseEntity<Object> updateDiscount(@PathVariable long id,@RequestParam double discount){
+        if (id<=0){
+            return new ResponseEntity<>("The id cannot be 0 or less than 0", HttpStatus.BAD_REQUEST);
+        }
+        if (discount<=0){
+            return new ResponseEntity<>("The discount cannot be 0 or less than 0", HttpStatus.BAD_REQUEST);
+        }
+        Product product=productService.findById(id);
+        if (product==null){
+            return new ResponseEntity<>("The product was not found", HttpStatus.NOT_FOUND);
+        }
+        product.setDiscount(discount);
+        productService.save(product);
+        ProductDTO productDTO=productService.getDtoById(id);
+        return new ResponseEntity<>(productDTO,HttpStatus.OK);
+    }
+    @PatchMapping("/products/{id}")
+    public ResponseEntity<Object> updateStock(@PathVariable long id,@RequestParam int stock){
+        if (id<=0){
+            return new ResponseEntity<>("The id cannot be 0 or less than 0", HttpStatus.BAD_REQUEST);
+        }
+        if (stock<=0){
+            return new ResponseEntity<>("The stock cannot be 0 or less than 0", HttpStatus.BAD_REQUEST);
+        }
+        Product product=productService.findById(id);
+        if (product==null){
+            return new ResponseEntity<>("The product was not found", HttpStatus.NOT_FOUND);
+        }
+        product.setStock(stock);
+        productService.save(product);
+        ProductDTO productDTO=productService.getDtoById(id);
+        return new ResponseEntity<>(productDTO,HttpStatus.OK);
+    }
+    @PatchMapping("/products/{id}")
+    public ResponseEntity<Object> updatePrice(@PathVariable long id,@RequestParam double price){
+        if (id<=0){
+            return new ResponseEntity<>("The id cannot be 0 or less than 0", HttpStatus.BAD_REQUEST);
+        }
+        if (price<=0){
+            return new ResponseEntity<>("The price cannot be 0 or less than 0", HttpStatus.BAD_REQUEST);
+        }
+        Product product=productService.findById(id);
+        if (product==null){
+            return new ResponseEntity<>("The product was not found", HttpStatus.NOT_FOUND);
+        }
+        product.setPrice(price);
+        productService.save(product);
+        ProductDTO productDTO=productService.getDtoById(id);
+        return new ResponseEntity<>(productDTO,HttpStatus.OK);
+    }
+
+
+    @PostMapping("/products")
+    public ResponseEntity<Object> createProduct(@RequestBody CreateProductDTO createProductDTO){
+        if (createProductDTO.getName().isBlank()){
+            return new ResponseEntity<>("The name cannot be null", HttpStatus.BAD_REQUEST);
+        }
+        if (createProductDTO.getDescription().isBlank()){
+            return new ResponseEntity<>("The description cannot be blank", HttpStatus.BAD_REQUEST);
+        }
+        if (createProductDTO.getPrice()<=0){
+            return new ResponseEntity<>("The price cannot be 0 or less than 0", HttpStatus.BAD_REQUEST);
+        }
+        if (createProductDTO.getStock()<=0){
+            return new ResponseEntity<>("The stock cannot be 0 or less than 0", HttpStatus.BAD_REQUEST);
+        }
+        if (createProductDTO.getCategory()==null){
+            return new ResponseEntity<>("The category cannot be null", HttpStatus.BAD_REQUEST);
+        }
+        if (createProductDTO.getColor()==null){
+            return new ResponseEntity<>("The color cannot be null", HttpStatus.BAD_REQUEST);
+        }
+        if (createProductDTO.getDiscount()<0){
+            return new ResponseEntity<>("The discount cannot be 0", HttpStatus.BAD_REQUEST);
+        }
+        Product product=new Product(createProductDTO);
+        productService.save(product);
+        return new ResponseEntity<>("Success",HttpStatus.CREATED);
+    }
+
+
+    @DeleteMapping("/products/{id}")
+    public ResponseEntity<Object> deleteProduct(@PathVariable long id){
+        if (id<=0){
+            return new ResponseEntity<>("The id cannot be 0 or less than 0", HttpStatus.BAD_REQUEST);
+        }
+        if (!productService.existsById(id)){
+            return new ResponseEntity<>("The product was not found", HttpStatus.NOT_FOUND);
+        }
+        productService.deleteById(id);
+        return new ResponseEntity<>("Success",HttpStatus.OK);
     }
 }

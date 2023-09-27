@@ -48,6 +48,7 @@ public class Product {
         this.category = category;
         this.color = color;
         this.discount = discount;
+        this.punctuation = new Punctuation(List.of(0), this);
     }
 
     public Product(CreateProductDTO createProductDTO) {
@@ -57,6 +58,8 @@ public class Product {
         this.stock = createProductDTO.getStock();
         this.category = createProductDTO.getCategory();
         this.color = createProductDTO.getColor();
+        this.discount = createProductDTO.getDiscount();
+        this.punctuation = new Punctuation(List.of(0), this);
     }
 
     //Getters
