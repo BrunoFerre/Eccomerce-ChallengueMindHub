@@ -4,6 +4,7 @@ import com.example.mate.Eccomerce.dtos.CreateProductDTO;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -32,11 +33,11 @@ public class Product {
     @OneToOne(fetch = FetchType.EAGER)
     private Punctuation punctuation;
 
-    @OneToMany(mappedBy = "product")
-    private Set<Details> details;
+    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
+    private Set<Details> details= new HashSet<>();
 
-    @OneToMany(mappedBy = "product")
-    private Set<Comment> comments;
+    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
+    private Set<Comment> comments= new HashSet<>();
     public Product() {
 
     }

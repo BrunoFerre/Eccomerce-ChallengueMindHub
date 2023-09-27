@@ -3,9 +3,8 @@ package com.example.mate.Eccomerce.models;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -19,11 +18,11 @@ public class Comment {
 
     private LocalDateTime date;
 
-    @OneToMany (mappedBy = "comment")
-    private Set<Answer> answers;
+    @OneToMany (mappedBy = "comment", fetch = FetchType.EAGER)
+    private Set<Answer> answers= new HashSet<>();
 
     @ManyToOne (fetch = FetchType.EAGER)
-    private User user;
+    private Person person;
 
     @ManyToOne (fetch = FetchType.EAGER)
     private Product product;
@@ -49,8 +48,8 @@ public class Comment {
         return answers;
     }
 
-    public User getUser() {
-        return user;
+    public Person getPerson() {
+        return person;
     }
     public Product getProduct() {
         return product;
@@ -68,8 +67,8 @@ public class Comment {
     public void setProduct(Product product) {
         this.product = product;
     }
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(Person person) {
+        this.person = person;
     }
     public void setDate(LocalDateTime date) {
         this.date = date;
