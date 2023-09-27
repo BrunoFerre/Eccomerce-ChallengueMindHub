@@ -27,6 +27,8 @@ public class Product {
 
     private ColorProduct color;
 
+    private double discount;
+
     @OneToOne(fetch = FetchType.EAGER)
     private Punctuation punctuation;
 
@@ -38,13 +40,14 @@ public class Product {
     public Product() {
 
     }
-    public Product(String name, String description, double price, int stock, CategoryProduct category, ColorProduct color) {
+    public Product(String name, String description, double price, int stock, CategoryProduct category, ColorProduct color, double discount) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.stock = stock;
         this.category = category;
         this.color = color;
+        this.discount = discount;
     }
 
     public Product(CreateProductDTO createProductDTO) {
@@ -97,6 +100,11 @@ public class Product {
         return comments;
     }
 
+    public double getDiscount() {
+        return discount;
+    }
+
+
     //Setters
     public void setName(String name) {
         this.name = name;
@@ -126,6 +134,9 @@ public class Product {
         this.punctuation = punctuation;
     }
 
+    public void setDiscount(double discount) {
+        this.discount = discount;
+    }
 
     //Add
     public void addDetails(Details detail) {

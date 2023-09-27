@@ -3,11 +3,11 @@ package com.example.mate.Eccomerce.models;
 public enum CategoryProduct {
     MATES,
     THERMOS,
-    YERBASTORAGE,
-    CONTAINERSMATE,
-    CUPSMATE,
-    SETSBACKPACK,
-    YERBAMATE,
-    PREMIUMKNIVES,
-    MATEACCESSORIES,
+    YERBA_STORAGE,
+    CONTAINERS_MATE,
+    CUPS_MATE,
+    SETS_BACKPACK,
+    YERBA_MATE,
+    PREMIUM_KNIVES,
+    MATE_ACCESSORIES,
 }
