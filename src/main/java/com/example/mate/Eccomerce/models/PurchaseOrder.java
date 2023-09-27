@@ -3,6 +3,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class PurchaseOrder {
@@ -16,7 +17,7 @@ public class PurchaseOrder {
     
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_user")
-    private User user;
+    private Person person;
     @OneToMany(mappedBy = "purchaseOrder", fetch = FetchType.EAGER)
     private Set<Details> details = new HashSet<>();
 
