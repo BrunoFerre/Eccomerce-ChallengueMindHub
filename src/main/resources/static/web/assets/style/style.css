@@ -68,6 +68,11 @@ header {
     text-decoration: none;
 }
 
+.logo{
+    text-decoration: none;
+    color: #1e3932;
+}
+
 h1 {
     color: var(--second-color);
     font-weight: 500;
@@ -410,7 +415,7 @@ h1 {
 .login_form{
     position: relative;
     margin-inline:1.5rem ;
-    background-color: hsla(0, 0%, 100%, .01);
+    background-color:#1e3932;
     border: 2px solid hsla(0, 0%, 100%, .7);
     padding: 2.5rem 1rem;
     border-radius: 1rem;
@@ -439,7 +444,7 @@ h1 {
     grid-template-columns:1fr max-content;
     column-gap: .75rem;
     align-items: center;
-    border: 2px solid hsla(0, 0%, 100%, .7);
+    border: 2px solid hsla(0, 0%, 100%, 0.862);
     padding-inline: 1.25rem;
     border-radius: 4rem;
 }
