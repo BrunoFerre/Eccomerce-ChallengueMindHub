@@ -5,11 +5,13 @@ import com.example.mate.Eccomerce.models.Answer;
 import com.example.mate.Eccomerce.repositories.AnswerRepository;
 import com.example.mate.Eccomerce.service.AnswerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+@Service
 public class AnswerImplement implements AnswerService {
 
     @Autowired

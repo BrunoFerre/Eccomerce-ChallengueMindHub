@@ -15,9 +15,9 @@ public class Adress {
     private String city;
     private String apartament;
     private long floor;
-  /*  @ManyToOne(fetch = FetchType.EAGER)
+   @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
-    private User user;*/
+    private Person person;
 
     public Adress(long id, String street, Number number, String city, String apartament, long floor) {
         this.id = id;
@@ -30,10 +30,6 @@ public class Adress {
 
     public long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getStreet() {
@@ -76,11 +72,11 @@ public class Adress {
         this.floor = floor;
     }
 
-   /* public User getUser() {
-        return user;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }*/
+    public void setPerson(Person person) {
+        this.person = person;
+    }
 }

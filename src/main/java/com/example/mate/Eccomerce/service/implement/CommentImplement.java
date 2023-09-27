@@ -6,11 +6,13 @@ import com.example.mate.Eccomerce.models.Product;
 import com.example.mate.Eccomerce.repositories.CommentRepository;
 import com.example.mate.Eccomerce.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+@Service
 public class CommentImplement implements CommentService {
 
     @Autowired
