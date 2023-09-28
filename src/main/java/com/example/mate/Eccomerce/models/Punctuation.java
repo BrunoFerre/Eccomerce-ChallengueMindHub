@@ -11,7 +11,6 @@ public class Punctuation {
     @GeneratedValue(strategy = GenerationType.AUTO ,generator = "native")
     @GenericGenerator(name="native", strategy = "native")
     private long id;
-
     @ElementCollection
     @CollectionTable(name = "punctuation_points", joinColumns = @JoinColumn(name = "punctuation_id"))
     private List<Integer> points;

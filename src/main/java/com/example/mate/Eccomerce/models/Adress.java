@@ -15,17 +15,18 @@ public class Adress {
     private String city;
     private String apartament;
     private long floor;
+    private boolean status;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "person_id")
     private Person person;
 
-    public Adress(long id, String street, Number number, String city, String apartament, long floor) {
-        this.id = id;
+    public Adress( String street, Number number, String city, String apartament, long floor,boolean status) {
         this.street = street;
         this.number = number;
         this.city = city;
         this.apartament = apartament;
         this.floor = floor;
+        this.status = status;
     }
 
     public long getId() {
@@ -82,5 +83,13 @@ public class Adress {
 
     public void setPerson(Person person) {
         this.person = person;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }

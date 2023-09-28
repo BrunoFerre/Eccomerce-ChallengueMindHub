@@ -32,8 +32,8 @@ public class Product {
     @OneToOne(mappedBy = "product", fetch = FetchType.EAGER)
     private Punctuation punctuation;
 
-    @OneToMany(mappedBy = "product")
-    private Set<Details> details;
+    /*@OneToMany(mappedBy = "product")
+    private Set<Details> details;*/
 
     @OneToMany(mappedBy = "product")
     private Set<Comment> comments;
@@ -95,9 +95,9 @@ public class Product {
         return punctuation;
     }
 
-    public Set<Details> getDetails() {
+   /* public Set<Details> getDetails() {
         return details;
-    }
+    }*/
 
     public Set<Comment> getComments() {
         return comments;
@@ -142,10 +142,10 @@ public class Product {
     }
 
     //Add
-    public void addDetails(Details detail) {
-        detail.setProduct(this);
+  /*  public void addDetails(Details detail) {
+        detail(this);
         details.add(detail);
-    }
+    }*/
     public void addComment(Comment comment) {
         comment.setProduct(this);
         comments.add(comment);

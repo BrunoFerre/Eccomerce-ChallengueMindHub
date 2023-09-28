@@ -23,7 +23,7 @@ public class Comment {
     private Set<Answer> answers;
 
     @ManyToOne (fetch = FetchType.EAGER)
-    private User user;
+    private Person person;
 
     @ManyToOne (fetch = FetchType.EAGER)
     private Product product;
@@ -37,6 +37,7 @@ public class Comment {
     }
 
     //Getters
+
     public long getId() {
         return id;
     }
@@ -45,34 +46,48 @@ public class Comment {
         return body;
     }
 
-    public Set<Answer> getAnswers() {
-        return answers;
-    }
-
-    public User getUser() {
-        return user;
-    }
-    public Product getProduct() {
-        return product;
-    }
     public LocalDateTime getDate() {
         return date;
     }
 
+    public Set<Answer> getAnswers() {
+        return answers;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+
     //Setters
+
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public void setBody(String body) {
         this.body = body;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-    public void setUser(User user) {
-        this.user = user;
-    }
     public void setDate(LocalDateTime date) {
         this.date = date;
+    }
+
+    public void setAnswers(Set<Answer> answers) {
+        this.answers = answers;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     //Add
