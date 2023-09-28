@@ -13,7 +13,7 @@ public class Punctuation {
     private long id;
 
     @ElementCollection
-    @CollectionTable(name = "points")
+    @CollectionTable(name = "punctuation_points", joinColumns = @JoinColumn(name = "punctuation_id"))
     private List<Integer> points;
 
     private double averagePoints;
