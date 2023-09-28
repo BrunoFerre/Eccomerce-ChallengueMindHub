@@ -32,12 +32,11 @@ public class Person {
         this.password = password;
         this.userType = personType;
     }
-   /* public void addAdress(Adress adress){
-    adress.setUser(this);
+    public void addAdress(Adress adress){
+    adress.setPerson(this);
     this.adress.add(adress);
-    }*/
-
-    public long getId() {
+    }
+   public long getId() {
         return id;
     }
 
