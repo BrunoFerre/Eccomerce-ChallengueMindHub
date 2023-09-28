@@ -23,7 +23,7 @@ public class Comment {
     private Set<Answer> answers;
 
     @ManyToOne (fetch = FetchType.EAGER)
-    private User user;
+    private Person person;
 
     @ManyToOne (fetch = FetchType.EAGER)
     private Product product;
@@ -49,8 +49,8 @@ public class Comment {
         return answers;
     }
 
-    public User getUser() {
-        return user;
+    public Person getPerson() {
+        return person;
     }
     public Product getProduct() {
         return product;
@@ -68,8 +68,8 @@ public class Comment {
     public void setProduct(Product product) {
         this.product = product;
     }
-    public void setUser(User user) {
-        this.user = user;
+    public void setPerson(Person person) {
+        this.person = person;
     }
     public void setDate(LocalDateTime date) {
         this.date = date;

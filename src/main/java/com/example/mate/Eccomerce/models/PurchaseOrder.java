@@ -58,12 +58,12 @@ public class PurchaseOrder {
         this.date = date;
     }
 
-    public User getUser() {
-        return user;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(Person person) {
+        this.person = person;
     }
 
     public Set<Details> getDetails() {

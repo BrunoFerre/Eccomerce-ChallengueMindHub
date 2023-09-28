@@ -11,7 +11,7 @@ public class CommentDTO {
 
     private String body;
 
-    private UserDTO userDTO;
+    private PersonDTO personDTO;
 
     private ProductDTO productDTO;
 
@@ -24,7 +24,7 @@ public class CommentDTO {
     public CommentDTO(Comment comment){
         this.id = comment.getId();
         this.body = comment.getBody();
-        this.userDTO = new UserDTO(comment.getUser());
+        this.personDTO = new PersonDTO(comment.getPerson());
         this.productDTO = new ProductDTO(comment.getProduct());
         this.answers = comment.getAnswers().stream().map(AnswerDTO::new).collect(Collectors.toList());
     }
@@ -43,8 +43,8 @@ public class CommentDTO {
         return answers;
     }
 
-    public UserDTO getUserDTO() {
-        return userDTO;
+    public PersonDTO getUserDTO() {
+        return personDTO;
     }
 
     public ProductDTO getProductDTO() {

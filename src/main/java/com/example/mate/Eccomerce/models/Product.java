@@ -1,9 +1,10 @@
 package com.example.mate.Eccomerce.models;
 
+
 import com.example.mate.Eccomerce.dtos.CreateProductDTO;
 import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -28,15 +29,16 @@ public class Product {
     private ColorProduct color;
 
     private double discount;
-
-    @OneToOne(fetch = FetchType.EAGER)
-    private Punctuation punctuation;
-
-    @OneToMany(mappedBy = "product")
-    private Set<Details> details;
+    
+    @ElementCollection
+    @CollectionTable(name = "punctuation_points", joinColumns = @JoinColumn(name = "punctuation_id"))
+    private List<Integer> points;
 
     @OneToMany(mappedBy = "product")
-    private Set<Comment> comments;
+    private Set<Details> details = new HashSet<>();
+
+    @OneToMany(mappedBy = "product")
+    private Set<Comment> comments = new HashSet<>();
     public Product() {
 
     }
@@ -48,7 +50,7 @@ public class Product {
         this.category = category;
         this.color = color;
         this.discount = discount;
-        this.punctuation = new Punctuation(List.of(0), this);
+
     }
 
     public Product(CreateProductDTO createProductDTO) {
@@ -59,7 +61,6 @@ public class Product {
         this.category = createProductDTO.getCategory();
         this.color = createProductDTO.getColor();
         this.discount = createProductDTO.getDiscount();
-        this.punctuation = new Punctuation(List.of(0), this);
     }
 
     //Getters
@@ -91,7 +92,7 @@ public class Product {
         return color;
     }
 
-    public Punctuation getPunctuation() {
+    public Set<Punctuation> getPunctuation() {
         return punctuation;
     }
 
@@ -133,9 +134,7 @@ public class Product {
         this.color = color;
     }
 
-    public void setPunctuation(Punctuation punctuation) {
-        this.punctuation = punctuation;
-    }
+
 
     public void setDiscount(double discount) {
         this.discount = discount;

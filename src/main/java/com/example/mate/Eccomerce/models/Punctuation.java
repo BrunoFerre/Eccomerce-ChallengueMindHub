@@ -18,7 +18,8 @@ public class Punctuation {
 
     private double actuallyTotalPoints;
 
-    @OneToOne(mappedBy = "product")
+    @OneToOne
+    @JoinColumn(name = "product_id")
     private Product product;
 
     public Punctuation(){

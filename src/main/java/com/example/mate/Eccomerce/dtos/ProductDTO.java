@@ -43,7 +43,6 @@ public class ProductDTO {
         this.stock = product.getStock();
         this.category = product.getCategory();
         this.color = product.getColor();
-        this.punctuation = product.getPunctuation();
         this.details = product.getDetails().stream().map(DetailsDTO::new).collect(Collectors.toList());
         this.comments = product.getComments().stream().map(CommentDTO::new).collect(Collectors.toList());
     }
@@ -78,9 +77,6 @@ public class ProductDTO {
         return color;
     }
 
-    public Punctuation getPunctuation() {
-        return punctuation;
-    }
 
     public List<DetailsDTO> getDetails() {
         return details;
