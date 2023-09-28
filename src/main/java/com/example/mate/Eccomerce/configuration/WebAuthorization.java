@@ -26,7 +26,7 @@ public class WebAuthorization {
 
                 .antMatchers(HttpMethod.POST, "/api/login", "/api/person/add").permitAll()
 
-                .antMatchers(HttpMethod.GET, "api/product/", "api/product/{id}", "api/product/{category}").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/products", "/api/products/{id}", "/api/products/{category}").permitAll()
 
                 .antMatchers(HttpMethod.POST, "/api/comment/add", "/api/answer/add", "/api/punctuation/add").hasAuthority("CLIENT")
 
