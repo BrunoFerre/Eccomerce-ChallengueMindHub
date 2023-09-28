@@ -3,7 +3,6 @@ package com.example.mate.Eccomerce.models;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,7 +14,7 @@ public class Punctuation {
 
     @ElementCollection
     @CollectionTable(name = "punctuation_points", joinColumns = @JoinColumn(name = "punctuation_id"))
-    private List<Integer> points = new ArrayList<>();
+    private List<Integer> points;
 
     private double averagePoints;
 
@@ -30,8 +29,8 @@ public class Punctuation {
     public Punctuation(Product product){
         this.points.add(0);
         this.product = product;
-        this.actuallyTotalPoints = totalAveragePoints(this.points);
-        this.averagePoints=totalAveragePoints(this.points);
+        this.actuallyTotalPoints = totalAveragePoints(points);
+        this.averagePoints=totalAveragePoints(points);
     }
 
     //Methods
@@ -83,5 +82,10 @@ public class Punctuation {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    //Add
+    public void addPoint(int point){
+        this.points.add(point);
     }
 }

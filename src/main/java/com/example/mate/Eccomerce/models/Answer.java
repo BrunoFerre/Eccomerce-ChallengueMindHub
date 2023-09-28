@@ -16,19 +16,23 @@ public class Answer {
     private String body;
 
     private String userName;
-
-    private LocalDateTime date;
-
     @ManyToOne(fetch = FetchType.EAGER)
     private Comment comment;
 
+    @ManyToOne (fetch = FetchType.EAGER)
+    private Person person;
+
+    private LocalDateTime date;
+
+    private boolean active;
     public Answer() {
 
     }
-    public Answer(String body, String userName, LocalDateTime date){
+    public Answer(String body, String userName,LocalDateTime date){
         this.body = body;
         this.userName = userName;
-        this.date = date;
+        this.date=date;
+        this.active=true;
     }
 
     //Getters
@@ -49,10 +53,16 @@ public class Answer {
         return comment;
     }
 
+    public Person getPerson() {
+        return person;
+    }
+
     public LocalDateTime getDate() {
         return date;
     }
-
+    public boolean isActive() {
+        return active;
+    }
     //Setters
 
     public void setBody(String body) {
@@ -67,7 +77,14 @@ public class Answer {
         this.comment = comment;
     }
 
-    public void setDate(LocalDateTime date){
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
+    public void setDate(LocalDateTime date) {
         this.date = date;
+    }
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

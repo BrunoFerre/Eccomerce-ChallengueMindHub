@@ -7,4 +7,7 @@ import java.util.List;
 
 public interface AnswerRepository extends JpaRepository<Answer,Long> {
     List<Answer> findByCommentId(long id);
+
+    Answer findByPerson(Person person);
+    Answer findByIdAndPerson(long id, Person person);
 }
