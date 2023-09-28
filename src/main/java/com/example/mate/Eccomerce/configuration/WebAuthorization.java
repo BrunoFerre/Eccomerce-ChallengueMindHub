@@ -2,6 +2,7 @@ package com.example.mate.Eccomerce.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
@@ -21,8 +22,25 @@ public class WebAuthorization {
 
         http.
                 authorizeRequests()
-                .anyRequest().permitAll()
-                .antMatchers("/web/**").permitAll();
+                .antMatchers("/web/**").permitAll()
+
+                .antMatchers(HttpMethod.POST, "/api/login", "/api/person/add").permitAll()
+
+                .antMatchers(HttpMethod.GET, "api/product/", "api/product/{id}", "api/product/{category}").permitAll()
+
+                .antMatchers(HttpMethod.POST, "/api/comment/add","/api/answer/add","/api/punctuation/add").hasAuthority("CLIENT")
+
+                .antMatchers(HttpMethod.PATCH,"/api/comment/update/{id}","/api/answer/update/{id}").hasAuthority("CLIENT")
+
+                .antMatchers(HttpMethod.DELETE, "/api/comment/delete/{id}","/api/answer/delete/{id}").hasAuthority("CLIENT")
+
+                .antMatchers(HttpMethod.POST,"/api/products/add").hasAuthority("ADMIN")
+
+                .antMatchers(HttpMethod.PATCH,"/api/products/{id}/stock","/api/products/{id}/discount","/api/products/{id}/price").hasAuthority("ADMIN")
+
+                .antMatchers(HttpMethod.DELETE,"/api/products/{id}").hasAuthority("ADMIN")
+
+                .anyRequest().denyAll();
 
         http.formLogin()
                 .usernameParameter("email")
