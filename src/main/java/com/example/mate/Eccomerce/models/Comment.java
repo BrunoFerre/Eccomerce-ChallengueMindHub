@@ -5,6 +5,8 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -20,13 +22,15 @@ public class Comment {
     private LocalDateTime date;
 
     @OneToMany (mappedBy = "comment")
-    private Set<Answer> answers;
+    private List<Answer> answers= new ArrayList<>();
 
     @ManyToOne (fetch = FetchType.EAGER)
-    private User user;
+    private Person person;
 
     @ManyToOne (fetch = FetchType.EAGER)
     private Product product;
+
+    boolean active;
 
     public Comment() {
 
@@ -34,6 +38,7 @@ public class Comment {
     public Comment(String body, LocalDateTime date) {
         this.body = body;
         this.date = date;
+        this.active=true;
     }
 
     //Getters
@@ -45,18 +50,21 @@ public class Comment {
         return body;
     }
 
-    public Set<Answer> getAnswers() {
+    public List<Answer> getAnswers() {
         return answers;
     }
 
-    public User getUser() {
-        return user;
+    public Person getPerson() {
+        return person;
     }
     public Product getProduct() {
         return product;
     }
     public LocalDateTime getDate() {
         return date;
+    }
+    public boolean isActive() {
+        return active;
     }
 
     //Setters
@@ -68,11 +76,14 @@ public class Comment {
     public void setProduct(Product product) {
         this.product = product;
     }
-    public void setUser(User user) {
-        this.user = user;
+    public void setPerson(Person person) {
+        this.person = person;
     }
     public void setDate(LocalDateTime date) {
         this.date = date;
+    }
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     //Add

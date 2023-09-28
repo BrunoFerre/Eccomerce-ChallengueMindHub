@@ -4,6 +4,8 @@ import com.example.mate.Eccomerce.dtos.CreateProductDTO;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -33,10 +35,10 @@ public class Product {
     private Punctuation punctuation;
 
     @OneToMany(mappedBy = "product")
-    private Set<Details> details;
+    private List<Details> details= new ArrayList<>();
 
     @OneToMany(mappedBy = "product")
-    private Set<Comment> comments;
+    private List<Comment> comments= new ArrayList<>();
     public Product() {
 
     }
@@ -95,11 +97,11 @@ public class Product {
         return punctuation;
     }
 
-    public Set<Details> getDetails() {
+    public List<Details> getDetails() {
         return details;
     }
 
-    public Set<Comment> getComments() {
+    public List<Comment> getComments() {
         return comments;
     }
 

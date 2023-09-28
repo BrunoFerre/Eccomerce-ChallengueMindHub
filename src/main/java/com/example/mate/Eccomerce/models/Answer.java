@@ -3,6 +3,7 @@ package com.example.mate.Eccomerce.models;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 public class Answer {
@@ -18,12 +19,20 @@ public class Answer {
     @ManyToOne(fetch = FetchType.EAGER)
     private Comment comment;
 
+    @ManyToOne (fetch = FetchType.EAGER)
+    private Person person;
+
+    private LocalDateTime date;
+
+    private boolean active;
     public Answer() {
 
     }
-    public Answer(String body, String userName){
+    public Answer(String body, String userName,LocalDateTime date){
         this.body = body;
         this.userName = userName;
+        this.date=date;
+        this.active=true;
     }
 
     //Getters
@@ -44,6 +53,16 @@ public class Answer {
         return comment;
     }
 
+    public Person getPerson() {
+        return person;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
+    }
+    public boolean isActive() {
+        return active;
+    }
     //Setters
 
     public void setBody(String body) {
@@ -56,5 +75,16 @@ public class Answer {
 
     public void setComment(Comment comment) {
         this.comment = comment;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

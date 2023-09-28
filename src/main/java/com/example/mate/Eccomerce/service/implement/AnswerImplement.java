@@ -56,4 +56,14 @@ public class AnswerImplement implements AnswerService {
     public AnswerDTO getDtoById(long id) {
         return new AnswerDTO(Objects.requireNonNull(answerRepository.findById(id).orElse(null)));
     }
+
+    @Override
+    public Answer getByPerson(Person person) {
+        return answerRepository.findByPerson(person);
+    }
+
+    @Override
+    public Answer getByIdAndPerson(long id, Person person) {
+        return answerRepository.findByIdAndPerson(id, person);
+    }
 }

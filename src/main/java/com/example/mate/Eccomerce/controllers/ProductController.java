@@ -2,15 +2,19 @@ package com.example.mate.Eccomerce.controllers;
 
 import com.example.mate.Eccomerce.dtos.CreateProductDTO;
 import com.example.mate.Eccomerce.dtos.ProductDTO;
+import com.example.mate.Eccomerce.models.Answer;
 import com.example.mate.Eccomerce.models.CategoryProduct;
+import com.example.mate.Eccomerce.models.Comment;
 import com.example.mate.Eccomerce.models.Product;
+import com.example.mate.Eccomerce.service.AnswerService;
+import com.example.mate.Eccomerce.service.CommentService;
 import com.example.mate.Eccomerce.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -19,6 +23,11 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
+    @Autowired
+    private CommentService commentService;
+    @Autowired
+    private AnswerService answerService;
+
     @GetMapping("/products")
     public ResponseEntity<Object> getALlProducts() {
         Set<ProductDTO> products= productService.findAll();
@@ -144,7 +153,16 @@ public class ProductController {
         if (!productService.existsById(id)){
             return new ResponseEntity<>("The product was not found", HttpStatus.NOT_FOUND);
         }
+        Product product= productService.findById(id);
+        List<Comment> comments=product.getComments();
+        for (Comment comment:comments){
+            List<Answer> answers=comment.getAnswers();
+            for (Answer answer:answers){
+                answerService.deleteById(answer.getId());
+            }
+            commentService.deleteById(comment.getId());
+        }
         productService.deleteById(id);
-        return new ResponseEntity<>("Success",HttpStatus.OK);
+        return new ResponseEntity<>("Success Deleted",HttpStatus.OK);
     }
 }

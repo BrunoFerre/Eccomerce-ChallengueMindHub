@@ -11,9 +11,11 @@ public class CommentDTO {
 
     private String body;
 
-    private UserDTO userDTO;
+    private PersonDTO personDTO;
 
     private ProductDTO productDTO;
+
+    private boolean active;
 
     private List<AnswerDTO> answers;
 
@@ -24,9 +26,10 @@ public class CommentDTO {
     public CommentDTO(Comment comment){
         this.id = comment.getId();
         this.body = comment.getBody();
-        this.userDTO = new UserDTO(comment.getUser());
+        this.personDTO = new PersonDTO(comment.getPerson());
         this.productDTO = new ProductDTO(comment.getProduct());
         this.answers = comment.getAnswers().stream().map(AnswerDTO::new).collect(Collectors.toList());
+        this.active = comment.isActive();
     }
 
     //Getters
@@ -43,11 +46,15 @@ public class CommentDTO {
         return answers;
     }
 
-    public UserDTO getUserDTO() {
-        return userDTO;
+    public PersonDTO getPersonDTO() {
+        return personDTO;
     }
 
     public ProductDTO getProductDTO() {
         return productDTO;
+    }
+
+    public boolean isActive() {
+        return active;
     }
 }
