@@ -104,6 +104,7 @@ public class ProductController {
         productService.save(product);
         ProductDTO productDTO=productService.getDtoById(id);
         return new ResponseEntity<>(productDTO,HttpStatus.OK);
+
     }
 
 
