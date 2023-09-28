@@ -20,7 +20,5 @@ public class EccomerceApplication {
 			Person admin = new Person("Bruno Marcos","Ferreira","fbrunomarcos@gmail.com","123456","pass123", PersonType.ADMIN);
 			personRepositories.save(admin);
 		};
-
 	}
-
 }

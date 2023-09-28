@@ -27,7 +27,7 @@ public class ProductDTO {
 
     private Punctuation punctuation;
 
-    private List<DetailsDTO> details;
+    /*private List<DetailsDTO> details;*/
 
     private List<CommentDTO> comments;
 
@@ -44,8 +44,8 @@ public class ProductDTO {
         this.category = product.getCategory();
         this.color = product.getColor();
         this.punctuation = product.getPunctuation();
-        this.details = product.getDetails().stream().map(DetailsDTO::new).collect(Collectors.toList());
-        this.comments = product.getComments().stream().map(CommentDTO::new).collect(Collectors.toList());
+       /* this.details = product.getDetails().stream().map(DetailsDTO::new).collect(Collectors.toList());
+        this.comments = product.getComments().stream().map(CommentDTO::new).collect(Collectors.toList());*/
     }
 
     //Getters
@@ -82,9 +82,9 @@ public class ProductDTO {
         return punctuation;
     }
 
-    public List<DetailsDTO> getDetails() {
+  /*  public List<DetailsDTO> getDetails() {
         return details;
-    }
+    }*/
 
     public List<CommentDTO> getComments() {
         return comments;
