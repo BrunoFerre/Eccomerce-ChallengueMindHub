@@ -1,6 +1,8 @@
 package com.example.mate.Eccomerce.controllers;
 
 import com.example.mate.Eccomerce.models.Comment;
+import com.example.mate.Eccomerce.models.Person;
+import com.example.mate.Eccomerce.repositories.PersonRepositories;
 import com.example.mate.Eccomerce.service.CommentService;
 import org.springframework.security.core.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +18,7 @@ public class CUDCommentController {
     @Autowired
     private CommentService commentService;
     @Autowired
-    private PersonRepository personRepository;
+    private PersonRepositories personRepository;
 
     @PostMapping("/add")
     public ResponseEntity <Object> addComment(@RequestParam String body, @RequestParam long productId, Authentication authentication){
@@ -46,7 +48,7 @@ public class CUDCommentController {
         if (person == null){
             return new ResponseEntity<>("The user was not found", HttpStatus.NOT_FOUND);
         }
-        Comment comment = commentService.getByIdAndPerson(id, person);
+        Comment comment = commentService.findByIdAndPerson(id, person);
         if (comment == null){
             return new ResponseEntity<>("The comment was not found", HttpStatus.NOT_FOUND);
         }
@@ -64,7 +66,7 @@ public class CUDCommentController {
         if (person == null){
             return new ResponseEntity<>("The user was not found", HttpStatus.NOT_FOUND);
         }
-        Comment comment = commentService.getByIdAndPerson(id, person);
+        Comment comment = commentService.findByIdAndPerson(id, person);
         if (comment == null){
             return new ResponseEntity<>("The comment was not found", HttpStatus.NOT_FOUND);
         }

@@ -1,6 +1,7 @@
 package com.example.mate.Eccomerce.repositories;
 
 import com.example.mate.Eccomerce.models.Answer;
+import com.example.mate.Eccomerce.models.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

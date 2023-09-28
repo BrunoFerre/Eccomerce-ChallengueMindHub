@@ -2,6 +2,8 @@ package com.example.mate.Eccomerce.controllers;
 
 import com.example.mate.Eccomerce.models.Answer;
 import com.example.mate.Eccomerce.models.Comment;
+import com.example.mate.Eccomerce.models.Person;
+import com.example.mate.Eccomerce.repositories.PersonRepositories;
 import com.example.mate.Eccomerce.service.AnswerService;
 import com.example.mate.Eccomerce.service.CommentService;
 import org.springframework.security.core.Authentication;
@@ -22,6 +24,9 @@ public class CUDAnswerController {
     @Autowired
     private AnswerService  answerService;
 
+    @Autowired
+    private PersonRepositories personRepository;
+
     @PostMapping("add")
     public ResponseEntity<Object> addAnswer(@RequestParam String answer, @RequestParam long commentId, Authentication authentication){
         if (answer.isBlank()){
@@ -41,7 +46,7 @@ public class CUDAnswerController {
         if (person== null){
             return new ResponseEntity<>("The user was not found", HttpStatus.NOT_FOUND);
         }
-        Answer answer1= new Answer(answer, person.getFirstName()+" "+person.getLastName(), LocalDateTime.now());
+        Answer answer1= new Answer(answer, person.getFirstname()+" "+person.getLastname(), LocalDateTime.now());
         comment.addAnswer(answer1);
         commentService.save(comment);
         return new ResponseEntity<>("The answer was added", HttpStatus.OK);

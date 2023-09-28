@@ -3,7 +3,9 @@ package com.example.mate.Eccomerce.models;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -21,6 +23,9 @@ public class Person {
     @OneToMany(mappedBy = "person",fetch = FetchType.EAGER)
     private Set<Adress> adress = new HashSet<>();
 
+    @OneToMany(mappedBy = "person")
+    private List<Comment> comments=new ArrayList<>();
+
     public Person() {
     }
 
@@ -32,17 +37,25 @@ public class Person {
         this.password = password;
         this.userType = personType;
     }
-   /* public void addAdress(Adress adress){
-    adress.setUser(this);
+    public void addAdress(Adress adress){
+    adress.setPerson(this);
     this.adress.add(adress);
-    }*/
+    }
 
+    public void addComment(Comment comment){
+        comment.setPerson(this);
+        this.comments.add(comment);
+    }
     public long getId() {
         return id;
     }
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
     }
 
     public String getFirstname() {

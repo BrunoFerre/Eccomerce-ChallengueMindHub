@@ -9,4 +9,6 @@ import java.util.List;
 public interface PersonRepositories extends JpaRepository<Person, Long> {
     List<Person> findAll();
     boolean existsByEmail(String email);
+
+    Person findByEmail(String email);
 }
