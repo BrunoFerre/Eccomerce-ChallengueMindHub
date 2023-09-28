@@ -12,23 +12,25 @@ public class Punctuation {
     @GenericGenerator(name="native", strategy = "native")
     private long id;
 
-    private List<Integer> point;
+    @ElementCollection
+    @CollectionTable(name = "points")
+    private List<Integer> points;
 
     private double averagePoints;
 
     private double actuallyTotalPoints;
 
-    @OneToOne(mappedBy = "product")
+    @OneToOne
     private Product product;
 
     public Punctuation(){
 
     }
-    public Punctuation(List<Integer> point, Product product){
-        this.point = point;
+    public Punctuation(Product product){
+        this.points.add(0);
         this.product = product;
-        this.actuallyTotalPoints = totalAveragePoints(point);
-        this.averagePoints=totalAveragePoints(point);
+        this.actuallyTotalPoints = totalAveragePoints(points);
+        this.averagePoints=totalAveragePoints(points);
     }
 
     //Methods
@@ -49,7 +51,7 @@ public class Punctuation {
         return id;
     }
     public List<Integer> getPoint() {
-        return point;
+        return points;
     }
 
     public double getAveragePoints() {
@@ -67,7 +69,7 @@ public class Punctuation {
     //Setters
 
     public void setPoint(List<Integer> point) {
-        this.point = point;
+        this.points = point;
     }
 
     public void setAveragePoints(double averagePoints) {

@@ -6,11 +6,13 @@ import com.example.mate.Eccomerce.models.Product;
 import com.example.mate.Eccomerce.repositories.ProductRepository;
 import com.example.mate.Eccomerce.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Service
 public class ProductImplement implements ProductService {
     @Autowired
     private ProductRepository productRepository;

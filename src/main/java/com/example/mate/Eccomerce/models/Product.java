@@ -29,7 +29,7 @@ public class Product {
 
     private double discount;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(mappedBy = "product", fetch = FetchType.EAGER)
     private Punctuation punctuation;
 
     @OneToMany(mappedBy = "product")
@@ -48,7 +48,7 @@ public class Product {
         this.category = category;
         this.color = color;
         this.discount = discount;
-        this.punctuation = new Punctuation(List.of(0), this);
+        this.punctuation = new Punctuation(this);
     }
 
     public Product(CreateProductDTO createProductDTO) {
@@ -59,7 +59,7 @@ public class Product {
         this.category = createProductDTO.getCategory();
         this.color = createProductDTO.getColor();
         this.discount = createProductDTO.getDiscount();
-        this.punctuation = new Punctuation(List.of(0), this);
+        this.punctuation = new Punctuation(this);
     }
 
     //Getters
