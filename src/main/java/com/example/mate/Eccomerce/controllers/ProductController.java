@@ -9,6 +9,7 @@ import com.example.mate.Eccomerce.models.Product;
 import com.example.mate.Eccomerce.service.AnswerService;
 import com.example.mate.Eccomerce.service.CommentService;
 import com.example.mate.Eccomerce.service.ProductService;
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -80,7 +81,7 @@ public class ProductController {
         ProductDTO productDTO=productService.getDtoById(id);
         return new ResponseEntity<>(productDTO,HttpStatus.OK);
     }
-    @PatchMapping("/products/{id}/Stock")
+    @PatchMapping("/products/{id}/stock")
     public ResponseEntity<Object> updateStock(@PathVariable long id,@RequestParam int stock){
         if (id<=0){
             return new ResponseEntity<>("The id cannot be 0 or less than 0", HttpStatus.BAD_REQUEST);
@@ -116,8 +117,11 @@ public class ProductController {
     }
 
 
-    @PostMapping("/products")
-    public ResponseEntity<Object> createProduct(@RequestBody CreateProductDTO createProductDTO){
+    @PostMapping("/products/add")
+    public ResponseEntity<Object> createProduct(@RequestBody CreateProductDTO createProductDTO, Authentication authentication){
+        if (authentication==null){
+            return new ResponseEntity<>("The user was not found", HttpStatus.NOT_FOUND);
+        }
         if (createProductDTO.getName().isBlank()){
             return new ResponseEntity<>("The name cannot be null", HttpStatus.BAD_REQUEST);
         }
@@ -146,7 +150,10 @@ public class ProductController {
 
 
     @DeleteMapping("/products/{id}")
-    public ResponseEntity<Object> deleteProduct(@PathVariable long id){
+    public ResponseEntity<Object> deleteProduct(@PathVariable long id, Authentication authentication){
+        if (authentication==null){
+            return new ResponseEntity<>("The user was not found", HttpStatus.NOT_FOUND);
+        }
         if (id<=0){
             return new ResponseEntity<>("The id cannot be 0 or less than 0", HttpStatus.BAD_REQUEST);
         }
