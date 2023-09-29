@@ -4,6 +4,8 @@ import com.example.mate.Eccomerce.dtos.CreateProductDTO;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -32,11 +34,11 @@ public class Product {
     @OneToOne(mappedBy = "product", fetch = FetchType.EAGER)
     private Punctuation punctuation;
 
-    /*@OneToMany(mappedBy = "product")
-    private Set<Details> details;*/
+    @OneToMany(mappedBy = "product")
+    private List<Details> details= new ArrayList<>();
 
     @OneToMany(mappedBy = "product")
-    private Set<Comment> comments;
+    private List<Comment> comments= new ArrayList<>();
     public Product() {
 
     }
@@ -48,7 +50,7 @@ public class Product {
         this.category = category;
         this.color = color;
         this.discount = discount;
-        /*this.punctuation = new Punctuation(this);*/
+        this.punctuation = new Punctuation(this);
     }
 
     public Product(CreateProductDTO createProductDTO) {
@@ -59,7 +61,7 @@ public class Product {
         this.category = createProductDTO.getCategory();
         this.color = createProductDTO.getColor();
         this.discount = createProductDTO.getDiscount();
-        /*this.punctuation = new Punctuation(this);*/
+        this.punctuation = new Punctuation(this);
     }
 
     //Getters
@@ -95,11 +97,11 @@ public class Product {
         return punctuation;
     }
 
-   /* public Set<Details> getDetails() {
+    public List<Details> getDetails() {
         return details;
-    }*/
+    }
 
-    public Set<Comment> getComments() {
+    public List<Comment> getComments() {
         return comments;
     }
 
@@ -142,10 +144,10 @@ public class Product {
     }
 
     //Add
-  /*  public void addDetails(Details detail) {
-        detail(this);
+    public void addDetails(Details detail) {
+        detail.setProduct(this);
         details.add(detail);
-    }*/
+    }
     public void addComment(Comment comment) {
         comment.setProduct(this);
         comments.add(comment);

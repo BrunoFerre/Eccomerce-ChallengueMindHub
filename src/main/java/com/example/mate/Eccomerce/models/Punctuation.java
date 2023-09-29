@@ -82,4 +82,9 @@ public class Punctuation {
     public void setProduct(Product product) {
         this.product = product;
     }
+
+    //Add
+    public void addPoint(int point){
+        this.points.add(point);
+    }
 }

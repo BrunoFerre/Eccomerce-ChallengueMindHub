@@ -15,6 +15,8 @@ public class CommentDTO {
 
     private ProductDTO productDTO;
 
+    private boolean active;
+
     private List<AnswerDTO> answers;
 
     public CommentDTO() {
@@ -27,6 +29,7 @@ public class CommentDTO {
         this.personDTO = new PersonDTO(comment.getPerson());
         this.productDTO = new ProductDTO(comment.getProduct());
         this.answers = comment.getAnswers().stream().map(AnswerDTO::new).collect(Collectors.toList());
+        this.active = comment.isActive();
     }
 
     //Getters
@@ -43,11 +46,15 @@ public class CommentDTO {
         return answers;
     }
 
-    public PersonDTO getUserDTO() {
+    public PersonDTO getPersonDTO() {
         return personDTO;
     }
 
     public ProductDTO getProductDTO() {
         return productDTO;
+    }
+
+    public boolean isActive() {
+        return active;
     }
 }

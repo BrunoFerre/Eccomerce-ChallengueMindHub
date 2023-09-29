@@ -14,6 +14,8 @@ public class AnswerDTO {
     private String userName;
     private CommentDTO comment;
 
+    private boolean active;
+
     public AnswerDTO(){
 
     }
@@ -22,6 +24,7 @@ public class AnswerDTO {
         this.body = answer.getBody();
         this.userName = answer.getUserName();
         this.comment = new CommentDTO(answer.getComment());
+        this.active = answer.isActive();
     }
 
     //Getters
@@ -40,5 +43,8 @@ public class AnswerDTO {
 
     public CommentDTO getComment() {
         return comment;
+    }
+    public boolean isActive() {
+        return active;
     }
 }

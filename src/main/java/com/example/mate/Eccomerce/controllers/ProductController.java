@@ -2,15 +2,20 @@ package com.example.mate.Eccomerce.controllers;
 
 import com.example.mate.Eccomerce.dtos.CreateProductDTO;
 import com.example.mate.Eccomerce.dtos.ProductDTO;
+import com.example.mate.Eccomerce.models.Answer;
 import com.example.mate.Eccomerce.models.CategoryProduct;
+import com.example.mate.Eccomerce.models.Comment;
 import com.example.mate.Eccomerce.models.Product;
+import com.example.mate.Eccomerce.service.AnswerService;
+import com.example.mate.Eccomerce.service.CommentService;
 import com.example.mate.Eccomerce.service.ProductService;
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -19,6 +24,11 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
+    @Autowired
+    private CommentService commentService;
+    @Autowired
+    private AnswerService answerService;
+
     @GetMapping("/products")
     public ResponseEntity<Object> getALlProducts() {
         Set<ProductDTO> products= productService.findAll();
@@ -71,7 +81,7 @@ public class ProductController {
         ProductDTO productDTO=productService.getDtoById(id);
         return new ResponseEntity<>(productDTO,HttpStatus.OK);
     }
-    @PatchMapping("/products/{id}/Stock")
+    @PatchMapping("/products/{id}/stock")
     public ResponseEntity<Object> updateStock(@PathVariable long id,@RequestParam int stock){
         if (id<=0){
             return new ResponseEntity<>("The id cannot be 0 or less than 0", HttpStatus.BAD_REQUEST);
@@ -108,8 +118,11 @@ public class ProductController {
     }
 
 
-    @PostMapping("/products")
-    public ResponseEntity<Object> createProduct(@RequestBody CreateProductDTO createProductDTO){
+    @PostMapping("/products/add")
+    public ResponseEntity<Object> createProduct(@RequestBody CreateProductDTO createProductDTO, Authentication authentication){
+        if (authentication==null){
+            return new ResponseEntity<>("The user was not found", HttpStatus.NOT_FOUND);
+        }
         if (createProductDTO.getName().isBlank()){
             return new ResponseEntity<>("The name cannot be null", HttpStatus.BAD_REQUEST);
         }
@@ -138,14 +151,26 @@ public class ProductController {
 
 
     @DeleteMapping("/products/{id}")
-    public ResponseEntity<Object> deleteProduct(@PathVariable long id){
+    public ResponseEntity<Object> deleteProduct(@PathVariable long id, Authentication authentication){
+        if (authentication==null){
+            return new ResponseEntity<>("The user was not found", HttpStatus.NOT_FOUND);
+        }
         if (id<=0){
             return new ResponseEntity<>("The id cannot be 0 or less than 0", HttpStatus.BAD_REQUEST);
         }
         if (!productService.existsById(id)){
             return new ResponseEntity<>("The product was not found", HttpStatus.NOT_FOUND);
         }
+        Product product= productService.findById(id);
+        List<Comment> comments=product.getComments();
+        for (Comment comment:comments){
+            List<Answer> answers=comment.getAnswers();
+            for (Answer answer:answers){
+                answerService.deleteById(answer.getId());
+            }
+            commentService.deleteById(comment.getId());
+        }
         productService.deleteById(id);
-        return new ResponseEntity<>("Success",HttpStatus.OK);
+        return new ResponseEntity<>("Success Deleted",HttpStatus.OK);
     }
 }

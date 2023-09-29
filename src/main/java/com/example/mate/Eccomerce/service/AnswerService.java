@@ -19,4 +19,7 @@ public interface AnswerService {
     List<Answer> findByCommentId(long id);
 
     AnswerDTO getDtoById(long id);
+
+    Answer getByPerson(Person person);
+    Answer getByIdAndPerson(long id, Person person);
 }
