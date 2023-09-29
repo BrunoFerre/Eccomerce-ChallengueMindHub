@@ -10,15 +10,26 @@ public class AdressDTO {
     private String apartament;
     private long floor;
 
+    private boolean active;
     public AdressDTO() {
     }
 
     public AdressDTO(Adress adress) {
+        this.id = adress.getId();
         this.street = adress.getStreet();
         this.number = adress.getNumber();
         this.city = adress.getCity();
         this.apartament = adress.getApartament();
         this.floor = adress.getFloor();
+        this.active = adress.isStatus();
+    }
+
+    public AdressDTO(String street, long number, String city, String apartament, long floor) {
+        this.street = street;
+        this.number = number;
+        this.city = city;
+        this.apartament = apartament;
+        this.floor = floor;
     }
 
     public long getId() {
@@ -43,5 +54,9 @@ public class AdressDTO {
 
     public long getFloor() {
         return floor;
+    }
+
+    public boolean isActive() {
+        return active;
     }
 }

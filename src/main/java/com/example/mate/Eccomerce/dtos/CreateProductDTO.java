@@ -2,7 +2,6 @@ package com.example.mate.Eccomerce.dtos;
 
 import com.example.mate.Eccomerce.models.CategoryProduct;
 import com.example.mate.Eccomerce.models.ColorProduct;
-import com.example.mate.Eccomerce.models.Punctuation;
 
 public class CreateProductDTO {
     private String name;

@@ -72,6 +72,7 @@ public class CRUDAnswerController {
         }
         Answer answer1= new Answer(answer, person.getFirstname()+" "+person.getLastname(), LocalDateTime.now());
         comment.addAnswer(answer1);
+        answerService.save(answer1);
         commentService.save(comment);
         return new ResponseEntity<>("The answer was added", HttpStatus.OK);
     }
@@ -85,7 +86,7 @@ public class CRUDAnswerController {
         if (person== null){
             return new ResponseEntity<>("The user was not found", HttpStatus.NOT_FOUND);
         }
-        Answer answer= answerService.getByIdAndPerson(id, person);
+        Answer answer= answerService.findById(id);
         if (answer==null){
             return new ResponseEntity<>("The answer was not found", HttpStatus.NOT_FOUND);
         }
@@ -94,7 +95,7 @@ public class CRUDAnswerController {
         return new ResponseEntity<>("The answer was deleted", HttpStatus.OK);
     }
 
-    @PatchMapping("/update/{id}")
+    @PatchMapping("/update")
     public ResponseEntity<Object> updateAnswer(@RequestParam long id, @RequestParam String answer, Authentication authentication){
         if (id<=0){
             return new ResponseEntity<>("The id cannot be 0 or less than 0", HttpStatus.BAD_REQUEST);
@@ -103,7 +104,7 @@ public class CRUDAnswerController {
         if (person== null){
             return new ResponseEntity<>("The user was not found", HttpStatus.NOT_FOUND);
         }
-        Answer answer1= answerService.getByIdAndPerson(id,person);
+        Answer answer1= answerService.findById(id);
         if (answer1==null){
             return new ResponseEntity<>("The answer was not found", HttpStatus.NOT_FOUND);
         }

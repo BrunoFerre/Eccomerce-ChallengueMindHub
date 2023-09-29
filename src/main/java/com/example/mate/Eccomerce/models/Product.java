@@ -181,14 +181,15 @@ public class Product {
 
     public void addPoint(int point) {
         this.points.add(point);
-        this.actuallyTotalPoints = totalAveragePoints(points);
-        this.averagePoints = totalAveragePoints(points);
+        this.actuallyTotalPoints = this.totalPoints(this.points);
+        this.averagePoints = totalAveragePoints(this.actuallyTotalPoints);
     }
 
     //Methods
-    public double totalAveragePoints(List<Integer> point){
-        return totalPoints(point)/(double) point.size();
+    public double totalAveragePoints(double actuallyTotalPoints){
+        return actuallyTotalPoints/(double) this.points.size()-1;
     }
+
     public double totalPoints(List<Integer> points){
         double aux = 0;
         for (int point : points) {

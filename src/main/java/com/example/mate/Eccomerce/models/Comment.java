@@ -35,6 +35,7 @@ public class Comment {
     public Comment(String body, LocalDateTime date) {
         this.body = body;
         this.date = date;
+        this.active = true;
     }
 
     //Getters

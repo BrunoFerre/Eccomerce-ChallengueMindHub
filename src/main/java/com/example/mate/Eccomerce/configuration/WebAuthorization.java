@@ -30,11 +30,17 @@ public class WebAuthorization {
 
                 .antMatchers(HttpMethod.POST, "/api/comments/add", "/api/answers/add", "/api/punctuations/add","/api/adress/add").hasAuthority("CLIENT")
 
-                .antMatchers(HttpMethod.PATCH, "/api/comments/update/{id}", "/api/answers/update","/api/adress/delete").hasAuthority("CLIENT")
+                .antMatchers(HttpMethod.GET, "/api/person/all").hasAuthority("ADMIN")
 
-                .antMatchers(HttpMethod.DELETE, "/api/comments/delete/{id}", "/api/answers/delete").hasAuthority("CLIENT")
+                .antMatchers(HttpMethod.GET, "/api/person/{id}").hasAuthority("CLIENT")
+
+                .antMatchers(HttpMethod.PATCH, "/api/comments/update", "/api/answers/update","/api/adress/delete").hasAuthority("CLIENT")
+
+                .antMatchers(HttpMethod.DELETE, "/api/comments/delete", "/api/answers/delete").hasAuthority("CLIENT")
 
                 .antMatchers(HttpMethod.POST, "/api/products/add").hasAuthority("ADMIN")
+
+                .antMatchers(HttpMethod.GET, "/api/person/all").hasAuthority("ADMIN")
 
                 .antMatchers(HttpMethod.PATCH, "/api/products/stock", "/api/products/discount", "/api/products/price").hasAuthority("ADMIN")
 

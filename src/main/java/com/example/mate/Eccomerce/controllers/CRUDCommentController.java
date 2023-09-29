@@ -71,8 +71,8 @@ public class CRUDCommentController {
         return new ResponseEntity<>("The comment was added", HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Object> deleteComment(@PathVariable long id, Authentication authentication){
+    @DeleteMapping("/delete")
+    public ResponseEntity<Object> deleteComment(@RequestParam long id, Authentication authentication){
         if (id <= 0){
             return new ResponseEntity<>("The id cannot be less than 1", HttpStatus.BAD_REQUEST);
         }
@@ -89,8 +89,8 @@ public class CRUDCommentController {
         return new ResponseEntity<>("The comment was deleted", HttpStatus.OK);
     }
 
-    @PatchMapping ("/update/{id}")
-    public ResponseEntity<Object> updateComment(@PathVariable long id, @RequestParam String body, Authentication authentication){
+    @PatchMapping ("/update")
+    public ResponseEntity<Object> updateComment(@RequestParam long id, @RequestParam String body, Authentication authentication){
         if (id <= 0){
             return new ResponseEntity<>("The id cannot be less than 1", HttpStatus.BAD_REQUEST);
         }

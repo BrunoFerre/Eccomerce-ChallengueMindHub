@@ -3,6 +3,9 @@ package com.example.mate.Eccomerce.dtos;
 import com.example.mate.Eccomerce.models.Person;
 import com.example.mate.Eccomerce.models.PersonType;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+
 public class PersonDTO {
     private long id;
     private String firstname;
@@ -10,8 +13,10 @@ public class PersonDTO {
     private String email;
     private String phone;
     private PersonType personType;
+
     private String password;
 
+    private Set<AdressDTO> address;
     public PersonDTO() {
 
     }
@@ -21,7 +26,8 @@ public class PersonDTO {
         this.lastname = person.getLastname();
         this.email = person.getEmail();
         this.phone = person.getPhone();
-        this.password = person.getPassword();
+        this.personType = person.getUserType();
+        this.address = person.getAdress().stream().map(AdressDTO::new).collect(Collectors.toSet());
     }
 
     public PersonDTO(String firstname, String lastname, String email, String phone, String password) {
@@ -58,5 +64,8 @@ public class PersonDTO {
 
     public String getPassword() {
         return password;
+    }
+    public Set<AdressDTO> getAddress() {
+        return address;
     }
 }

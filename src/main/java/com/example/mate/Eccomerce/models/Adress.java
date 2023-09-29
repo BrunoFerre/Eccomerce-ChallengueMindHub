@@ -20,6 +20,11 @@ public class Adress {
     @JoinColumn(name = "person_id")
     private Person person;
 
+
+    public Adress() {
+
+    }
+
     public Adress( String street, long number, String city, String apartament, long floor,boolean status) {
         this.street = street;
         this.number = number;

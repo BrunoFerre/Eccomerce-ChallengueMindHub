@@ -4,6 +4,7 @@ import com.example.mate.Eccomerce.models.Answer;
 import com.example.mate.Eccomerce.models.Product;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class AnswerDTO {
@@ -12,9 +13,10 @@ public class AnswerDTO {
     private String body;
 
     private String userName;
-    private CommentDTO comment;
 
     private boolean active;
+
+    private LocalDateTime date;
 
     public AnswerDTO(){
 
@@ -24,6 +26,7 @@ public class AnswerDTO {
         this.body = answer.getBody();
         this.userName = answer.getUserName();
         this.active = answer.isActive();
+        this.date=answer.getDate();
     }
 
     //Getters
@@ -40,10 +43,11 @@ public class AnswerDTO {
         return userName;
     }
 
-    public CommentDTO getComment() {
-        return comment;
-    }
     public boolean isActive() {
         return active;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
     }
 }

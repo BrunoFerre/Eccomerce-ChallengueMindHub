@@ -9,10 +9,10 @@ import com.example.mate.Eccomerce.models.Product;
 import com.example.mate.Eccomerce.service.AnswerService;
 import com.example.mate.Eccomerce.service.CommentService;
 import com.example.mate.Eccomerce.service.ProductService;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -78,8 +78,7 @@ public class ProductController {
         }
         product.setDiscount(discount);
         productService.save(product);
-        ProductDTO productDTO=productService.getDtoById(id);
-        return new ResponseEntity<>(productDTO,HttpStatus.OK);
+        return new ResponseEntity<>("Success",HttpStatus.OK);
     }
     @PatchMapping("/products/stock")
     public ResponseEntity<Object> updateStock(@RequestParam long id,@RequestParam int stock){
@@ -95,8 +94,7 @@ public class ProductController {
         }
         product.setStock(stock);
         productService.save(product);
-        ProductDTO productDTO=productService.getDtoById(id);
-        return new ResponseEntity<>(productDTO,HttpStatus.OK);
+        return new ResponseEntity<>("Success",HttpStatus.OK);
     }
     @PatchMapping("/products/price")
     public ResponseEntity<Object> updatePrice(@RequestParam long id,@RequestParam double price){
@@ -112,8 +110,7 @@ public class ProductController {
         }
         product.setPrice(price);
         productService.save(product);
-        ProductDTO productDTO=productService.getDtoById(id);
-        return new ResponseEntity<>(productDTO,HttpStatus.OK);
+        return new ResponseEntity<>("Success",HttpStatus.OK);
 
     }
 

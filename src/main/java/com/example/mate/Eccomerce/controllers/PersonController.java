@@ -7,6 +7,7 @@ import com.example.mate.Eccomerce.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,8 +26,16 @@ public class PersonController {
         return personRepository.findAll().stream().map(PersonDTO::new).collect(Collectors.toList());
     }
     @GetMapping("/{id}")
-    public PersonDTO getById(@PathVariable long id){
-        return new PersonDTO(personRepository.findById(id).orElse(null));
+    public ResponseEntity<Object> getById(@PathVariable long id, Authentication authentication){
+        if (authentication == null){
+            return new ResponseEntity<>("Error1", HttpStatus.FORBIDDEN);
+        }
+        Person person = personRepository.findById(id).orElse(null);
+        if (person == null){
+            return new ResponseEntity<>("Error2", HttpStatus.FORBIDDEN);
+        }
+        PersonDTO personDTO = new PersonDTO(person);
+        return new ResponseEntity<>(personDTO, HttpStatus.OK);
     }
     @PostMapping("/add")
     public ResponseEntity<Object> add(@RequestBody PersonDTO personDTO){

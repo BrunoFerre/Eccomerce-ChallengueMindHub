@@ -3,10 +3,7 @@ package com.example.mate.Eccomerce.models;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 public class Person {
@@ -98,5 +95,9 @@ public class Person {
     public void addComment(Comment comment){
         comment.setPerson(this);
         this.comments.add(comment);
+    }
+
+    public Set<Adress> getAdress() {
+        return adress;
     }
 }
