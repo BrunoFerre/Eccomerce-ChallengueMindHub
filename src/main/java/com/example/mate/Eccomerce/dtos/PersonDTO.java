@@ -24,6 +24,14 @@ public class PersonDTO {
         this.password = person.getPassword();
     }
 
+    public PersonDTO(String firstname, String lastname, String email, String phone, String password) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.phone = phone;
+        this.password = password;
+    }
+
     public long getId() {
         return id;
     }

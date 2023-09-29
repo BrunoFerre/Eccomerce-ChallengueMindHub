@@ -34,8 +34,8 @@ public class CRUDAnswerController {
         return new ResponseEntity<>(answerService.getAllAnswerDTO(), HttpStatus.OK);
     }
 
-    @GetMapping("/comment/{id}")
-    public ResponseEntity<Object> getAnswersByComment(@PathVariable long id, Authentication authentication){
+    @GetMapping("/comment")
+    public ResponseEntity<Object> getAnswersByComment(@RequestParam long id, Authentication authentication){
         if (id<=0){
             return new ResponseEntity<>("The id cannot be 0 or less than 0", HttpStatus.BAD_REQUEST);
         }
@@ -76,8 +76,8 @@ public class CRUDAnswerController {
         return new ResponseEntity<>("The answer was added", HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Object> deleteAnswer(@PathVariable long id, Authentication authentication){
+    @DeleteMapping("/delete")
+    public ResponseEntity<Object> deleteAnswer(@RequestParam long id, Authentication authentication){
         if (id<=0){
             return new ResponseEntity<>("The id cannot be 0 or less than 0", HttpStatus.BAD_REQUEST);
         }
@@ -95,7 +95,7 @@ public class CRUDAnswerController {
     }
 
     @PatchMapping("/update/{id}")
-    public ResponseEntity<Object> updateAnswer(@PathVariable long id, @RequestParam String answer, Authentication authentication){
+    public ResponseEntity<Object> updateAnswer(@RequestParam long id, @RequestParam String answer, Authentication authentication){
         if (id<=0){
             return new ResponseEntity<>("The id cannot be 0 or less than 0", HttpStatus.BAD_REQUEST);
         }

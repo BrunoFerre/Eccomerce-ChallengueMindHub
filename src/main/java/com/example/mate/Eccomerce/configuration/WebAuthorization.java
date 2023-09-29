@@ -26,17 +26,17 @@ public class WebAuthorization {
 
                 .antMatchers(HttpMethod.POST, "/api/login", "/api/person/add").permitAll()
 
-                .antMatchers(HttpMethod.GET, "/api/products", "/api/products/{id}", "/api/products/{category}").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/products", "/api/products", "/api/products/{category}","/api/comments/product").permitAll()
 
-                .antMatchers(HttpMethod.POST, "/api/comment/add", "/api/answer/add", "/api/punctuations/add","/api/adress/add").hasAuthority("CLIENT")
+                .antMatchers(HttpMethod.POST, "/api/comments/add", "/api/answers/add", "/api/punctuations/add","/api/adress/add").hasAuthority("CLIENT")
 
-                .antMatchers(HttpMethod.PATCH, "/api/comment/update/{id}", "/api/answer/update/{id}","/api/adress/delete").hasAuthority("CLIENT")
+                .antMatchers(HttpMethod.PATCH, "/api/comments/update/{id}", "/api/answers/update","/api/adress/delete").hasAuthority("CLIENT")
 
-                .antMatchers(HttpMethod.DELETE, "/api/comment/delete/{id}", "/api/answer/delete/{id}").hasAuthority("CLIENT")
+                .antMatchers(HttpMethod.DELETE, "/api/comments/delete/{id}", "/api/answers/delete").hasAuthority("CLIENT")
 
                 .antMatchers(HttpMethod.POST, "/api/products/add").hasAuthority("ADMIN")
 
-                .antMatchers(HttpMethod.PATCH, "/api/products/{id}/stock", "/api/products/{id}/discount", "/api/products/{id}/price").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.PATCH, "/api/products/stock", "/api/products/discount", "/api/products/price").hasAuthority("ADMIN")
 
                 .antMatchers(HttpMethod.DELETE, "/api/products/{id}").hasAuthority("ADMIN")
 

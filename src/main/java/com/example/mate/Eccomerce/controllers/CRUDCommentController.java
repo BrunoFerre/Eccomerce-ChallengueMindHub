@@ -33,8 +33,8 @@ public class CRUDCommentController {
         return new ResponseEntity<>(commentService.getCommentsDTO(), HttpStatus.OK);
     }
 
-    @GetMapping("product/{id}")
-    public ResponseEntity<Object> getCommentsByProduct(@PathVariable long id){
+    @GetMapping("/product")
+    public ResponseEntity<Object> getCommentsByProduct(@RequestParam long id){
         if (id <= 0){
             return new ResponseEntity<>("The id cannot be less than 1", HttpStatus.BAD_REQUEST);
         }

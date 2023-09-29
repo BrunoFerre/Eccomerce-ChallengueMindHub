@@ -64,8 +64,8 @@ public class ProductController {
         }
     }
 
-    @PatchMapping("/products/{id}/discount")
-    public ResponseEntity<Object> updateDiscount(@PathVariable long id,@RequestParam double discount){
+    @PatchMapping("/products/discount")
+    public ResponseEntity<Object> updateDiscount(@RequestParam long id,@RequestParam double discount){
         if (id<=0){
             return new ResponseEntity<>("The id cannot be 0 or less than 0", HttpStatus.BAD_REQUEST);
         }
@@ -81,8 +81,8 @@ public class ProductController {
         ProductDTO productDTO=productService.getDtoById(id);
         return new ResponseEntity<>(productDTO,HttpStatus.OK);
     }
-    @PatchMapping("/products/{id}/stock")
-    public ResponseEntity<Object> updateStock(@PathVariable long id,@RequestParam int stock){
+    @PatchMapping("/products/stock")
+    public ResponseEntity<Object> updateStock(@RequestParam long id,@RequestParam int stock){
         if (id<=0){
             return new ResponseEntity<>("The id cannot be 0 or less than 0", HttpStatus.BAD_REQUEST);
         }
@@ -98,8 +98,8 @@ public class ProductController {
         ProductDTO productDTO=productService.getDtoById(id);
         return new ResponseEntity<>(productDTO,HttpStatus.OK);
     }
-    @PatchMapping("/products/{id}/price")
-    public ResponseEntity<Object> updatePrice(@PathVariable long id,@RequestParam double price){
+    @PatchMapping("/products/price")
+    public ResponseEntity<Object> updatePrice(@RequestParam long id,@RequestParam double price){
         if (id<=0){
             return new ResponseEntity<>("The id cannot be 0 or less than 0", HttpStatus.BAD_REQUEST);
         }

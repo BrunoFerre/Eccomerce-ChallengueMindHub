@@ -7,6 +7,7 @@ import com.example.mate.Eccomerce.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +18,8 @@ import java.util.stream.Collectors;
 public class PersonController {
     @Autowired
     private PersonRepository personRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     @GetMapping("/all")
     public List<PersonDTO> getAll(){
         return personRepository.findAll().stream().map(PersonDTO::new).collect(Collectors.toList());
@@ -45,7 +48,7 @@ public class PersonController {
         if (personDTO.getPassword().isBlank()){
             return new ResponseEntity<>("password is required", HttpStatus.BAD_REQUEST);
         }
-        Person person = new Person(personDTO.getFirstname(), personDTO.getLastname(), personDTO.getEmail(), personDTO.getPhone(), personDTO.getPassword(), PersonType.CLIENT);
+        Person person = new Person(personDTO.getFirstname(), personDTO.getLastname(), personDTO.getEmail(), personDTO.getPhone(), passwordEncoder.encode(personDTO.getPassword()), PersonType.CLIENT);
         personRepository.save(person);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
