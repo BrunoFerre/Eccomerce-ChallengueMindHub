@@ -62,4 +62,9 @@ public class CommentImplement implements CommentService {
     public Comment findByIdAndPerson(long id, Person person) {
         return commentRepository.findByIdAndPerson(id, person);
     }
+
+    @Override
+    public Comment getByIdAndProduct(long id, Product product) {
+        return commentRepository.findByIdAndProduct(id, product);
+    }
 }

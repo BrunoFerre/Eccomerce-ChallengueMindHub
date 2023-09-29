@@ -32,8 +32,12 @@ public class Product {
 
     private double discount;
 
-    @OneToOne(mappedBy = "product", fetch = FetchType.EAGER)
-    private Punctuation punctuation;
+    private double averagePoints;
+
+    private double actuallyTotalPoints;
+
+    @ElementCollection
+    private List<Integer> points = new ArrayList<>();
 
     @OneToMany(mappedBy = "product")
     private Set<Details> details = new HashSet<>();
@@ -51,7 +55,7 @@ public class Product {
         this.category = category;
         this.color = color;
         this.discount = discount;
-        this.punctuation = new Punctuation(this);
+        this.points.add(0);
     }
 
     public Product(CreateProductDTO createProductDTO) {
@@ -62,7 +66,7 @@ public class Product {
         this.category = createProductDTO.getCategory();
         this.color = createProductDTO.getColor();
         this.discount = createProductDTO.getDiscount();
-        this.punctuation = new Punctuation(this);
+        this.points.add(0);
     }
 
     //Getters
@@ -94,11 +98,21 @@ public class Product {
         return color;
     }
 
-    public Punctuation getPunctuation() {
-        return punctuation;
+    public List<Integer> getPoint() {
+        return points;
     }
 
-    public List<Details> getDetails() {
+    public double getAveragePoints() {
+        return averagePoints;
+    }
+
+    public double getActuallyTotalPoints() {
+        return actuallyTotalPoints;
+    }
+
+
+
+    public Set<Details> getDetails() {
         return details;
     }
 
@@ -112,6 +126,8 @@ public class Product {
 
 
     //Setters
+
+
     public void setName(String name) {
         this.name = name;
     }
@@ -136,9 +152,18 @@ public class Product {
         this.color = color;
     }
 
-    public void setPunctuation(Punctuation punctuation) {
-        this.punctuation = punctuation;
+    public void setAveragePoints(double averagePoints) {
+        this.averagePoints = averagePoints;
     }
+
+    public void setActuallyTotalPoints(double actuallyTotalPoints) {
+        this.actuallyTotalPoints = actuallyTotalPoints;
+    }
+
+    public void setPoints(List<Integer> points) {
+        this.points = points;
+    }
+
 
     public void setDiscount(double discount) {
         this.discount = discount;
@@ -153,4 +178,24 @@ public class Product {
         comment.setProduct(this);
         comments.add(comment);
     }
+
+    public void addPoint(int point) {
+        this.points.add(point);
+        this.actuallyTotalPoints = totalAveragePoints(points);
+        this.averagePoints = totalAveragePoints(points);
+    }
+
+    //Methods
+    public double totalAveragePoints(List<Integer> point){
+        return totalPoints(point)/(double) point.size();
+    }
+    public double totalPoints(List<Integer> points){
+        double aux = 0;
+        for (int point : points) {
+            aux += point;
+        }
+        return aux;
+    }
+
+
 }

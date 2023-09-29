@@ -3,10 +3,8 @@ package com.example.mate.Eccomerce.dtos;
 import com.example.mate.Eccomerce.models.CategoryProduct;
 import com.example.mate.Eccomerce.models.ColorProduct;
 import com.example.mate.Eccomerce.models.Product;
-import com.example.mate.Eccomerce.models.Punctuation;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class ProductDTO {
@@ -27,9 +25,13 @@ public class ProductDTO {
 
     private double discount;
 
-    private Punctuation punctuation;
+    private double averagePoints;
 
-    /*private List<DetailsDTO> details;*/
+    private double actuallyTotalPoints;
+
+    private List<Integer> points;
+
+    private List<DetailsDTO> details;
 
     private List<CommentDTO> comments;
 
@@ -46,9 +48,11 @@ public class ProductDTO {
         this.category = product.getCategory();
         this.color = product.getColor();
         this.discount = product.getDiscount();
-        this.punctuation = product.getPunctuation();
-       /* this.details = product.getDetails().stream().map(DetailsDTO::new).collect(Collectors.toList());
-        this.comments = product.getComments().stream().map(CommentDTO::new).collect(Collectors.toList());*/
+        this.actuallyTotalPoints = product.getActuallyTotalPoints();
+        this.averagePoints = product.getAveragePoints();
+        this.points = product.getPoint();
+        this.details = product.getDetails().stream().map(DetailsDTO::new).collect(Collectors.toList());
+        this.comments = product.getComments().stream().map(CommentDTO::new).collect(Collectors.toList());
     }
 
     //Getters
@@ -81,18 +85,26 @@ public class ProductDTO {
         return color;
     }
 
-    public Punctuation getPunctuation() {
-        return punctuation;
-    }
-
-  /*  public List<DetailsDTO> getDetails() {
+  public List<DetailsDTO> getDetails() {
         return details;
-    }*/
+    }
 
     public List<CommentDTO> getComments() {
         return comments;
     }
     public double getDiscount() {
         return discount;
+    }
+
+    public double getAveragePoints() {
+        return averagePoints;
+    }
+
+    public double getActuallyTotalPoints() {
+        return actuallyTotalPoints;
+    }
+
+    public List<Integer> getPoints() {
+        return points;
     }
 }
