@@ -23,65 +23,40 @@
 		<div class="bx bx-menu" id="menu-icon"></div>
 
 		<ul class="navbar">
-			<li><a href="#">Home</a></li>
-			<li><a href="#shop">Shop</a></li>
+			<li><a href="/web/index.html">Home</a></li>
+			<li><a href="./shop.html">Shop</a></li>
 			<li><a href="#about_us">About Us</a></li>
 			<li><a href="#contact">Contact</a></li>
-			<li><a href="#">Log in</a></li>
+			<li><a href="./login1.html">Log in</a></li>
 		</ul>
 	</header>
     <main>
 
-        <section id="prodetails" class="section-p1">
-            <div class="single-pro-image">
-                <img src="../images/2.jpeg" alt="" id="MainImg" width="100%">
-
+        <section id="prodetails" class="section-p1" id="product">
+            <div class="single-pro-image" v-if="productDetails">
+                <img :src="selectedImage" alt="" id="MainImg" width="100%">
                 <div class="small-img-group">
-                    <div class="small-img-col">
-                        <img src="../images/1.png" alt="" width="100%" class="small-img">
-                    </div>
-                    <div class="small-img-col">
-                        <img src="../images/2.jpeg" alt=""width="100%" class="small-img">
-                    </div>
-                    <div class="small-img-col">
-                        <img src="../images/2.jpeg" alt=""width="100%" class="small-img">
-                    </div>
-                    <div class="small-img-col">
-                        <img src="../images/2.jpeg" alt=""width="100%" class="small-img">
+                    <div class="small-img-col" v-for="(image, index) in productImages" :key="index">
+                        <img :src="image" alt="" width="100%" class="small-img" @click="changeMainImage(image)">
                     </div>
                 </div>
             </div>
-            <div class="single-pro-details">
-                <h6>MATE / PREMIUM</h6>
-                <h4>MATE IMPERIAL PREMIUM LISO</h4>
-                <h2>$78.00</h2>
-                <h6>Bombilla</h6>
+            <div class="single-pro-details" v-if="productDetails">
+                <h6>{{ productDetails.category }}</h6>
+                <h4>{{ productDetails.title }}</h4>
+                <h2>${{ productDetails.price }}</h2>
+                <h6>Bombilla: {{ productDetails.availability }}</h6>
                 <select>
-                    <option value="">Select Option</option>
-                    <option value="">Yes</option>
-                    <option value="">No</option>
+                    <option value="1">Select Option</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
                 </select>
-                <input type="number" value="1">
+                <input type="number" id="productQuantity" value="1">
                 <button class="normal">Add to Cart</button>
-                <span class="sale">Por su delicado trabajo artesanal, el mate imperial se convirtió en el anhelo de todo matero argentino. 
-                    Cada pieza es única, de trabajo artesano meticuloso, distinguiéndose cada mate imperial del resto.
-                    Si desea completar la experiencia, tiene la opción de incluir una bombilla pico loro, una compañera perfecta para su mate.  
-                    Si desea presentar su mate de manera especial, ofrecemos la opción de una caja de regalo, que agrega un toque de lujo a su obsequio.
- 
-                    CARACTERÍSTICAS:
-                    
-                    Mate de calabaza brasilera    
-                    Forrado en cuero vacuno                 
-                    Base de 4 patas reforzadas. 
-              
-                    Vendemos únicamente calidad PREMIUM:
-               
-                    -Cuero vacuno cubriendo la calabaza (no simil cuero)
-                    -Calabaza brasilera (no la del norte argentino que es más liviana y perforable).     
-                    -Es un mate que con los cuidados correctos dura toda la vida.</span>
-
+                <span id="productDescription">{{ productDetails.description }}</span>
             </div>
         </section>
+
         <section id="product1" class="section-p1">
             <h2>Featured Products</h2>
             <p>Summer Collection New Modern Design</p>
@@ -137,6 +112,58 @@
             </div>
         </section>
 
+        <section id="product1" class="section-p1" >
+            <h2>Featured Products</h2>
+            <p>Summer Collection New Modern Design</p>
+            <div class="pro-container">
+                <div class="pro" :key="product.id" v-for="(product, index) in products.slice(0, 4)">
+                    <a :href="'product.html?id=' + product.id">
+                        <img :src="product.image" :alt="product.title">
+                        <div class="des">
+                            <span>Matoffee</span>
+                            <h5>{{ product.title }}</h5>
+                            <div class="start">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                            </div>
+                            <h4>${{ product.price }}</h4>
+                        </div>
+                        <a href=""><i class="bi bi-cart2 cart"></i></a>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="product1" class="section-p1" >
+            <div class="pro-container">
+                <div class="pro" :key="product.id"
+                onclick="window.location.href='product.html'" v-for="product in products">
+                    <a :href="'product.html?id=' + product.id">
+                    <img :src="product.image" :alt="product.title">
+                        <div class="des">
+                            <span>Matoffee</span>
+                            <h5>{{ product.title }}</h5>
+                            <div class="start">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                            </div>
+                            <h4>${{ product.price }}</h4>
+                        </div>
+                        <a href=""><i class="bi bi-cart2 cart"></i></a>
+                    </a>
+                </div>
+            </div>
+            
+        </section>
+
+        
+
 
     </main>
     <footer class="contact" id="contact">
@@ -158,20 +185,9 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 		crossorigin="anonymous"></script>
-<script>
-    var MainImg = document.getElementById('MainImg');
-    var smallImg = document.getElementsByClassName('small-img');
-    smallImg[0].onclick = function () {
-        MainImg.src = smallImg[0].src;
-    }
-    smallImg[1].onclick = function () {
-        MainImg.src = smallImg[1].src;
-    }
-    smallImg[2].onclick = function () {
-        MainImg.src = smallImg[2].src;
-    }
-    smallImg[3].onclick = function () {
-        MainImg.src = smallImg[3].src;
-    }
-</script>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@3.2.29/dist/vue.global.prod.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../scripts/pruebaDetails.js"></script>
+
 </html>
