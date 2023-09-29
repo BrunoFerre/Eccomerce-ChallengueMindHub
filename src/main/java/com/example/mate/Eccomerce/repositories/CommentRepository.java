@@ -13,4 +13,5 @@ public interface CommentRepository extends JpaRepository<Comment,Long> {
     Comment findByIdAndPerson(long id, Person person);
     Comment findByIdAndProduct(long id, Product product);
 
+    Comment getCommentsByProduct(long id);
 }

@@ -26,4 +26,6 @@ public interface CommentService {
     Comment findByIdAndPerson(long id, Person person);
 
     Comment getByIdAndProduct(long id, Product product);
+
+    Comment getCommentsByProduct(long id);
 }

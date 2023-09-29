@@ -1,5 +1,6 @@
 package com.example.mate.Eccomerce.controllers;
 
+import com.example.mate.Eccomerce.dtos.AnswerDTO;
 import com.example.mate.Eccomerce.models.Answer;
 import com.example.mate.Eccomerce.models.Comment;
 import com.example.mate.Eccomerce.models.Person;
@@ -13,10 +14,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/answers")
-public class CUDAnswerController {
+public class CRUDAnswerController {
 
     @Autowired
     private CommentService commentService;
@@ -25,6 +28,28 @@ public class CUDAnswerController {
     private AnswerService  answerService;
     @Autowired
     private PersonRepository personRepository;
+
+    @GetMapping("/all")
+    public ResponseEntity<Object> getAllAnswers(){
+        return new ResponseEntity<>(answerService.getAllAnswerDTO(), HttpStatus.OK);
+    }
+
+    @GetMapping("/comment/{id}")
+    public ResponseEntity<Object> getAnswersByComment(@PathVariable long id, Authentication authentication){
+        if (id<=0){
+            return new ResponseEntity<>("The id cannot be 0 or less than 0", HttpStatus.BAD_REQUEST);
+        }
+        Person person= personRepository.findByEmail(authentication.getName());
+        if (person==null){
+            return new ResponseEntity<>("The user was not found", HttpStatus.NOT_FOUND);
+        }
+        Comment comment= commentService.findById(id);
+        if (comment==null){
+            return new ResponseEntity<>("The comment was not found", HttpStatus.NOT_FOUND);
+        }
+        List<AnswerDTO> answers=comment.getAnswers().stream().map(AnswerDTO::new).collect(Collectors.toList());
+        return new ResponseEntity<>(answers, HttpStatus.OK);
+    }
 
     @PostMapping("add")
     public ResponseEntity<Object> addAnswer(@RequestParam String answer, @RequestParam long commentId, Authentication authentication){
