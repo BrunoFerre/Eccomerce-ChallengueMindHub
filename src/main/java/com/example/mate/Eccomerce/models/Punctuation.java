@@ -11,7 +11,6 @@ public class Punctuation {
     @GeneratedValue(strategy = GenerationType.AUTO ,generator = "native")
     @GenericGenerator(name="native", strategy = "native")
     private long id;
-
     @ElementCollection
     @CollectionTable(name = "punctuation_points", joinColumns = @JoinColumn(name = "punctuation_id"))
     private List<Integer> points;
@@ -26,12 +25,12 @@ public class Punctuation {
     public Punctuation(){
 
     }
-    public Punctuation(Product product){
+   /* public Punctuation(Product product){
         this.points.add(0);
         this.product = product;
         this.actuallyTotalPoints = totalAveragePoints(points);
         this.averagePoints=totalAveragePoints(points);
-    }
+    }*/
 
     //Methods
     public double totalAveragePoints(List<Integer> point){

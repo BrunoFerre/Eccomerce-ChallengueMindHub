@@ -22,9 +22,8 @@ public class Person {
     private PersonType userType;
     @OneToMany(mappedBy = "person",fetch = FetchType.EAGER)
     private Set<Adress> adress = new HashSet<>();
-
-    @OneToMany(mappedBy = "person")
-    private List<Comment> comments=new ArrayList<>();
+    @OneToMany(mappedBy = "person",fetch = FetchType.EAGER)
+    private List<Comment> comments = new ArrayList<>();
 
     public Person() {
     }
@@ -41,21 +40,12 @@ public class Person {
     adress.setPerson(this);
     this.adress.add(adress);
     }
-
-    public void addComment(Comment comment){
-        comment.setPerson(this);
-        this.comments.add(comment);
-    }
-    public long getId() {
+   public long getId() {
         return id;
     }
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public List<Comment> getComments() {
-        return comments;
     }
 
     public String getFirstname() {
@@ -104,5 +94,9 @@ public class Person {
 
     public void setUserType(PersonType personType) {
         this.userType = personType;
+    }
+    public void addComment(Comment comment){
+        comment.setPerson(this);
+        this.comments.add(comment);
     }
 }

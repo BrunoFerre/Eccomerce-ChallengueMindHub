@@ -114,6 +114,7 @@ public class ProductController {
         productService.save(product);
         ProductDTO productDTO=productService.getDtoById(id);
         return new ResponseEntity<>(productDTO,HttpStatus.OK);
+
     }
 
 
@@ -163,7 +164,7 @@ public class ProductController {
         Product product= productService.findById(id);
         List<Comment> comments=product.getComments();
         for (Comment comment:comments){
-            List<Answer> answers=comment.getAnswers();
+            Set<Answer> answers=comment.getAnswers();
             for (Answer answer:answers){
                 answerService.deleteById(answer.getId());
             }

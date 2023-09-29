@@ -2,7 +2,7 @@ package com.example.mate.Eccomerce.controllers;
 
 import com.example.mate.Eccomerce.models.Comment;
 import com.example.mate.Eccomerce.models.Person;
-import com.example.mate.Eccomerce.repositories.PersonRepositories;
+import com.example.mate.Eccomerce.repositories.PersonRepository;
 import com.example.mate.Eccomerce.service.CommentService;
 import org.springframework.security.core.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ public class CUDCommentController {
     @Autowired
     private CommentService commentService;
     @Autowired
-    private PersonRepositories personRepository;
+    private PersonRepository personRepository;
 
     @PostMapping("/add")
     public ResponseEntity <Object> addComment(@RequestParam String body, @RequestParam long productId, Authentication authentication){

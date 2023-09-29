@@ -2,7 +2,7 @@ package com.example.mate.Eccomerce.configuration;
 
 import com.example.mate.Eccomerce.models.Person;
 import com.example.mate.Eccomerce.models.PersonType;
-import com.example.mate.Eccomerce.repositories.PersonRepositories;
+import com.example.mate.Eccomerce.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,7 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class WebAuthentication extends GlobalAuthenticationConfigurerAdapter {
 
     @Autowired
-    private PersonRepositories personRepository;
+    private PersonRepository personRepository;
 
     @Bean
     public PasswordEncoder passwordEncoder(){

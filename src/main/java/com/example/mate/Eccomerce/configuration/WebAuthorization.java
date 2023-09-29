@@ -26,11 +26,11 @@ public class WebAuthorization {
 
                 .antMatchers(HttpMethod.POST, "/api/login", "/api/person/add").permitAll()
 
-                .antMatchers(HttpMethod.GET, "/api/products", "/api/products/{id}", "/api/products/{category}").permitAll()
+                .antMatchers(HttpMethod.GET, "api/product/", "api/product/{id}", "api/product/{category}").permitAll()
 
-                .antMatchers(HttpMethod.POST, "/api/comment/add", "/api/answer/add", "/api/punctuation/add").hasAuthority("CLIENT")
+                .antMatchers(HttpMethod.POST, "/api/comment/add", "/api/answer/add", "/api/punctuation/add","/api/adress/add").hasAuthority("CLIENT")
 
-                .antMatchers(HttpMethod.PATCH, "/api/comment/update/{id}", "/api/answer/update/{id}").hasAuthority("CLIENT")
+                .antMatchers(HttpMethod.PATCH, "/api/comment/update/{id}", "/api/answer/update/{id}","/api/adress/delete").hasAuthority("CLIENT")
 
                 .antMatchers(HttpMethod.DELETE, "/api/comment/delete/{id}", "/api/answer/delete/{id}").hasAuthority("CLIENT")
 
