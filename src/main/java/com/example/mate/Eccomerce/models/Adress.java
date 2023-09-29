@@ -11,7 +11,7 @@ public class Adress {
     @GenericGenerator(name = "native",strategy = "native")
     private long id;
     private String street;
-    private Number number;
+    private long number;
     private String city;
     private String apartament;
     private long floor;
@@ -20,7 +20,7 @@ public class Adress {
     @JoinColumn(name = "person_id")
     private Person person;
 
-    public Adress( String street, Number number, String city, String apartament, long floor,boolean status) {
+    public Adress( String street, long number, String city, String apartament, long floor,boolean status) {
         this.street = street;
         this.number = number;
         this.city = city;
@@ -45,11 +45,11 @@ public class Adress {
         this.street = street;
     }
 
-    public Number getNumber() {
+    public long getNumber() {
         return number;
     }
 
-    public void setNumber(Number number) {
+    public void setNumber(long number) {
         this.number = number;
     }
 

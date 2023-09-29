@@ -5,7 +5,7 @@ import com.example.mate.Eccomerce.models.Adress;
 public class AdressDTO {
     private long id;
     private String street;
-    private Number number;
+    private long number;
     private String city;
     private String apartament;
     private long floor;
@@ -29,7 +29,7 @@ public class AdressDTO {
         return street;
     }
 
-    public Number getNumber() {
+    public long getNumber() {
         return number;
     }
 

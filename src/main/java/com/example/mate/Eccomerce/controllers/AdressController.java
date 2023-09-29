@@ -33,7 +33,7 @@ public class AdressController {
         if (adressDTO.getFloor()<=0){
             return new ResponseEntity<>("Floor cannot be 0 or less than 0", HttpStatus.BAD_REQUEST);
         }
-        if (adressDTO.getNumber().intValue()<=0){
+        if (adressDTO.getNumber()<=0){
             return new ResponseEntity<>("Number cannot be 0 or less than 0", HttpStatus.BAD_REQUEST);
         }
         if (adressDTO.getStreet().isBlank()){
