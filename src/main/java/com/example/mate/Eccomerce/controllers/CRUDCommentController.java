@@ -24,7 +24,6 @@ public class CRUDCommentController {
     private CommentService commentService;
     @Autowired
     private PersonRepository personRepository;
-
     @Autowired
     private ProductService productRepository;
 
@@ -58,9 +57,16 @@ public class CRUDCommentController {
         if (person==null){
             return new ResponseEntity<>("The user was not found", HttpStatus.NOT_FOUND);
         }
+        Product product = productRepository.findById(productId);
+        if (product==null){
+            return new ResponseEntity<>("The product was not found", HttpStatus.NOT_FOUND);
+        }
         Comment comment = new Comment(body, LocalDateTime.now());
         person.addComment(comment);
+        commentService.save(comment);
+        product.addComment(comment);
         personRepository.save(person);
+        productRepository.save(product);
         commentService.save(comment);
         return new ResponseEntity<>("The comment was added", HttpStatus.OK);
     }

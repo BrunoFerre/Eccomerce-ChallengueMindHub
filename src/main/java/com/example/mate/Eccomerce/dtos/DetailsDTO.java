@@ -19,8 +19,6 @@ public class DetailsDTO {
         this.id = details.getId();
         this.quantity = details.getQuantity();
         this.price = details.getPrice();
-        this.purchaseOrder = new PurchaseOrderDTO(details.getPurchaseOrder());
-        this.product = new ProductDTO(details.getProduct());
     }
 
     public long getId() {

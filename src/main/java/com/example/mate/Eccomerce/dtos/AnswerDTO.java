@@ -23,7 +23,6 @@ public class AnswerDTO {
         this.id = answer.getId();
         this.body = answer.getBody();
         this.userName = answer.getUserName();
-        this.comment = new CommentDTO(answer.getComment());
         this.active = answer.isActive();
     }
 
