@@ -17,6 +17,7 @@ public class Comment {
     @GenericGenerator(name = "native", strategy = "native")
     private long id;
 
+    @Column(length = 10000)
     private String body;
 
     private LocalDateTime date;

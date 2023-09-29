@@ -13,6 +13,7 @@ public class Answer {
     @GenericGenerator(name = "native", strategy = "native")
     private long id;
 
+    @Column(length = 10000)
     private String body;
 
     private String userName;
