@@ -27,7 +27,7 @@ public class Comment {
 
     @ManyToOne (fetch = FetchType.EAGER)
     private Product product;
-
+    private boolean active;
     public Comment() {
 
     }
@@ -62,8 +62,10 @@ public class Comment {
         return product;
     }
 
-
-    //Setters
+    public boolean isActive() {
+        return active;
+    }
+//Setters
 
 
     public void setId(long id) {
@@ -88,6 +90,10 @@ public class Comment {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     //Add

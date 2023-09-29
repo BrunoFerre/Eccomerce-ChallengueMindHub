@@ -3,7 +3,9 @@ package com.example.mate.Eccomerce.models;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -20,6 +22,8 @@ public class Person {
     private PersonType userType;
     @OneToMany(mappedBy = "person",fetch = FetchType.EAGER)
     private Set<Adress> adress = new HashSet<>();
+    @OneToMany(mappedBy = "person",fetch = FetchType.EAGER)
+    private List<Comment> comments = new ArrayList<>();
 
     public Person() {
     }
@@ -90,5 +94,9 @@ public class Person {
 
     public void setUserType(PersonType personType) {
         this.userType = personType;
+    }
+    public void addComment(Comment comment){
+        comment.setPerson(this);
+        this.comments.add(comment);
     }
 }

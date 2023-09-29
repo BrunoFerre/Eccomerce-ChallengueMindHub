@@ -1,5 +1,8 @@
 package com.example.mate.Eccomerce.configuration;
 
+import com.example.mate.Eccomerce.models.Person;
+import com.example.mate.Eccomerce.models.PersonType;
+import com.example.mate.Eccomerce.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,7 +30,7 @@ public class WebAuthentication extends GlobalAuthenticationConfigurerAdapter {
         auth.userDetailsService(inputName -> {
             Person person= personRepository.findByEmail(inputName);
             if (person != null){
-                if (person.getUserType == PersonType.AMDMIN){
+                if (person.getUserType() == PersonType.ADMIN){
                     return new User(person.getEmail(), person.getPassword(), AuthorityUtils.createAuthorityList("ADMIN"));
                 }
                 else {

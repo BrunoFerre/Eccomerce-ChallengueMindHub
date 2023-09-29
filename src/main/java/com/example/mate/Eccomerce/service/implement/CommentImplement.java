@@ -2,6 +2,7 @@ package com.example.mate.Eccomerce.service.implement;
 
 import com.example.mate.Eccomerce.dtos.CommentDTO;
 import com.example.mate.Eccomerce.models.Comment;
+import com.example.mate.Eccomerce.models.Person;
 import com.example.mate.Eccomerce.models.Product;
 import com.example.mate.Eccomerce.repositories.CommentRepository;
 import com.example.mate.Eccomerce.service.CommentService;
@@ -55,5 +56,10 @@ public class CommentImplement implements CommentService {
     @Override
     public CommentDTO getDtoById(long id) {
         return new CommentDTO(Objects.requireNonNull(commentRepository.findById(id).orElse(null)));
+    }
+
+    @Override
+    public Comment findByIdAndPerson(long id, Person person) {
+        return commentRepository.findByIdAndPerson(id, person);
     }
 }

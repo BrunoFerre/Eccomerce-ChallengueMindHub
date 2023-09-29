@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 public class WebAuthorization {
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http.
                 authorizeRequests()
@@ -28,17 +28,17 @@ public class WebAuthorization {
 
                 .antMatchers(HttpMethod.GET, "api/product/", "api/product/{id}", "api/product/{category}").permitAll()
 
-                .antMatchers(HttpMethod.POST, "/api/comment/add","/api/answer/add","/api/punctuation/add").hasAuthority("CLIENT")
+                .antMatchers(HttpMethod.POST, "/api/comment/add", "/api/answer/add", "/api/punctuation/add","/api/adress/add").hasAuthority("CLIENT")
 
-                .antMatchers(HttpMethod.PATCH,"/api/comment/update/{id}","/api/answer/update/{id}").hasAuthority("CLIENT")
+                .antMatchers(HttpMethod.PATCH, "/api/comment/update/{id}", "/api/answer/update/{id}","/api/adress/delete").hasAuthority("CLIENT")
 
-                .antMatchers(HttpMethod.DELETE, "/api/comment/delete/{id}","/api/answer/delete/{id}").hasAuthority("CLIENT")
+                .antMatchers(HttpMethod.DELETE, "/api/comment/delete/{id}", "/api/answer/delete/{id}").hasAuthority("CLIENT")
 
-                .antMatchers(HttpMethod.POST,"/api/products/add").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.POST, "/api/products/add").hasAuthority("ADMIN")
 
-                .antMatchers(HttpMethod.PATCH,"/api/products/{id}/stock","/api/products/{id}/discount","/api/products/{id}/price").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.PATCH, "/api/products/{id}/stock", "/api/products/{id}/discount", "/api/products/{id}/price").hasAuthority("ADMIN")
 
-                .antMatchers(HttpMethod.DELETE,"/api/products/{id}").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/api/products/{id}").hasAuthority("ADMIN")
 
                 .anyRequest().denyAll();
 
@@ -79,4 +79,5 @@ public class WebAuthorization {
             session.removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
 
         }
+    }
 }

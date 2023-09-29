@@ -35,7 +35,7 @@ public class Product {
     private Punctuation punctuation;
 
     @OneToMany(mappedBy = "product")
-    private List<Details> details= new ArrayList<>();
+    private Set<Details> details = new HashSet<>();
 
     @OneToMany(mappedBy = "product")
     private List<Comment> comments= new ArrayList<>();

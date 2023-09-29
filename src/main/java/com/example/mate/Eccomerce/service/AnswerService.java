@@ -2,6 +2,7 @@ package com.example.mate.Eccomerce.service;
 
 import com.example.mate.Eccomerce.dtos.AnswerDTO;
 import com.example.mate.Eccomerce.models.Answer;
+import com.example.mate.Eccomerce.models.Person;
 
 import java.util.List;
 

@@ -1,7 +1,9 @@
 package com.example.mate.Eccomerce.controllers;
 
+import com.example.mate.Eccomerce.models.Person;
 import com.example.mate.Eccomerce.models.Product;
 import com.example.mate.Eccomerce.models.Punctuation;
+import com.example.mate.Eccomerce.repositories.PersonRepository;
 import com.example.mate.Eccomerce.service.ProductService;
 import com.example.mate.Eccomerce.service.PunctuationService;
 import org.springframework.http.HttpStatus;
@@ -20,6 +22,8 @@ public class AddPunctuationController {
     private PunctuationService punctuationService;
     @Autowired
     private ProductService productService;
+    @Autowired
+    private PersonRepository personRepository;
 
     @PostMapping("/add")
     public ResponseEntity<Object> addPunctuation(@RequestParam int point, @RequestParam long id, Authentication authentication){
