@@ -45,7 +45,6 @@ public class WebAuthorization {
                 .antMatchers(HttpMethod.PATCH, "/api/products/stock", "/api/products/discount", "/api/products/price").hasAuthority("ADMIN")
 
                 .antMatchers(HttpMethod.DELETE, "/api/products/{id}").hasAuthority("ADMIN")
-
                 .anyRequest().denyAll();
 
         http.formLogin()
