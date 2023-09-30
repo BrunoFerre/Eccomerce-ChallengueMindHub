@@ -21,7 +21,7 @@ createApp({
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
-                    text: 'Something went wrong!',
+                    text: error.response.data,
                     footer: 'Please try again!'
             })
             })

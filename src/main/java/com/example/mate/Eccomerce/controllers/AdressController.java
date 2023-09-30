@@ -49,11 +49,15 @@ public class AdressController {
         personRepository.save(person);
         return new ResponseEntity<>("Adress Assigned",HttpStatus.CREATED);
     }
-    @PatchMapping("/delete")
-    public ResponseEntity<Object> deleteAdress(@RequestParam  Long id){
+    @PatchMapping("/delete/{id}")
+    public ResponseEntity<Object> deleteAdress(@RequestParam  Long id, Authentication authentication){
+        Person person = personRepository.findByEmail(authentication.getName());
         Adress adress=adressRepository.findById(id).orElse(null);
         if (adress==null){
             return new ResponseEntity<>("Adress not found",HttpStatus.NOT_FOUND);
+        }
+        if (adress.getPerson().getId() != person.getId()){
+            return new ResponseEntity<>("Adress not yours",HttpStatus.BAD_REQUEST);
         }
         if (!adress.isStatus()){
             return new ResponseEntity<>("Adress already deleted",HttpStatus.BAD_REQUEST);
