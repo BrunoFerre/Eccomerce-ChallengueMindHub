@@ -22,7 +22,7 @@ private PasswordEncoder passwordEncoder;
 			Person admin = new Person("Bruno Marcos","Ferreira",
 					"fbrunomarcos@gmail.com","123456", passwordEncoder.encode("pass123"), PersonType.ADMIN);
 			Adress adress = new Adress("Calle Admin", 123, "Jardin America", "Casa", 2, true);
-			Product product = new Product("Termo", "Termo de prueba", 100.000,50,CategoryProduct.CONTAINERS_MATE,ColorProduct.BLACK,2.0);
+			Product product = new Product("Termo", "Termo de prueba", 100.000,50,CategoryProduct.CONTAINERS_MATE,ColorProduct.BLACK,2.0,"https://d22fxaf9t8d39k.cloudfront.net/404e695dd7458678204ef273e8a72cf559939c03f46c774f420cc348674adf1719762.jpg");
 			admin.addAdress(adress);
 			personRepository.save(admin);
 			adressRepository.save(adress);

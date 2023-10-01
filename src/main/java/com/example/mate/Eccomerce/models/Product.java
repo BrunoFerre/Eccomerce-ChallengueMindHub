@@ -31,7 +31,7 @@ public class Product {
     private ColorProduct color;
 
     private double discount;
-
+    private String image;
     private double averagePoints;
 
     private double actuallyTotalPoints;
@@ -47,7 +47,7 @@ public class Product {
     public Product() {
 
     }
-    public Product(String name, String description, double price, int stock, CategoryProduct category, ColorProduct color, double discount) {
+    public Product(String name, String description, double price, int stock, CategoryProduct category, ColorProduct color, double discount, String image) {
         this.name = name;
         this.description = description;
         this.price = price;
@@ -55,6 +55,7 @@ public class Product {
         this.category = category;
         this.color = color;
         this.discount = discount;
+        this.image = image;
         this.points.add(0);
     }
 
@@ -110,7 +111,9 @@ public class Product {
         return actuallyTotalPoints;
     }
 
-
+    public String getImage() {
+        return image;
+    }
 
     public Set<Details> getDetails() {
         return details;
@@ -164,6 +167,9 @@ public class Product {
         this.points = points;
     }
 
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public void setDiscount(double discount) {
         this.discount = discount;

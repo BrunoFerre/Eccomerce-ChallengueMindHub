@@ -29,6 +29,8 @@ public class ProductDTO {
 
     private double actuallyTotalPoints;
 
+    private String image;
+
     private List<Integer> points;
 
     private List<DetailsDTO> details;
@@ -47,6 +49,7 @@ public class ProductDTO {
         this.stock = product.getStock();
         this.category = product.getCategory();
         this.color = product.getColor();
+        this.image = product.getImage();
         this.discount = product.getDiscount();
         this.actuallyTotalPoints = product.getActuallyTotalPoints();
         this.averagePoints = product.getAveragePoints();
@@ -106,5 +109,8 @@ public class ProductDTO {
 
     public List<Integer> getPoints() {
         return points;
+    }
+    public String getImage() {
+        return image;
     }
 }

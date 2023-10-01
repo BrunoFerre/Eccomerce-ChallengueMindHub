@@ -18,9 +18,11 @@ public class CreateProductDTO {
 
     private double discount;
 
+    private String image;
+
     public CreateProductDTO(){}
 
-    public CreateProductDTO(String name, String description, double price, int stock, CategoryProduct category, ColorProduct color,double discount) {
+    public CreateProductDTO(String name, String description, double price, int stock, CategoryProduct category, ColorProduct color,double discount, String image) {
         this.name = name;
         this.description = description;
         this.price = price;
@@ -28,6 +30,7 @@ public class CreateProductDTO {
         this.category = category;
         this.color = color;
         this.discount = discount;
+        this.image = image;
     }
 
     //Getters
@@ -58,5 +61,9 @@ public class CreateProductDTO {
 
     public double getDiscount() {
         return discount;
+    }
+
+    public String getImage() {
+        return image;
     }
 }
