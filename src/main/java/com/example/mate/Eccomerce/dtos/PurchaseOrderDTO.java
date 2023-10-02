@@ -18,4 +18,20 @@ public class PurchaseOrderDTO {
         this.amount = PO.getAmount();
         this.date = PO.getDate();
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getTicket() {
+        return ticket;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
+    }
 }
