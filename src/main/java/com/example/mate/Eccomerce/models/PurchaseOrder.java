@@ -66,11 +66,12 @@ public class PurchaseOrder {
         this.person = person;
     }
 
-    public Set<Details> getDetails() {
-        return details;
+    public void addDetails(Details details) {
+        details.setPurchaseOrder(this);
+        this.details.add(details);
     }
 
-    public void setDetails(Set<Details> details) {
-        this.details = details;
+    public Set<Details> getDetails() {
+        return details;
     }
 }

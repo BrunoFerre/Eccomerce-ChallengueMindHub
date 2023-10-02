@@ -9,8 +9,6 @@ public class DetailsDTO {
     private long id;
     private double quantity;
     private double price;
-
-    private PurchaseOrderDTO purchaseOrder;
     private ProductDTO product;
     public DetailsDTO() {
     }
@@ -19,6 +17,7 @@ public class DetailsDTO {
         this.id = details.getId();
         this.quantity = details.getQuantity();
         this.price = details.getPrice();
+        this.product = new ProductDTO(details.getProduct());
     }
 
     public long getId() {
@@ -31,9 +30,6 @@ public class DetailsDTO {
 
     public double getPrice() {
         return price;
-    }
-    public PurchaseOrderDTO getPurchaseOrder() {
-        return purchaseOrder;
     }
     public ProductDTO getProduct() {
         return product;
