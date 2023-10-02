@@ -16,7 +16,9 @@ const app = Vue.createApp({
             });
         this.loadCartFromLocalStorage();
     },
-    
+    created() {
+        console.log(this.products);
+    },
     methods: {
         // Button Cart
         addToCart(product) {
