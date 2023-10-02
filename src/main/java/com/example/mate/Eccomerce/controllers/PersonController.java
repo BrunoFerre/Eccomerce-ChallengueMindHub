@@ -38,48 +38,56 @@ public class PersonController {
         return new ResponseEntity<>(personDTO, HttpStatus.OK);
     }
     @PostMapping("/add")
-    public ResponseEntity<Object> add(@RequestBody PersonDTO personDTO){
-        if (personDTO.getFirstname().isBlank()){
-            return new ResponseEntity<>("firstname is required", HttpStatus.BAD_REQUEST);
+    public ResponseEntity<Object> add(@RequestBody PersonDTO personDTO) {
+
+        String emailPattern = "^[A-Za-z0-9+_.-]+@(.+)$";
+        if (personDTO.getEmail().isBlank() || !personDTO.getEmail().matches(emailPattern)) {
+            return new ResponseEntity<>("Email is invalid or required", HttpStatus.BAD_REQUEST);
         }
-        if (personDTO.getLastname().isBlank()){
-            return new ResponseEntity<>("lastname is required", HttpStatus.BAD_REQUEST);
+
+        String passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=]).{8,}$";
+        if (personDTO.getPassword().isBlank() || !personDTO.getPassword().matches(passwordPattern)) {
+            return new ResponseEntity<>("Password is invalid or required", HttpStatus.BAD_REQUEST);
         }
-        if (personDTO.getEmail().isBlank()){
-            return new ResponseEntity<>("email is required", HttpStatus.BAD_REQUEST);
+
+        if (personDTO.getFirstname().isBlank()) {
+            return new ResponseEntity<>("Firstname is required", HttpStatus.BAD_REQUEST);
         }
-        if (personRepository.existsByEmail(personDTO.getEmail())){
-            return new ResponseEntity<>("email already exists", HttpStatus.BAD_REQUEST);
+        if (personDTO.getLastname().isBlank()) {
+            return new ResponseEntity<>("Lastname is required", HttpStatus.BAD_REQUEST);
         }
-        if (personDTO.getPhone().isBlank()){
-            return new ResponseEntity<>("phone is required", HttpStatus.BAD_REQUEST);
+        if (personDTO.getPhone().isBlank()) {
+            return new ResponseEntity<>("Phone is required", HttpStatus.BAD_REQUEST);
         }
-        if (personDTO.getPassword().isBlank()){
-            return new ResponseEntity<>("password is required", HttpStatus.BAD_REQUEST);
+
+        if (personRepository.existsByEmail(personDTO.getEmail())) {
+            return new ResponseEntity<>("Email already exists", HttpStatus.BAD_REQUEST);
         }
+
         Person person = new Person(personDTO.getFirstname(), personDTO.getLastname(), personDTO.getEmail(), personDTO.getPhone(), passwordEncoder.encode(personDTO.getPassword()), PersonType.CLIENT);
         personRepository.save(person);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
     @PostMapping("/addAdmin")
     public ResponseEntity<Object> addAdmin(@RequestBody PersonDTO personDTO){
         if (personDTO.getFirstname().isBlank()){
-            return new ResponseEntity<>("firstname is required", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Firstname is required", HttpStatus.BAD_REQUEST);
         }
         if (personDTO.getLastname().isBlank()){
-            return new ResponseEntity<>("lastname is required", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Lastname is required", HttpStatus.BAD_REQUEST);
         }
         if (personDTO.getEmail().isBlank()){
-            return new ResponseEntity<>("email is required", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Email is required", HttpStatus.BAD_REQUEST);
         }
         if (personRepository.existsByEmail(personDTO.getEmail())){
-            return new ResponseEntity<>("email already exists", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Email already exists", HttpStatus.BAD_REQUEST);
         }
         if (personDTO.getPhone().isBlank()){
-            return new ResponseEntity<>("phone is required", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Phone is required", HttpStatus.BAD_REQUEST);
         }
         if (personDTO.getPassword().isBlank()){
-            return new ResponseEntity<>("password is required", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Password is required", HttpStatus.BAD_REQUEST);
         }
         Person person = new Person(personDTO.getFirstname(), personDTO.getLastname(), personDTO.getEmail(), personDTO.getPhone(), personDTO.getPassword(), PersonType.ADMIN);
         personRepository.save(person);
