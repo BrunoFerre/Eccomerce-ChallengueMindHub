@@ -1,0 +1,31 @@
+package com.example.mate.Eccomerce.models;
+
+public enum ColorProduct {
+    NONE,
+    BLACK,
+    WHITE,
+    RED,
+    GREEN,
+    YELLOW,
+    BLUE,
+    PURPLE,
+    ORANGE,
+    BROWN,
+    PINK,
+    GREY,
+    SILVER,
+    GOLD,
+    NAVY,
+    MAROON,
+    TEAL,
+    LIME,
+    TURQUOISE,
+    AQUA,
+    LAVENDER,
+    FUCHSIA,
+    PLUM,
+    CORAL,
+    LILAC,
+    MINT,
+    OLIVE
+}
