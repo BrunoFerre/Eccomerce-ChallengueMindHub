@@ -9,7 +9,7 @@ public class DetailsDTO {
     private long id;
     private double quantity;
     private double price;
-    private ProductDTO product;
+    private long productID;
     public DetailsDTO() {
     }
 
@@ -17,7 +17,7 @@ public class DetailsDTO {
         this.id = details.getId();
         this.quantity = details.getQuantity();
         this.price = details.getPrice();
-        this.product = new ProductDTO(details.getProduct());
+        this.productID = details.getProduct().getId();
     }
 
     public long getId() {
@@ -31,7 +31,8 @@ public class DetailsDTO {
     public double getPrice() {
         return price;
     }
-    public ProductDTO getProduct() {
-        return product;
+    public long getProductID() {
+        return productID;
     }
+
 }

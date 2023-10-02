@@ -17,11 +17,16 @@ public class POServiceImplement implements POService {
 
     @Override
     public Set<PurchaseOrder> getPurchaseHistory(Person person) {
-        return person.getPurchaseOrders();
+        return person.getPurchaseOrder();
     }
 
     @Override
     public PurchaseOrder getPurchaseOrder(long id, Person current) {
         return purchaseOrderRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public void save(PurchaseOrder purchaseOrder) {
+        purchaseOrderRepository.save(purchaseOrder);
     }
 }

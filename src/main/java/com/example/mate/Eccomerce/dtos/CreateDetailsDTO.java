@@ -1,14 +1,14 @@
 package com.example.mate.Eccomerce.dtos;
 
-public class CreatePurchaseOrderDTO {
+public class CreateDetailsDTO {
 
     public long productId;
     public int quantity;
 
-    private CreatePurchaseOrderDTO() {
+    private CreateDetailsDTO() {
 
     }
-    private CreatePurchaseOrderDTO(long productId, int quantity) {
+    private CreateDetailsDTO(long productId, int quantity) {
         this.productId = productId;
         this.quantity = quantity;
     }

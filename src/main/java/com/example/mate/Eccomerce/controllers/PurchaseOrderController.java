@@ -1,14 +1,8 @@
 package com.example.mate.Eccomerce.controllers;
 
-import com.example.mate.Eccomerce.dtos.AdressDTO;
-import com.example.mate.Eccomerce.dtos.ProductDTO;
-import com.example.mate.Eccomerce.dtos.PurchaseOrderBuyDTO;
-import com.example.mate.Eccomerce.dtos.PurchaseOrderDTO;
-import com.example.mate.Eccomerce.models.Person;
-import com.example.mate.Eccomerce.models.PurchaseOrder;
-import com.example.mate.Eccomerce.service.POService;
-import com.example.mate.Eccomerce.service.PersonService;
-import com.example.mate.Eccomerce.utils.TicketGen;
+import com.example.mate.Eccomerce.dtos.*;
+import com.example.mate.Eccomerce.models.*;
+import com.example.mate.Eccomerce.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,8 +14,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.example.mate.Eccomerce.utils.TicketGen.generateTicket;
-
 @RestController
 @RequestMapping("/api/purchase")
 public class PurchaseOrderController {
@@ -30,6 +22,16 @@ public class PurchaseOrderController {
     private POService poService;
     @Autowired
     private PersonService personService;
+
+    @Autowired
+    private ProductService productService;
+
+    @Autowired
+    private DetailsService detailsService;
+
+    @Autowired
+    private AddressService addressService;
+
     @GetMapping("/history")
     public List<PurchaseOrderDTO> getPurchaseHistory(Authentication authentication) {
         Person current = personService.findByEmail(authentication.getName());
@@ -43,44 +45,55 @@ public class PurchaseOrderController {
     }
     @Transactional
     @PostMapping("/purchaseOrder")
-    public ResponseEntity<Object> addPurchaseOrder(@RequestBody PurchaseOrderBuyDTO purchaseOrderBuyDTO, Authentication authentication) {
-        Person current = personService.findByEmail(authentication.getName());
-        LocalDateTime date = purchaseOrderBuyDTO.getOrderDate();
-        List<ProductDTO> products = purchaseOrderBuyDTO.getProducts();
-        String client = purchaseOrderBuyDTO.getClient();
-        String paymentMethod = purchaseOrderBuyDTO.getPaymentMethod();
-        double totalAmountToPay = purchaseOrderBuyDTO.getTotalAmountToPay();
-        AdressDTO adress = purchaseOrderBuyDTO.getAdress();
-        if (current == null) {
+    public ResponseEntity<Object> addPurchaseOrder(@RequestBody PurchaseOrderBDTO purchaseOrderBDTO, Authentication authentication) {
+        if (authentication==null){
             return new ResponseEntity<>("The user was not found", HttpStatus.NOT_FOUND);
         }
-        if (date.isAfter(LocalDateTime.now())) {
-            return new ResponseEntity<>("The date is not valid", HttpStatus.BAD_REQUEST);
+        Person current = personService.findByEmail(authentication.getName());
+        if (purchaseOrderBDTO.getAddressId()<=0){
+            return new ResponseEntity<>("The address id cannot be 0",HttpStatus.BAD_REQUEST);
         }
-        if (products == null) {
-            return new ResponseEntity<>("your cart cannot be empty", HttpStatus.BAD_REQUEST);
+        Adress adress = addressService.findById(purchaseOrderBDTO.getAddressId());
+        if (adress==null){
+            return new ResponseEntity<>("The address was not found", HttpStatus.NOT_FOUND);
         }
-        if (paymentMethod.isBlank()) {
-            return new ResponseEntity<>("the payment method cannot be empty", HttpStatus.BAD_REQUEST);
+        if (!current.getAdress().contains(adress)){
+            return new ResponseEntity<>("The user already has this address", HttpStatus.BAD_REQUEST);
         }
-        if (paymentMethod == null) {
-            return new ResponseEntity<>("this payment method doesn't exists", HttpStatus.BAD_REQUEST);
+        if (purchaseOrderBDTO.getDetails().size()<=0){
+            return new ResponseEntity<>("The details cannot be empty",HttpStatus.BAD_REQUEST);
         }
-        if (totalAmountToPay <= 0) {
-            return new ResponseEntity<>("the total amount to pay cannot be 0 or less than 0", HttpStatus.BAD_REQUEST);
+        if (purchaseOrderBDTO.getPaymentMethod()==null){
+            return new ResponseEntity<>("The payment method cannot be null",HttpStatus.BAD_REQUEST);
         }
-        if (adress == null) {
-            return new ResponseEntity<>("please, add an adress", HttpStatus.BAD_REQUEST);
+        PurchaseOrder purchaseOrder = new PurchaseOrder(0, LocalDateTime.now(), purchaseOrderBDTO.getPaymentMethod(), adress);
+        double aux=0;
+        for (CreateDetailsDTO createDetailsDTO : purchaseOrderBDTO.getDetails()) {
+            if (createDetailsDTO.getProductId() <= 0) {
+                return new ResponseEntity<>("The product id cannot be 0",HttpStatus.BAD_REQUEST);
+            }
+            if (createDetailsDTO.getQuantity() <= 0) {
+                return new ResponseEntity<>("The quantity cannot be 0",HttpStatus.BAD_REQUEST);
+            }
+            Product product = productService.findById(createDetailsDTO.getProductId());
+            if (product == null) {
+                return new ResponseEntity<>("The product was not found", HttpStatus.NOT_FOUND);
+            }
+            if (product.getStock() < createDetailsDTO.getQuantity()) {
+                return new ResponseEntity<>("The product is out of stock", HttpStatus.BAD_REQUEST);
+            }
+            Details details = new Details(createDetailsDTO.getQuantity(), product.getPrice());
+            product.addDetails(details);
+            product.setStock(product.getStock() - createDetailsDTO.getQuantity());
+            purchaseOrder.addDetails(details);
+            detailsService.save(details);
+            productService.save(product);
+            aux+=product.getPrice()*createDetailsDTO.getQuantity();
         }
-        if(current.getAdress() != adress){
-            return new ResponseEntity<>("do you want to change the adress?", HttpStatus.BAD_REQUEST);
-        }
-        String buyTicket = generateTicket(purchaseOrderBuyDTO);
-        PurchaseOrder purchaseOrder = new PurchaseOrder(buyTicket,totalAmountToPay,date);
-        poService.save(purchaseOrder);
+        purchaseOrder.setAmount(aux);
         current.addPurchaseOrder(purchaseOrder);
+        poService.save(purchaseOrder);
         personService.save(current);
-        return new ResponseEntity<>("The purchase was successful!", HttpStatus.CREATED);
+        return new ResponseEntity<>("Success",HttpStatus.OK);
     }
-
 }

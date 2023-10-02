@@ -14,7 +14,10 @@ public class PurchaseOrder {
     private String ticket;
     private double amount;
     private LocalDateTime date;
-    
+    private PaymentMethod paymentMethod;
+    @OneToOne
+    @JoinColumn(name = "id_adress")
+    private Adress adress;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_user")
     private Person person;
@@ -24,10 +27,11 @@ public class PurchaseOrder {
     public PurchaseOrder() {
     }
 
-    public PurchaseOrder(String ticket, double amount, LocalDateTime date) {
-        this.ticket = ticket;
+    public PurchaseOrder( double amount, LocalDateTime date, PaymentMethod paymentMethod,Adress adress) {
         this.amount = amount;
         this.date = date;
+        this.paymentMethod = paymentMethod;
+        this.adress = adress;
     }
 
     public long getId() {
@@ -73,5 +77,21 @@ public class PurchaseOrder {
 
     public Set<Details> getDetails() {
         return details;
+    }
+
+    public PaymentMethod getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(PaymentMethod paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public Adress getAdress() {
+        return adress;
+    }
+
+    public void setAdress(Adress adress) {
+        this.adress = adress;
     }
 }
