@@ -1,24 +1,27 @@
-const app = Vue.createApp({
+
+const { createApp } = Vue;
+
+const app = createApp({
     data() {
         return {
-            products: [], 
             cart: [],
             spinner: true
         };
     },
-    mounted() {
-        axios.get('https://fakestoreapi.com/products')
-            .then((response) => {
-                this.products = response.data;
+    created() {
+        axios
+            .get('https://fakestoreapi.com/products')
+            .then((res) => {
+                this.spinner = false;
+                this.products = res.data;
+                console.log(this.products);
             })
-            .catch((error) => {
-                console.error('Error al obtener los productos', error);
+            .catch((err) => {
+                console.log(err);
             });
         this.loadCartFromLocalStorage();
     },
-    
     methods: {
-        // Button Cart
         addToCart(product) {
             const existingCartItemIndex = this.cart.findIndex(item => item.id === product.id);
 
@@ -63,6 +66,7 @@ const app = Vue.createApp({
             const item = this.cart[index];
             item.quantity++;
         }
+
     },
     computed: {
         prueba() {

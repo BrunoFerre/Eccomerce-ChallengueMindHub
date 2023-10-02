@@ -33,6 +33,9 @@ const app = Vue.createApp({
         changeMainImage(imageUrl) {
             this.selectedImage = imageUrl;
         },
+
+
+        
         cards() {
             axios.get('https://fakestoreapi.com/products')
                 .then((response) => {
