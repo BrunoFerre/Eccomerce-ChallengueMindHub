@@ -822,7 +822,156 @@ public class EccomerceApplication {
 					List.of());
 			productRepository.save(product54);
 
-//			Product product55 = new Product();
+			Product product55 = new Product("YERBA MATE ORIGINAL CON PALO - TARAGÜI",
+					"ENJOY THE AUTHENTIC FLAVOR OF ARGENTINA WITH TARAGÜI ORIGINAL YERBA MATE WITH STEMS - 1kg or 500g." +
+							"This high-quality yerba mate is harvested in the Corrientes region and is renowned for its balanced flavor, with a touch of bitterness that is typical of the best Argentine yerbas." +
+							"With its fresh aroma and fine grinding, Taragüi yerba mate is perfect for enjoying at any time of the day when you need that calm boost of energy that a good mate provides." +
+							"Take advantage of this yerba mate to share with friends and family and experience the authentic flavor of Argentine yerba mate.",
+					3.67,
+					122,
+					CategoryProduct.YERBA_MATE,
+					ColorProduct.NONE,
+					0,
+					"https://www.gustoargentino.com/cdn/shop/products/yerba-mate-Taragui-original-con-palo-500g.png?v=1680535250&width=640",
+					List.of("https://www.gustoargentino.com/cdn/shop/files/Yerba-Mate-taragui.png?v=1688416681&width=640","https://www.gustoargentino.com/cdn/shop/files/Yerba-Mate-taragui-1.png?v=1688416680&width=640"));
+			productRepository.save(product55);
+
+			Product product56 = new Product("YERBA MATE WITH STEM - MAÑANITA",
+					"LIGHT AND ACCESSIBLE, YERBA MATE MAÑANITA is ideal for those who want to enjoy a smooth and authentic Yerba Mate." +
+							"Cultivated in the provinces of Misiones and Corrientes, in northern Argentina, YERBA MATE MAÑANITA is prepared using natural processes." +
+							"The leaves are harvested at the right moment to limit the caffeine content and bitterness." +
+							"Drying at high temperature for a short time allows the leaves to capture the aromas." +
+							"The Yerba Mate is aged for several months in 30 kg bags to ensure a consistent and similar flavor from one harvest to another.",
+					6.00,
+					142,
+					CategoryProduct.YERBA_MATE,
+					ColorProduct.NONE,
+					16.00,
+					"https://www.gustoargentino.com/cdn/shop/products/yerba-mate-mananita-1kg.png?v=1680723110&width=640",
+					List.of());
+			productRepository.save(product56);
+
+			Product product57 = new Product("YERBA MATE SILUETA NARANJA 500G - CBSÉ",
+					"CBSÉ ORANGE SILHOUETTE YERBA MATE 500G " +
+							"The CBSÉ Orange Silhouette Yerba Mate is a yerba mate with a orange flavor and less bitterness than a classic yerba mate." +
+							"CBSÉ Orange Silhouette Yerba Mate is especially suitable for people trying to lose weight. The composition was worked on in this way to help eliminate fats." +
+							"This exquisite blend of yerba mate with rose hip, pennyroyal, fennel, mint, lemon verbena, and boldo, flavored with orange. It is also enriched with vitamins B1, B2, B5, B6, B9, B12, and Zinc." +
+							"This is how CBSÉ Orange Silhouette Yerba Mate 500g has an authentic and natural flavor that will perfectly adapt to your mate preparations.",
+					8.5,
+					85,
+					CategoryProduct.YERBA_MATE,
+					ColorProduct.NONE,
+					9.7,
+					"https://www.gustoargentino.com/cdn/shop/files/Yerba-Mate-Silueta-Naranja-500g-Cbse.png?v=1682613819&width=640",
+					List.of());
+			productRepository.save(product57);
+
+			Product product58 = new Product("YERBA MATE AZUL TRADICIONAL - NOBLEZA GAUCHA",
+					"Enjoy the authentic flavor of Nobleza Gaucha's Yerba Mate Azul Tradicional." +
+							"With this mate, you have plenty to prepare traditional mate or tereré and share with friends and family. This high-quality yerba mate will make your mate experience unique.",
+					6.2,
+					112,
+					CategoryProduct.YERBA_MATE,
+					ColorProduct.NONE,
+					7.00,
+					"https://www.gustoargentino.com/cdn/shop/products/Yerba-Mate-Azul-Tradicional-500gr-Nobleza-Gaucha.png?v=1682694209&width=840",
+					List.of());
+			productRepository.save(product58);
+
+			Product product59 = new Product("YERBA MATE SILUETE PLUS 500G - CACHAMATE",
+					"Cachamate Siluet Plus is a unique blend of yerba mate and seaweed. This combination allows you to achieve a satiating sensation while helping to burn calories and fats. Additionally, the presence of green tea and orange peel in this blend provides you with antioxidants that will energize your body. Cachamate Siluet Plus is a well-balanced beverage that not only provides vitality but also promotes overall well-being. Incorporate this drink into your daily routine and enjoy the benefits of this harmonious fusion of ingredients.",
+					7.57,
+					65,
+					CategoryProduct.YERBA_MATE,
+					ColorProduct.NONE,
+					0,
+					"https://www.gustoargentino.com/cdn/shop/files/cachamate-yerba-mate-siluet-plus-500g-1.jpg?v=1690296475&width=640",
+					List.of());
+			productRepository.save(product59);
+
+			Product product60 = new Product("COLOMBIA SUPREMO X 25 EA",
+					"COLOMBIA SUPREMO X 25 U." +
+							"This high-altitude coffee distinguishes itself with its large and attractive bean, symbolizing the refinement of Colombian coffee. The combination of selective harvesting and processing through careful beneficiation, washing, and drying methods results in an outstanding coffee. It is smooth, with a clean cup, relatively high acidity, a well-balanced body, pronounced aroma, and an excellent sensory profile." +
+							"Content: 25 capsules." +
+							"Compatible with Nespresso machines." +
+							"Each capsule yields approximately 60 ml.",
+					13.14,
+					122,
+					CategoryProduct.COFFEE,
+					ColorProduct.NONE,
+					8.00,
+					"https://www.lafazenda.com.ar/uploads/productos/capsulas_nuevas_colombia_x_25.webp",
+					List.of("https://www.lafazenda.com.ar/uploads/productos/etiqueta_colombia_x_25.jpg","https://www.lafazenda.com.ar/uploads/productos/Reverso_colombia2.jpg"));
+			productRepository.save(product60);
+
+			Product product61 = new Product("COLOMBIA SUPREMO CAN x 50 UNITS",
+					"COLOMBIA SUPREMO CANNED COFFEE x 50 UNITS" +
+							"THIS HIGH-GROWN COFFEE is distinguished by its large and attractive beans and is the symbol of Colombian coffee refinement. The processes of selective harvesting and transformation of the fruit through its careful processing, washing, and drying together lead to the production of an outstanding coffee. It is smooth, with a clean cup, relatively high acidity, balanced body, pronounced aroma, and an excellent quality sensory profile." +
+							"Contents: 50 capsules" +
+							"Compatible with Nespresso machines" +
+							"Each capsule yields approximately 60 ml" +
+							"Intensity: 9/10" +
+							"Feel free to let me know if there's anything else I can assist you with!",
+					29.43,
+					85,
+					CategoryProduct.COFFEE,
+					ColorProduct.NONE,
+					12.00,
+					"https://www.lafazenda.com.ar/uploads/productos/colombia_x_50_lata.webp",
+					List.of("https://www.lafazenda.com.ar/uploads/productos/Colombia_lata_2.webp","https://www.lafazenda.com.ar/uploads/productos/Colombia_lata_3.webp"));
+			productRepository.save(product61);
+
+			Product product62 = new Product("BRAZIL AGATHA X 25 EA.",
+					"BRASIL AGATHA x 25 EA." +
+							"ORIGINATING from the southernmost part of Minas Gerais, this coffee has a slightly sweet, smooth, and aromatic taste, with a long aftertaste. Its intense fragrance and full body, combined with slightly citrusy notes and fruity aromas, prolong the pleasure with a very low caffeine content."+
+							"Content: 25 capsules" +
+							"Compatible with Nespresso machines" +
+							"Each capsule yields approximately 60 ml." +
+							"INTENSITY: 7/10",
+					13.14,
+					54,
+					CategoryProduct.COFFEE,
+					ColorProduct.NONE,
+					0,
+					"https://www.lafazenda.com.ar/uploads/productos/capsulas_nuevas_brasil_x_25.webp",
+					List.of("https://www.lafazenda.com.ar/uploads/productos/etiqueta_brasil_x_25.jpg","https://www.lafazenda.com.ar/uploads/productos/Reverso_brasil4.jpg"));
+			productRepository.save(product62);
+
+			Product product63 = new Product("HAZELNUT FLAVOR x 10 EA.",
+					"Compatible with Nespresso machines, the Hazelnut flavor x 10 capsules offer a unique and delightful coffee experience. Each capsule delivers approximately 60ml of exquisite hazelnut-infused coffee, providing a balanced intensity of 7/10. Whether you want to start your day with a flavorful hazelnut coffee or indulge in a deliciously aromatic cup after a meal, these capsules are the perfect choice. Enjoy the convenience of a gourmet coffee experience in the comfort of your own home with these Nespresso-compatible Hazelnut flavor capsules." +
+							"Experience a touch of sweetness and smoothness with the Nespresso-compatible Hazelnut flavor x 10 capsules. Every sip will transport you to a world of pleasure and satisfaction, as if you were in a luxury café. Don't miss the opportunity to elevate your coffee experience and enjoy the irresistible aroma and taste of hazelnut with these convenient and delicious capsules. Treat yourself to the delicious combination of hazelnut and coffee with just a simple push of a button.",
+					6.57,
+					84,
+					CategoryProduct.COFFEE,
+					ColorProduct.NONE,
+					0,
+					"https://www.lafazenda.com.ar/uploads/productos/Avellana_461.webp",
+					List.of());
+			productRepository.save(product63);
+
+			Product product64 = new Product("ITALIAN RISTRETTO WHOLE BEANS",
+					"Dive into the depths of bold flavor with our Italian Ristretto whole beans. The dark-roasted, Italian-style blend delivers a powerful and intense taste that is sure to awaken your senses. Indulge in the smooth and velvety texture of the deep mahogany crema, adding a touch of luxury to every sip." +
+							"Crafted from 100% roasted coffee, our Italian Ristretto beans are compatible with all types of coffee machines. With a strength rating of 10/10, this coffee will satisfy even the most discerning palates, making it the perfect choice for coffee enthusiasts seeking an unparalleled coffee experience. Experience the pinnacle of intensity and flavor with our Italian Ristretto whole beans.",
+					9.86,
+					142,
+					CategoryProduct.COFFEE,
+					ColorProduct.NONE,
+					12.00,
+					"https://www.lafazenda.com.ar/uploads/productos/Prueba_ristretto_(1).webp",
+					List.of("https://www.lafazenda.com.ar/uploads/productos/prueba_ristretto_atras.webp","https://www.lafazenda.com.ar/uploads/productos/ristretto_y_cafe_con_leche_2.webp"));
+			productRepository.save(product64);
+
+			Product product65 = new Product("COLOMBIAN COFFEE BEANS",
+					"Experience the rich and vibrant flavors of Colombian coffee beans. Sourced from its renowned origins, this coffee delivers an intense and invigorating cup. With a powerful and lingering taste, every sip leaves a lasting impression on your palate. The Colombian beans boast an intense character, complemented by hints of tropical fruit, a medium body, and balanced acidity." +
+							"Made from 100% roasted coffee, this Colombian blend is compatible with all types of coffee machines. With a strength rating of 9/10, this coffee is perfect for those seeking a bold and robust coffee experience. Indulge in the captivating aromas and flavors that this Colombian coffee has to offer—each cup is a journey to the heart of Colombian coffee culture.",
+					9.86,
+					98,
+					CategoryProduct.COFFEE,
+					ColorProduct.NONE,
+					0,
+					"https://www.lafazenda.com.ar/uploads/productos/Colombia_adelante6.webp",
+					List.of("https://www.lafazenda.com.ar/uploads/productos/Colombia_atras.webp"));
+			productRepository.save(product65);
 
 
 

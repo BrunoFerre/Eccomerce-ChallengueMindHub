@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 public class PurchaseOrderDTO {
     private long id;
-    private String ticket;
+//    private String ticket;
     private double amount;
     private LocalDateTime date;
 
@@ -25,7 +25,7 @@ public class PurchaseOrderDTO {
     }
     public PurchaseOrderDTO(PurchaseOrder PO) {
         this.id = PO.getId();
-        this.ticket = PO.getTicket();
+//        this.ticket = PO.getTicket();
         this.amount = PO.getAmount();
         this.date = PO.getDate();
         this.paymentMethod = PO.getPaymentMethod();
@@ -38,9 +38,9 @@ public class PurchaseOrderDTO {
         return id;
     }
 
-    public String getTicket() {
-        return ticket;
-    }
+//    public String getTicket() {
+//        return ticket;
+//    }
 
     public double getAmount() {
         return amount;
