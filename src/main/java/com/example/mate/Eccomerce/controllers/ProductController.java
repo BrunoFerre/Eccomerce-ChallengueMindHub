@@ -126,6 +126,9 @@ public class ProductController {
         if (createProductDTO.getDescription().isBlank()){
             return new ResponseEntity<>("The description cannot be blank", HttpStatus.BAD_REQUEST);
         }
+        if (createProductDTO.getImage().isBlank()){
+            return new ResponseEntity<>("The image cannot be blank", HttpStatus.BAD_REQUEST);
+        }
         if (createProductDTO.getPrice()<=0){
             return new ResponseEntity<>("The price cannot be 0 or less than 0", HttpStatus.BAD_REQUEST);
         }

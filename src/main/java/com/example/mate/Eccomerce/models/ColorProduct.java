@@ -1,6 +1,7 @@
 package com.example.mate.Eccomerce.models;
 
 public enum ColorProduct {
+    NONE,
     BLACK,
     WHITE,
     RED,
