@@ -6,20 +6,24 @@ const app = Vue.createApp({
             spinner: true
         };
     },
-    mounted() {
-        axios.get('https://fakestoreapi.com/products')
-            .then((response) => {
-                this.products = response.data;
-            })
-            .catch((error) => {
-                console.error('Error al obtener los productos', error);
-            });
-        this.loadCartFromLocalStorage();
-    },
     created() {
-        console.log(this.products);
+        this.getData();
     },
     methods: {
+        getData() {
+            axios.get('/api/products')
+                .then((response) => {
+                    const products = response.data;
+                    this.products = products.sort((a, b) => {
+                        return a.price - b.price
+                    });
+                    console.log(this.products);
+                })
+                .catch((error) => {
+                    console.error('Error al obtener los productos', error);
+                });
+        this.loadCartFromLocalStorage();
+        },
         // Button Cart
         addToCart(product) {
             const existingCartItemIndex = this.cart.findIndex(item => item.id === product.id);

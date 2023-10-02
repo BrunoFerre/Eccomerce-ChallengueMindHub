@@ -18,7 +18,7 @@ const app = Vue.createApp({
     },
     methods: {
         loadProductDetails(productId) {
-            axios.get(`https://fakestoreapi.com/products/${productId}`)
+            axios.get(`/api/products/${productId}`)
                 .then((response) => {
                     this.productDetails = response.data;
                     this.productImages.push(response.data.image);
@@ -33,11 +33,8 @@ const app = Vue.createApp({
         changeMainImage(imageUrl) {
             this.selectedImage = imageUrl;
         },
-
-
-        
         cards() {
-            axios.get('https://fakestoreapi.com/products')
+            axios.get(`/api/products`)
                 .then((response) => {
                     this.products = response.data;
                 })

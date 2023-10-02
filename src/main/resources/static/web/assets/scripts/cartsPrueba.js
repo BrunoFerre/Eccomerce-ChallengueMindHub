@@ -1,7 +1,7 @@
 
 const { createApp } = Vue;
 
-const app = createApp({
+const app1 = createApp({
     data() {
         return {
             cart: [],
@@ -10,7 +10,7 @@ const app = createApp({
     },
     created() {
         axios
-            .get('https://fakestoreapi.com/products')
+            .get('/api/products')
             .then((res) => {
                 this.spinner = false;
                 this.products = res.data;
@@ -75,4 +75,4 @@ const app = createApp({
     },
 });
 
-app.mount('#app');
+app1.mount('#app');
