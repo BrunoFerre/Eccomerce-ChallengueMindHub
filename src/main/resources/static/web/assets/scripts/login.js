@@ -1,29 +1,27 @@
-const {createApp} = Vue;
-
-createApp({
+const app = Vue.createApp({
     data() {
         return {
-            email: '',
-            password: '',
-        }
+            email: "",
+            password: "",
+            firstName: "",
+            lastName: "",
+            showRegistrationForm: false, 
+        };
     },
-    methods:{
-        login() {
-            axios.post('/login','email='+this.email+'&password='+this.password)
-            .then(response => {
-                if(this.email.includes('@admi')){
-                    location.href = 'pages'
-                }else{
-                    location.href = 'index'
-                }
-            }).catch(error => {
-                console.log(error)
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: error.response.data,
-                    footer: 'Please try again!'
-            })
-            })
-        }
-}}).mount('#login')
+    methods: {
+        login(event) {
+
+        },
+        addClient() {
+
+        },
+        signUp() {
+
+        },
+        toggleForm() {
+            this.showRegistrationForm = !this.showRegistrationForm;
+        },
+    },
+});
+
+app.mount('#app');
