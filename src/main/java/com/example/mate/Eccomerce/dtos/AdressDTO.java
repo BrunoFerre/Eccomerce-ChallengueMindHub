@@ -1,7 +1,6 @@
 package com.example.mate.Eccomerce.dtos;
 
 import com.example.mate.Eccomerce.models.Adress;
-import com.example.mate.Eccomerce.models.Person;
 
 public class AdressDTO {
     private long id;
@@ -11,9 +10,9 @@ public class AdressDTO {
     private String apartament;
     private long floor;
 
-    private boolean active;
-    private Person person;
+    private String zipCode;
 
+    private boolean active;
     public AdressDTO() {
     }
 
@@ -25,14 +24,16 @@ public class AdressDTO {
         this.apartament = adress.getApartament();
         this.floor = adress.getFloor();
         this.active = adress.isStatus();
+        this.zipCode = adress.getZipCode();
     }
 
-    public AdressDTO(String street, long number, String city, String apartament, long floor) {
+    public AdressDTO(String street, long number, String city, String apartament, long floor, String zipCode) {
         this.street = street;
         this.number = number;
         this.city = city;
         this.apartament = apartament;
         this.floor = floor;
+        this.zipCode = zipCode;
     }
 
     public long getId() {
@@ -63,7 +64,7 @@ public class AdressDTO {
         return active;
     }
 
-    public Person getPerson() {
-        return person;
+    public String getZipCode() {
+        return zipCode;
     }
 }

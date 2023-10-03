@@ -94,6 +94,7 @@ public class PurchaseOrderController {
         current.addPurchaseOrder(purchaseOrder);
         poService.save(purchaseOrder);
         personService.save(current);
-        return new ResponseEntity<>("Success",HttpStatus.OK);
+        PurchaseOrderDTO purchaseOrderDTO = new PurchaseOrderDTO(purchaseOrder);
+        return new ResponseEntity<>("Success" + purchaseOrderDTO,HttpStatus.OK);
     }
 }

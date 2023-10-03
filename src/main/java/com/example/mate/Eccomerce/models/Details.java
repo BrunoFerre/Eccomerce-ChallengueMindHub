@@ -9,7 +9,7 @@ public class Details {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private long id;
-    private double quantity;
+    private int quantity;
     private double price;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "purchaseOrder_id")
@@ -21,7 +21,7 @@ public class Details {
     public Details() {
     }
 
-    public Details(double quantity, double price) {
+    public Details(int quantity, double price) {
         this.quantity = quantity;
         this.price = price;
     }
@@ -30,11 +30,11 @@ public class Details {
         return id;
     }
 
-    public double getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(double quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 

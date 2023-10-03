@@ -3,6 +3,7 @@ package com.example.mate.Eccomerce.controllers;
 
 import com.example.mate.Eccomerce.models.Details;
 import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.PdfPTable;
 import org.springframework.core.io.ByteArrayResource;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.text.DecimalFormat;
 
 @RestController
 @RequestMapping("/api")
@@ -77,18 +79,38 @@ public class ExportTicketController {
 
             PdfWriter.getInstance(document, byteArrayOutputStream);
 
+            BaseColor lightGreen = new BaseColor(223, 240, 216);
+
             // Abrir el documento
             document.open();
 
             Font titleFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 18, Font.BOLD);
-            Paragraph title = new Paragraph("Purchase Order", titleFont);
+            Paragraph title = new Paragraph("Matoffee || Purchase Order", titleFont);
             title.setAlignment(Element.ALIGN_CENTER);
             title.setSpacingAfter(20); // Espaciado después del título
             document.add(title);
 
+            addParagraphWithBoldLabel(document, "Id Order", String.valueOf(purchaseOrder.getId()));
+            addParagraphWithBoldLabel(document, "Date: ", purchaseOrder.getDate().toString());
+            addParagraphWithBoldLabel(document, "Client: ", person.getFirstname() + " " + person.getLastname());
+            addParagraphWithBoldLabel(document, "Address: ", purchaseOrder.getAdress().getStreet());
+            addParagraphWithBoldLabel(document, "Number: ", String.valueOf(purchaseOrder.getAdress().getNumber()));
+            addParagraphWithBoldLabel(document, "City: ", purchaseOrder.getAdress().getCity());
+            addParagraphWithBoldLabel(document, "Apartment: ", purchaseOrder.getAdress().getApartament());
+            addParagraphWithBoldLabel(document, "Postal Code: ", purchaseOrder.getAdress().getZipCode());
+
+
+            //Agrego espacio entre tabla y datos
+            Paragraph space= new Paragraph(" ");
+            document.add(space);
+
             //Crear la Tabla
             PdfPTable table = new PdfPTable(5);
             table.setWidthPercentage(100);
+
+            //Manejar ancho de las columnas
+            float[] columnWidths = {1f, 2f, 1f, 1f, 1f};
+            table.setWidths(columnWidths);
 
             //Agregar los titulos de columna
             table.addCell("Id");
@@ -97,16 +119,45 @@ public class ExportTicketController {
             table.addCell("Price");
             table.addCell("Sub Total");
 
+            // Aplicar padding a todas las celdas de la tabla
+            float cellPadding = 5f; // Ajusta el valor según tus preferencias
+            for (PdfPCell cell : table.getRow(0).getCells()) {
+                cell.setPadding(cellPadding);
+            }
 
             //Agregar los datos
             for (Details details : purchaseOrder.getDetails()){
-                System.out.println(details.getId());
-                table.addCell(String.valueOf(details.getId()));
-                table.addCell(details.getProduct().getName());
-                table.addCell(String.valueOf(details.getQuantity()));
-                table.addCell(String.valueOf(details.getPrice()));
-                table.addCell(String.valueOf(details.getQuantity()*details.getPrice()));
+                PdfPCell idCell = new PdfPCell(new Phrase(String.valueOf(details.getId())));
+                PdfPCell nameCell = new PdfPCell(new Phrase(details.getProduct().getName()));
+                PdfPCell quantityCell = new PdfPCell(new Phrase(String.valueOf(details.getQuantity())));
+                PdfPCell priceCell = new PdfPCell(new Phrase(formatAmount(details.getPrice())));
+                PdfPCell subTotalCell = new PdfPCell(new Phrase(formatAmount(details.getQuantity() * details.getPrice())));
+
+                // Aplicar padding a las celdas de datos
+                idCell.setPadding(cellPadding);
+                idCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                idCell.setVerticalAlignment(Element.ALIGN_CENTER);
+                nameCell.setPadding(cellPadding);
+                nameCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                nameCell.setVerticalAlignment(Element.ALIGN_CENTER);
+                quantityCell.setPadding(cellPadding);
+                quantityCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                quantityCell.setVerticalAlignment(Element.ALIGN_CENTER);
+                priceCell.setPadding(cellPadding);
+                priceCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                priceCell.setVerticalAlignment(Element.ALIGN_CENTER);
+                subTotalCell.setPadding(cellPadding);
+                subTotalCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                subTotalCell.setVerticalAlignment(Element.ALIGN_CENTER);
+
+                subTotalCell.setBackgroundColor(lightGreen);
+                table.addCell(idCell);
+                table.addCell(nameCell);
+                table.addCell(quantityCell);
+                table.addCell(priceCell);
+                table.addCell(subTotalCell);
             }
+            table.getDefaultCell().setBackgroundColor(BaseColor.LIGHT_GRAY);
             document.add(table);
 
             //Calcular Total
@@ -116,13 +167,28 @@ public class ExportTicketController {
             }
 
             //Agregar footer
+
             PdfPTable footer = new PdfPTable(5);
+            Font font = FontFactory.getFont(FontFactory.HELVETICA, 12, Font.BOLD);
+            PdfPCell total1= new PdfPCell(new Phrase("Total",font));
+            PdfPCell total2= new PdfPCell(new Phrase(formatAmount(total)));
+            total1.setPadding(cellPadding);
+            total2.setPadding(cellPadding);
+            total2.setBackgroundColor(lightGreen);
+            total1.setBackgroundColor(lightGreen);
+            total2.setHorizontalAlignment(Element.ALIGN_CENTER);
+            total1.setVerticalAlignment(Element.ALIGN_CENTER);
+            total2.setVerticalAlignment(Element.ALIGN_CENTER);
             footer.setWidthPercentage(100);
-            footer.addCell("Total");
+            footer.addCell(total1);
             footer.addCell("");
             footer.addCell("");
             footer.addCell("");
-            footer.addCell(String.valueOf(total));
+            footer.addCell(total2);
+
+            float[] columnWidths2 = {5f, 0f, 0f, 0f, 1f};
+            footer.setWidths(columnWidths2);
+
 
             document.add(footer);
 
@@ -144,5 +210,21 @@ public class ExportTicketController {
         } catch (DocumentException e) {
             return new ResponseEntity<>("Error generating the ticket: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    public  static String formatAmount(double amount){
+        // Crear un formato para valores monetarios
+        DecimalFormat formatoMoneda = new DecimalFormat("$ #,##0.00");
+
+        // Formatear el valor como un valor monetario
+
+        return formatoMoneda.format(amount);
+    }
+
+    private static void addParagraphWithBoldLabel(Document document, String label, String text) throws DocumentException {
+        Paragraph paragraph = new Paragraph();
+        paragraph.add(new Chunk(label, FontFactory.getFont(FontFactory.HELVETICA, 12, Font.BOLD)));
+        paragraph.add(new Chunk(text));
+        document.add(paragraph);
     }
 }
