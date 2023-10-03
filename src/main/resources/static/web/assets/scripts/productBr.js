@@ -23,9 +23,6 @@ createApp({
                     console.log(error)
                 })
         },
-        addProduct() {
-
-        },
         purchaseProduct() {
         }
     },

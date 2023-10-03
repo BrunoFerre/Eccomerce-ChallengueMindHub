@@ -9,6 +9,8 @@ const app = Vue.createApp({
             inputSearch: '',
             fil: [],
             filerByPrice: [],
+            page2: [],
+            remaingProducts: [],
         };
     },
     created() {
@@ -19,7 +21,12 @@ const app = Vue.createApp({
             axios.get('/api/products')
                 .then((response) => {
                     const products = response.data;
-                    this.products = products
+                    this.products = products.slice(0, 12);
+                    this.page2 = products.slice(12,24);
+                    this.remaingProducts = products.slice(24);
+                    if(document.title.padEnd(5) == 'Shop'){
+                       
+                    }
                     console.log(this.products);
                     this.categoryProducts = [...new Set(this.products.map(product => product.category))]
                     console.log(this.categoryProducts);
@@ -113,7 +120,17 @@ const app = Vue.createApp({
             this.fil = this.products.filter(product => {
                 return product.description.toLowerCase().includes(this.inputSearch.toLowerCase()) && (this.checkCategory.includes(product.category) || this.checkCategory.length == 0);
             })
-        }
+        },
+        filtersPage2() {
+            this.fil = this.page2.filter(product => {
+                return product.description.toLowerCase().includes(this.inputSearch.toLowerCase()) && (this.checkCategory.includes(product.category) || this.checkCategory.length == 0);
+            })
+        },
+        filtersPage3() {
+            this.fil = this.remaingProducts.filter(product => {
+                return product.description.toLowerCase().includes(this.inputSearch.toLowerCase()) && (this.checkCategory.includes(product.category) || this.checkCategory.length == 0);
+            })
+        },
     },
 });
 
