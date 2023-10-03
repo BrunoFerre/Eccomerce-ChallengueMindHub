@@ -32,7 +32,7 @@ public class WebAuthorization {
 
                 .antMatchers(HttpMethod.GET, "/api/person/all").hasAuthority("ADMIN")
 
-                .antMatchers(HttpMethod.GET, "/api/person/{id}","/api/purchase/history","/api/purchase/{id}").hasAuthority("CLIENT")
+                .antMatchers(HttpMethod.GET, "/api/person/{id}","/api/purchase/history","/api/purchase/{id}","/api/ticket").hasAuthority("CLIENT")
 
                 .antMatchers(HttpMethod.PATCH, "/api/comments/update", "/api/answers/update","/api/adress/delete").hasAuthority("CLIENT")
 
