@@ -23,7 +23,7 @@ const app = Vue.createApp({
                 // Manejar errores aquí
                 console.error(error);
             });
-            window.location.href = '/manager.html';
+            window.location.href = '/web/manager.html';
         },
         addClient() {
 
