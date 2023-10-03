@@ -24,9 +24,6 @@ const app = Vue.createApp({
                     this.products = products.slice(0, 12);
                     this.page2 = products.slice(12,24);
                     this.remaingProducts = products.slice(24);
-                    if(document.title.padEnd(5) == 'Shop'){
-                       
-                    }
                     console.log(this.products);
                     this.categoryProducts = [...new Set(this.products.map(product => product.category))]
                     console.log(this.categoryProducts);
