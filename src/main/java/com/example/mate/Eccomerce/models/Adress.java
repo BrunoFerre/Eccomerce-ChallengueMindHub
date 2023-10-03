@@ -16,6 +16,7 @@ public class Adress {
     private String apartament;
     private long floor;
     private boolean status;
+    private String zipCode;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "person_id")
     private Person person;
@@ -27,13 +28,14 @@ public class Adress {
 
     }
 
-    public Adress( String street, long number, String city, String apartament, long floor,boolean status) {
+    public Adress( String street, long number, String city, String apartament, long floor,boolean status,String zipCode) {
         this.street = street;
         this.number = number;
         this.city = city;
         this.apartament = apartament;
         this.floor = floor;
         this.status = status;
+        this.zipCode = zipCode;
     }
 
     public long getId() {
@@ -106,5 +108,13 @@ public class Adress {
 
     public void setPurchaseOrder(PurchaseOrder purchaseOrder) {
         this.purchaseOrder = purchaseOrder;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
     }
 }

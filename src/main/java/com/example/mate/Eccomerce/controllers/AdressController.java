@@ -43,7 +43,7 @@ public class AdressController {
             return new ResponseEntity<>("Street is required", HttpStatus.BAD_REQUEST);
         }
         Person person = personRepository.findByEmail(authentication.getName());
-        Adress adress= new Adress(adressDTO.getStreet(),adressDTO.getNumber(),adressDTO.getCity(),adressDTO.getApartament(),adressDTO.getFloor(),true);
+        Adress adress= new Adress(adressDTO.getStreet(),adressDTO.getNumber(),adressDTO.getCity(),adressDTO.getApartament(),adressDTO.getFloor(),true,adressDTO.getZipCode());
         person.addAdress(adress);
         adressRepository.save(adress);
         personRepository.save(person);

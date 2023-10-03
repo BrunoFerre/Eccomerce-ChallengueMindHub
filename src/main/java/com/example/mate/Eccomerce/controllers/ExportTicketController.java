@@ -3,6 +3,7 @@ package com.example.mate.Eccomerce.controllers;
 
 import com.example.mate.Eccomerce.models.Details;
 import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.PdfPTable;
 import org.springframework.core.io.ByteArrayResource;
@@ -81,14 +82,37 @@ public class ExportTicketController {
             document.open();
 
             Font titleFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 18, Font.BOLD);
-            Paragraph title = new Paragraph("Purchase Order", titleFont);
+            Paragraph title = new Paragraph("Matoffee || Purchase Order", titleFont);
             title.setAlignment(Element.ALIGN_CENTER);
             title.setSpacingAfter(20); // Espaciado después del título
             document.add(title);
 
+            Paragraph clientName= new Paragraph("Client: "+person.getFirstname()+" "+person.getLastname());
+            Paragraph addressStreet= new Paragraph("Address: "+purchaseOrder.getAdress().getStreet());
+            Paragraph addressNumber= new Paragraph("Number: "+purchaseOrder.getAdress().getNumber());
+            Paragraph addressCity= new Paragraph("City: "+purchaseOrder.getAdress().getCity());
+            Paragraph addressApartment= new Paragraph("Apartment: "+purchaseOrder.getAdress().getApartament());
+            Paragraph addressPostalCode= new Paragraph("Postal Code: "+purchaseOrder.getAdress().getZipCode());
+
+            document.add(clientName);
+            document.add(addressStreet);
+            document.add(addressNumber);
+            document.add(addressCity);
+            document.add(addressApartment);
+            document.add(addressPostalCode);
+
+
+            //Agrego espacio entre tabla y datos
+            Paragraph space= new Paragraph(" ");
+            document.add(space);
+
             //Crear la Tabla
             PdfPTable table = new PdfPTable(5);
             table.setWidthPercentage(100);
+
+            //Manejar ancho de las columnas
+            float[] columnWidths = {1f, 2f, 1f, 1f, 1f};
+            table.setWidths(columnWidths);
 
             //Agregar los titulos de columna
             table.addCell("Id");
@@ -97,16 +121,34 @@ public class ExportTicketController {
             table.addCell("Price");
             table.addCell("Sub Total");
 
+            // Aplicar padding a todas las celdas de la tabla
+            float cellPadding = 5f; // Ajusta el valor según tus preferencias
+            for (PdfPCell cell : table.getRow(0).getCells()) {
+                cell.setPadding(cellPadding);
+            }
 
             //Agregar los datos
             for (Details details : purchaseOrder.getDetails()){
-                System.out.println(details.getId());
-                table.addCell(String.valueOf(details.getId()));
-                table.addCell(details.getProduct().getName());
-                table.addCell(String.valueOf(details.getQuantity()));
-                table.addCell(String.valueOf(details.getPrice()));
-                table.addCell(String.valueOf(details.getQuantity()*details.getPrice()));
+                PdfPCell idCell = new PdfPCell(new Phrase(String.valueOf(details.getId())));
+                PdfPCell nameCell = new PdfPCell(new Phrase(details.getProduct().getName()));
+                PdfPCell quantityCell = new PdfPCell(new Phrase(String.valueOf(details.getQuantity())));
+                PdfPCell priceCell = new PdfPCell(new Phrase(String.valueOf(details.getPrice())));
+                PdfPCell subTotalCell = new PdfPCell(new Phrase(String.valueOf(details.getQuantity() * details.getPrice())));
+
+                // Aplicar padding a las celdas de datos
+                idCell.setPadding(cellPadding);
+                nameCell.setPadding(cellPadding);
+                quantityCell.setPadding(cellPadding);
+                priceCell.setPadding(cellPadding);
+                subTotalCell.setPadding(cellPadding);
+
+                table.addCell(idCell);
+                table.addCell(nameCell);
+                table.addCell(quantityCell);
+                table.addCell(priceCell);
+                table.addCell(subTotalCell);
             }
+            table.getDefaultCell().setBackgroundColor(BaseColor.LIGHT_GRAY);
             document.add(table);
 
             //Calcular Total
@@ -117,13 +159,21 @@ public class ExportTicketController {
 
             //Agregar footer
             PdfPTable footer = new PdfPTable(5);
+            PdfPCell total1= new PdfPCell(new Phrase("Total"));
+            PdfPCell total2= new PdfPCell(new Phrase(String.valueOf(total)));
+            total1.setPadding(cellPadding);
+            total2.setPadding(cellPadding);
             footer.setWidthPercentage(100);
-            footer.addCell("Total");
+            footer.addCell(total1);
             footer.addCell("");
             footer.addCell("");
             footer.addCell("");
-            footer.addCell(String.valueOf(total));
+            footer.addCell(total2);
 
+            float[] columnWidths2 = {5f, 0f, 0f, 0f, 1f};
+            footer.setWidths(columnWidths2);
+
+            footer.getDefaultCell().setBackgroundColor(BaseColor.GREEN);
             document.add(footer);
 
             //Cerrar el documento
