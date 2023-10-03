@@ -1,52 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!--Bootstrap-->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-	<title>Matoffee | About Us</title>
-	<!--Favicon-->
-	<link rel="shortcut icon" href="../images/favicon.png" type="image/x-icon">
-	<!--Link to CSS-->
-	<link rel="stylesheet" href="../style/style1.css">
-	<!--Box Icons-->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Matoffee | About Us</title>
+    <!--Favicon-->
+    <link rel="shortcut icon" href="../images/favicon.png" type="image/x-icon">
+    <!--Link to CSS-->
+    <link rel="stylesheet" href="../style/style1.css">
+    <!--Box Icons-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 
 </head>
+
 <body>
-	<!--Navbar-->
-	<header>
-		<a href="#" class="logo"><img src="../images/favicon_mate.png" alt="logo"></a>
-		<div class="bx bx-menu" id="menu-icon"></div>
-		<ul class="navbar">
-			<li><a href="/web/index.html">Home</a></li>
-			<li><a href="./shop.html">Shop</a></li>
-			<li><a href="#">About Us</a></li>
-            <li><a href="./blog.html">Blog</a></li>
-			<li><a href="./login1.html">Log in</a></li>
-            <li><a href="./cart.html"><i class="bi bi-cart"></i></a></li>
-		</ul>
-	</header>
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand logo fs-1 d-flex align-items-center justify-content-center gap-3" href="#"><img
+                    src="../images/favicon_mate.png" alt="logo">
+                <h1>Matoffee</h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+                    <li><a href="./shop.html">Home</a></li>
+                    <li><a href="./shop.html">Shop</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="./blog.html">Blog</a></li>
+                    <li><a href="#" class="btn bg-danger-subtle">Log out</a></li>
+                    <li><a href="#cart"><i class="bi bi-cart"></i></a></li>
+            </div>
+        </div>
+    </nav>
+
+
     <main>
-
-        <section id="page-header">
-			<h2>#KnowUs</h2>
-			<p>Know more about us!</p>
-		</section>
-
-        <section id="about-head" class="section-p1">
-            <img src="../images/2.jpeg" alt="">
+        <section id="about-head" class="section-p1 c-item">
+            <video src="../images/cafe_45.mp4" autoplay loop class="c-img d-none d-md-block col-md-6 "></video>
             <div>
                 <h2>About Us</h2>
-                <p>Descripcion de nosotros <br>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.</p>
 
-                <abbr title="Matoffee"> Crea tus diseños personalizados con nosotros</abbr>
-                <br><br>
+                <p>We have been working for half a year fulfilling dreams and providing quality products in a simple way
+                    for all our customers.</p>
 
-                <marquee style="background-color: antiquewhite;" loop="-1">Informacion relevante</marquee>
+                <p> We are a group of entrepreneurs from different countries in Latin America who came together with the
+                    purpose of sharing those tastes that they shared, such as their love for culture.</p>
+
+                <marquee style="background-color: rgb(13, 102, 10); color:white;" loop="-2">ARGENTINA - COLOMBIA - CHILE: All united by
+                    culture, all united by purpose.</marquee>
         </section>
 
         <section id="about-app">
@@ -88,11 +98,14 @@
                 </div>
             </div>
             <div class="map">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d852.7660057374774!2d-64.30710618406434!3d-31.246650939019474!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9432985f478f5b69%3A0xb0a24f9a5366b092!2sC%C3%B3rdoba%2C%20Argentina!5e0!3m2!1ses-419!2scl!4v1696108897628!5m2!1ses-419!2scl" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d852.7660057374774!2d-64.30710618406434!3d-31.246650939019474!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9432985f478f5b69%3A0xb0a24f9a5366b092!2sC%C3%B3rdoba%2C%20Argentina!5e0!3m2!1ses-419!2scl!4v1696108897628!5m2!1ses-419!2scl"
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </section>
 
-        <section id="form-details" >
+        <section id="form-details">
             <form action="">
                 <span>LEAVE A MESSAGE</span>
                 <h2>We love to hear from you</h2>
@@ -132,8 +145,10 @@
             </div>
         </section>
 
-    </main>
-    <footer class="contact" id="contact">
+    </main  >
+
+
+    <!-- <footer class="contact" id="contact">
         <div class="social">
             <a href="https://www.facebook.com/"><i class='bx bxl-facebook'></i></a>
             <a href="https://www.whatsapp.com/"><i class='bx bxl-whatsapp'></i></a>
@@ -147,11 +162,61 @@
             <a href="#">Our Company</a>
         </div>
         <p>&#169; Cohort-49 All Right Reserved </p>
+    </footer> -->
+
+    <footer class="section-p1">
+        <div>
+            
+        </div>
+        <div class="col">
+            <img class="logoFooter" src="../images/favicon_mate.png" alt="" srcset="">
+            <h4>Contact</h4>
+            <p><strong>Addres:</strong> Calle 123, Colonia, 12345</p>
+            <p><strong>Phone:</strong> +1 5589 55488 55</p>
+            <p><strong>Hours:</strong> 10:00 - 18:00, Mon - Sat</p>
+            <div class="follow">
+                <h4>Follow Us</h4>
+                <div class="icon">
+                    <i class='bx bxl-facebook'></i>
+                    <i class='bx bxl-instagram'></i>
+                    <i class='bx bxl-twitter'></i>
+                    <i class='bx bxl-pinterest'></i>
+                    <i class='bx bxl-youtube'></i>
+                </div>
+            </div>
+
+        </div>
+        <div class="col">
+            <h4>About</h4>
+            <a href="./about.html">About us</a>
+        </div>
+        <div class="col">
+            <h4>My account</h4>
+            <a href="./login.html">Sign in</a>
+            <a href="./cart.html">View Cart</a>
+            <a href="#">Track my order</a>
+        </div>
+        <div class="col instal">
+            <h4>Install App</h4>
+            <p>From App Store or Google Play</p>
+            <div class="row1">
+                <img class="logoFooter" src="../images/app.jpg" alt="">
+                <img class="logoFooter" src="../images/app2.jpg" alt="">
+            </div>
+            <p>Download App for Android and IOS</p>
+            <p>Secured Payment Gateways</p>
+            <img src="../images/pay.jpg" alt="">
+        </div>
+        
+
     </footer>
+    <p class="copyright"> &#169; Cohort-49 All Right Reserved </p>
+                
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@3.2.29/dist/vue.global.prod.js"></script>
+
 </html>

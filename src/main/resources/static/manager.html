@@ -18,46 +18,113 @@
 </head>
 
 <body>
-	<!--Navbar-->
- 
-	<header>
-		<a href="#" class="logo fs-1"><img src="./web/assets/images/favicon_mate.png" alt="logo"><h1>Matoffee</h1></a>
-		<div class="bx bx-menu" id="menu-icon"></div>
-
-		<ul class="navbar">
-			<li><a href="#">Manager</a></li>
-			<li><a href="./assets/pages/login1.html">Log out</a></li>
-		</ul>
-	</header>
-
+	<body>
+		<!--Navbar-->
+		<nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+			<div class="container-fluid">
+				<a class="navbar-brand logo fs-1 d-flex align-items-center justify-content-center gap-3" href="#"><img
+						src="./web/assets/images/favicon_mate.png" alt="logo">
+					<h1>Matoffee</h1>
+				</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+					data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+						<li><a href="./web/index.html">Home</a></li>
+						<li><a href="#" class="btn bg-danger-subtle">Log out</a></li>
+				</div>
+			</div>
+		</nav>
+	
 	<div class="blank_space">
 
 	</div>
-  
 	<!--Home-->
-	<main class="mb-4">
+	<main id="app" class="mb-4">
+
+
+		<div class="container" >
+			<h2>Create New Product</h2>
+			<form class="formAdd" action="/products/add" method="POST">
+				<div class="form-group">
+					<label for="name">Product Name:</label>
+					<input type="text" id="name" name="name" required>
+				</div>
+				<div class="form-group">
+					<label for="description">Description:</label>
+					<textarea id="description" name="description" required></textarea>
+				</div>
+				<div class="form-group">
+					<label for="price">Price:</label>
+					<input type="number" id="price" name="price" step="0.01" required>
+				</div>
+				<div class="form-group">
+					<label for="stock">Stock:</label>
+					<input type="number" id="stock" name="stock" required>
+				</div>
+				<div class="form-group">
+					<label for="category">Category:</label>
+					<select id="category" name="category" required>
+						<option value="MATES">MATES</option>
+						<!-- Add other category options here -->
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="color">Color:</label>
+					<select id="color" name="color" required>
+						<option value="GOLD">GOLD</option>
+						<!-- Add other color options here -->
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="discount">Discount:</label>
+					<input type="number" id="discount" name="discount" step="0.01" required>
+				</div>
+				<div class="form-group">
+					<label for="image">Image URL:</label>
+					<input type="url" id="image" name="image" required>
+				</div>
+				<div class="form-group">
+					<label for="imageCollection">Image Collection URLs:</label>
+					<textarea id="imageCollection" name="imageCollection"></textarea>
+				</div>
+				<button class="buttonAdd" type="submit">Create Product</button>
+			</form>
+		</div>
+
+		<div class="container">
+			<h2>Manage Products</h2>
+			<form class="formFilter" id="filterForm">
+				<div class="form-group">
+					<label for="productId">Select a Product:</label>
+					<select id="productId" name="productId">
+						<option value="">Select</option>
+						<!-- Agrega opciones de productos dinámicamente desde tu backend -->
+					</select>
+				</div>
+				<button type="button" onclick="filterProducts()">Filter</button>
+			</form>
+			<div class="product-details" id="productDetails">
+				<!-- Aquí se mostrarán los detalles del producto seleccionado -->
+			</div>
+		</div>
+	
 
     </main>
-
 	<footer class="contact" id="contact">
-		<div class="social">
-			<a href="https://www.facebook.com/"><i class='bx bxl-facebook'></i></a>
-			<a href="https://www.whatsapp.com/"><i class='bx bxl-whatsapp'></i></a>
-			<a href="https://www.youtube.com/"><i class='bx bxl-youtube'></i></a>
-			<a href=""><i class='bx bxl-github'></i></a>
-			<a href="https://www.instagram.com/"><i class='bx bxl-instagram'></i></a>
-		</div>
-		<div class="links">
-			<a href="#">Privacy Policy</a>
-			<a href="#">Terms Of Use </a>
-			<a href="#">Our Company</a>
-		</div>
+		<p>Matoffee</p>
 		<p>&#169; Cohort-49 All Right Reserved </p>
 	</footer>
 	<!--Scripts-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 	crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue@3.2.29/dist/vue.global.prod.js"></script>
+	<script src="/web/assets/scripts/manager.js"></script>
 </body>
 
 </html>

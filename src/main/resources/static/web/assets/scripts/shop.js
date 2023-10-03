@@ -1,23 +1,34 @@
 const app = Vue.createApp({
     data() {
         return {
-            products: [], 
+            products: [],
             cart: [],
-            spinner: true
+            spinner: true,
+            categoryProducts: [],
+            checkCategory: [],
+            inputSearch: '',
+            fil: [],
+            filerByPrice: [],
         };
     },
-    mounted() {
-        axios.get('https://fakestoreapi.com/products')
-            .then((response) => {
-                this.products = response.data;
-            })
-            .catch((error) => {
-                console.error('Error al obtener los productos', error);
-            });
-        this.loadCartFromLocalStorage();
+    created() {
+        this.getData();
     },
-    
     methods: {
+        getData() {
+            axios.get('http://localhost:8080/api/products')
+                .then((response) => {
+                    const products = response.data;
+                    this.products = products
+                    console.log(this.products);
+                    this.categoryProducts = [...new Set(this.products.map(product => product.category))]
+                    console.log(this.categoryProducts);
+                })
+                .catch((error) => {
+                    console.error('Error al obtener los productos', error);
+                });
+            this.loadCartFromLocalStorage();
+        },
         // Button Cart
         addToCart(product) {
             const existingCartItemIndex = this.cart.findIndex(item => item.id === product.id);
@@ -62,12 +73,47 @@ const app = Vue.createApp({
         plusItem(index) {
             const item = this.cart[index];
             item.quantity++;
+        },
+        orderMinorToMajor() {
+            this.filterByPrice = this.products.sort((a, b) => {
+                return a.price - b.price
+            })
+        },
+        orderMajorToMinor() {
+            this.filterByPrice = this.products.sort((a, b) => {
+                return b.price - a.price
+            })
+        },
+        orderByName() {
+            this.filterByPrice = this.products.sort((a, b) => {
+                return a.name.localeCompare(b.name)
+            })
+        },
+        orderByNameReverse() {
+            this.filterByPrice = this.products.sort((a, b) => {
+                return b.name.localeCompare(a.name)
+            })
+        },
+        clearFilters() {
+            location.reload();
+        },
+        coffeeShop(){
+        this.fil = this.products.filter((product) => {
+            return product.name.includes('coffee') || product.description.includes('coffee')
+        })  
+        },
+        mateShop(){
+        this.fil = this.products.filter((product) => {
+            return product.name.includes('mate') || product.description.includes('mate')
+        })
         }
     },
     computed: {
-        prueba() {
-            console.log(this.cart);
-        },
+        filters() {
+            this.fil = this.products.filter(product => {
+                return product.description.toLowerCase().includes(this.inputSearch.toLowerCase()) && (this.checkCategory.includes(product.category) || this.checkCategory.length == 0);
+            })
+        }
     },
 });
 

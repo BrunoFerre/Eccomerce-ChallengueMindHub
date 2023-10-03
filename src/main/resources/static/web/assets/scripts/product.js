@@ -9,18 +9,20 @@ const app = Vue.createApp({
                 '../images/2.jpeg', 
             ],
             products: [], 
+            productId: null,
         };
     },
     created() {
-        const productId = new URLSearchParams(window.location.search).get('id');
-        this.loadProductDetails(productId);
+        this.productId = new URLSearchParams(window.location.search).get('id');
+        this.loadProductDetails(this.productId);
         this.cards()
     },
     methods: {
-        loadProductDetails(productId) {
-            axios.get(`https://fakestoreapi.com/products/${productId}`)
+        loadProductDetails() {
+            axios.get(`/api/products/${this.productId}`)
                 .then((response) => {
                     this.productDetails = response.data;
+                    console.log(this.productDetails);
                     this.productImages.push(response.data.image);
                     if (this.productImages.length > 0) {
                         this.selectedImage = this.productImages[3];
@@ -33,11 +35,8 @@ const app = Vue.createApp({
         changeMainImage(imageUrl) {
             this.selectedImage = imageUrl;
         },
-
-
-        
         cards() {
-            axios.get('https://fakestoreapi.com/products')
+            axios.get(`/api/products`)
                 .then((response) => {
                     this.products = response.data;
                 })

@@ -6,12 +6,6 @@
 
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    scroll-padding-top: 2rem;
-    text-decoration: none;
-    list-style: none;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -34,25 +28,23 @@ img {
     width: 100%;
 }
 
-header {
-
-    width: 100%;
-    top: 0;
-    right: 0;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #fff;
-    box-shadow: 0 4px 41px rgb(14 55 54 /14%);
-    padding: 5px 10%;
-    transition: 0.2s;
-    align-items: center;
+/*Scroll personalizado*/
+body::-webkit-scrollbar {
+    width: 7px;
 }
+
+body::-webkit-scrollbar-thumb {
+    background-color: #28a745;
+    border-radius: 5px;
+}
+
+/*Nav*/
 
 .logo {
     display: flex;
     align-items: center;
+    text-decoration: none;
+    color: #1e3932;
 }
 
 .logo img {
@@ -69,63 +61,46 @@ header {
     padding: 11px 20px;
     color: var(--second-color);
     font-weight: 600;
-    text-transform: uppercase;
     text-decoration: none;
 }
 
-.logo{
-    text-decoration: none;
-    color: #1e3932;
-}
 
-h1 {
+.logo h1 {
     color: var(--second-color);
     font-weight: 500;
     text-decoration: none !important;
+    font-family: 'Croissant One', cursive;
+    font-style: italic;
 }
 
 .navbar a:hover {
     color: var(--main-color);
 }
 
-#menu-icon {
-    font-size: 24px;
-    cursor: pointer;
-    z-index: 1001;
-    display: none;
+a,
+h4 {
+    font-family: 'Croissant One', cursive;
+
 }
+
+/*Header landing page*/
 
 .home {
     background: #ebdbc8;
-    height: 90vh;
     width: 100%;
-    min-height: 100vh;
-    display: flex;
-    flex-wrap: wrap;
     align-items: center;
-    gap: 1rem
 }
 
-a h1{
-    font-family: 'Croissant One', cursive;
-    font-style: italic;
-}
 
 .main_login{
+
     background-color: #ebdbc8;
     background-image: url("data:image/svg+xml,%3Csvg width='42' height='44' viewBox='0 0 42 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Page-1' fill='none' fill-rule='evenodd'%3E%3Cg id='brick-wall' fill='%23a792ac' fill-opacity='0.4'%3E%3Cpath d='M0 0h42v44H0V0zm1 1h40v20H1V1zM0 23h20v20H0V23zm22 0h20v20H22V23z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-}
 
-.home-text {
-    flex: 1 1 17rem;
-}
-
-.home-img {
-    padding: 5rem;
-    flex: 1 1 30rem;
 }
 
 .home-img img {
+    width: 30rem;
     animation: animate 3s linear infinite;
 }
 
@@ -172,7 +147,7 @@ a h1{
     font-weight: 500;
 }
 
-.btn_login{
+.btn_login {
     padding: 7px 16px;
     border: 2px solid var(--second-color);
     border-radius: 40px;
@@ -180,7 +155,7 @@ a h1{
     font-weight: 500;
 }
 
-.btn_login:hover{
+.btn_login:hover {
     color: #fff;
     background-color: var(--main-color);
 }
@@ -272,13 +247,9 @@ a h1{
     color: var(--main-color);
 }
 
-.blank_space {
-    margin-bottom: 5rem;
-}
 
 #about_us {
     background-color: #ebdbc8;
-    padding: 2rem;
 }
 
 .contact {
@@ -359,66 +330,67 @@ a h1{
         display: initial;
     }
 
-    header .navbar{
+    header .navbar {
         position: absolute;
         top: -500px;
-        left:0;
+        left: 0;
         right: 0;
         display: flex;
-        flex-direction:column;
+        flex-direction: column;
         background-color: #fff;
-        box-shadow:  0 4px 4px rgb(14 55 54 / 14%);
+        box-shadow: 0 4px 4px rgb(14 55 54 / 14%);
         border-top: 2px solid var(--main-color);
         transition: 0.2s;
         text-align: left;
     }
 
-    .navbar.active{
-        top:100%
+    .navbar.active {
+        top: 100%
     }
 
-    .navbar a{
+    .navbar a {
         padding: 1.5rem;
         display: block;
         color: var(--second-color);
     }
 
-    .home-text span{
+    .home-text span {
         font-size: 0.9rem;
     }
 
-    .home-text h1{
+    .home-text h1 {
         font-size: 2.4rem;
     }
 
-    .home-text h2{
+    .home-text h2 {
         font-size: 1.2rem;
     }
 }
 
-@media (max-width: 768px){
-    .home-text{
+@media (max-width: 768px) {
+    .home-text {
         padding-top: inherit;
     }
-    .shop-container .box{
+
+    .shop-container .box {
         margin-top: 6rem
     }
 
-    .heading h1{
+    .heading h1 {
         font-size: 1.5rem;
     }
 
-    .heading span{
+    .heading span {
         font-size: 0.9rem;
     }
 
-    .about{
+    .about {
         flex-direction: column-reverse;
     }
 }
 
-@media(max-width: 430px){
-    .links{
+@media(max-width: 430px) {
+    .links {
         display: flex;
         flex-direction: column;
     }
@@ -426,14 +398,14 @@ a h1{
 
 /*LOGIN*/
 
-.login{
+.login {
     position: relative;
-    height:100vh ;
+    height: 100vh;
     display: grid;
     align-items: center;
 }
 
-.login_bg{
+.login_bg {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -441,18 +413,18 @@ a h1{
     object-position: center;
 }
 
-.login_form{
+.login_form {
     position: relative;
-    margin-inline:1.5rem ;
-    background-color:#1e3932;
+    margin-inline: 1.5rem;
+    background-color: #1e3932;
     border: 2px solid hsla(0, 0%, 100%, .7);
     padding: 2.5rem 1rem;
     border-radius: 1rem;
-    backdrop-filter:blur(16px) ;
+    backdrop-filter: blur(16px);
     color: white;
 }
 
-.login_title{
+.login_title {
     text-align: center;
     font-size: 600;
     margin-bottom: 1.25rem;
@@ -460,17 +432,17 @@ a h1{
 }
 
 .login_inputs,
-.login_box{
+.login_box {
     display: grid;
 }
 
-.login_inputs{
+.login_inputs {
     row-gap: 1.25rem;
     margin-bottom: 1rem;
 }
 
-.login_box{
-    grid-template-columns:1fr max-content;
+.login_box {
+    grid-template-columns: 1fr max-content;
     column-gap: .75rem;
     align-items: center;
     border: 2px solid hsla(0, 0%, 100%, 0.862);
@@ -479,53 +451,55 @@ a h1{
 }
 
 .login_input,
-.login_button{
+.login_button {
     border: none;
-    outline: none;
+    font-size: medium;
 }
 
-.login_input{
+.login_input {
     width: 100%;
     background: none;
     color: white;
-    padding-block:1rem ;
+    padding-block: 1rem;
 }
 
-.login_input::placeholder{
+.login_input::placeholder {
     color: white;
 }
 
-.login_box i{
-font-size: 1.25rem;
+.login_box i {
+    font-size: 1.25rem;
 }
 
-.login_register{
+.login_register {
     font-size: small;
-    text-align:center;
+    text-align: center;
 }
 
-.login_register a{
+.login_register a {
     color: white;
     font-weight: 500;
 }
 
-.login_register a:hover{
+.login_register a:hover {
     text-decoration: underline;
 }
 
 /*Reponsive Log in*/
 @media screen and (min-width: 576px) {
-    .login{
+    .login {
         justify-content: center;
     }
-    .login_form{
+
+    .login_form {
         width: 420px;
         padding-inline: 2.5rem;
     }
-    .login_title{
+
+    .login_title {
         margin-bottom: 2rem;
     }
-    
+
 }
 
 /*Ivan*/
@@ -545,13 +519,14 @@ font-size: 1.25rem;
     width: 23%;
     min-width: 250px;
     padding: 10px 12px;
-    border: 1px solid #cce7d0;
+    border: 3px solid #115c0bcb;
     border-radius: 25px;
     cursor: pointer;
     box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.02);
     margin: 15px 0;
     transition: 0.2s ease;
     position: relative;
+    background-color: #fff;
 }
 
 #product1 .pro img{
@@ -1256,6 +1231,160 @@ overflow-x: auto;
         width: 100%;
     }
 }
+
+
+/* Ultimos cambios */
+/* Manager Page */
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.formAdd {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-group label {
+    font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group textarea,
+.form-group input[type="number"],
+.form-group select,
+.form-group input[type="url"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.form-group textarea {
+    height: 100px;
+}
+
+.buttonAdd {
+    background-color: var(--main-color);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+
+}
+
+.buttonAdd:hover {
+    background-color: var(--second-color);
+
+}
+
+/* Cards  */
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 1px solid #e1e1e1;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    height: 25rem;
+}
+
+/* Shop */
+.main_shop{
+    background-color: #ebdbc8;
+    margin-bottom: 2rem;
+}
+
+/* Footer */
+
+footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: #1e393280;
+}
+
+footer .col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+footer h4 {
+    font-size: 14px;
+    padding-bottom: 20px;
+}
+
+footer p {
+    margin: 0 0 8px 0;
+    font-size: 13px;
+
+}
+
+footer a {
+    font-size: 13px;
+    text-decoration: none;
+    color: #222;
+    margin-bottom: 10px;
+}
+
+footer .follow {
+    margin-top: 20px;
+}
+
+footer .follow i {
+    color: #465b52;
+    padding-right: 4px;
+    cursor: pointer;
+}
+
+footer .follow i:hover, 
+footer a:hover {
+    color: #088178;
+}
+
+.logoFooter {
+   margin-bottom: 30px;
+    width: 5rem;
+}
+
+footer .install .row1 img {
+    border: 1px solid #088178;
+    border-radius: 6px;
+    padding: 10px;
+}
+
+footer .col h4 {
+    margin: 0 0 15px 0;
+}
+
+.copyright {
+    text-align: center;
+    color: #465b52;
+    font-size: 13px;
+    margin-top: 20px;
+
+}
+
+
+
+
+
+
 
 /* Button Cart */
 .custom-button {
