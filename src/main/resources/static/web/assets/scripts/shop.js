@@ -21,12 +21,8 @@ const app = Vue.createApp({
             axios.get('/api/products')
                 .then((response) => {
                     const products = response.data;
-                    this.products = products.slice(0, 12);
-                    this.page2 = products.slice(12,24);
-                    this.remaingProducts = products.slice(24);
-                    console.log(this.products);
+                    this.products = products;
                     this.categoryProducts = [...new Set(this.products.map(product => product.category))]
-                    console.log(this.categoryProducts);
                 })
                 .catch((error) => {
                     console.error('Error al obtener los productos', error);
@@ -101,32 +97,35 @@ const app = Vue.createApp({
         clearFilters() {
             location.reload();
         },
-        coffeeShop(){
-        this.fil = this.products.filter((product) => {
-            return product.name.includes('coffee') || product.description.includes('coffee')
-        })  
+        coffeeShop() {
+            this.fil = this.products.filter((product) => {
+                return product.name.includes('coffee') || product.description.includes('coffee')
+            })
         },
-        mateShop(){
-        this.fil = this.products.filter((product) => {
-            return product.name.includes('mate') || product.description.includes('mate')
-        })
+        mateShop() {
+            this.fil = this.products.filter((product) => {
+                return product.name.includes('mate') || product.description.includes('mate')
+            })
+        },
+        page(page) {
+            if (page == 1) {
+                this.fil = this.products.slice(0, 18).sort((a, b) => {
+                    return a.id - b.id;
+                })
+            } else {
+                this.fil = this.products.slice((page - 1) * 18, page * 18).sort((a, b) => {
+                    return a.id - b.id;
+                })
+            }
         }
     },
     computed: {
         filters() {
             this.fil = this.products.filter(product => {
                 return product.description.toLowerCase().includes(this.inputSearch.toLowerCase()) && (this.checkCategory.includes(product.category) || this.checkCategory.length == 0);
-            })
-        },
-        filtersPage2() {
-            this.fil = this.page2.filter(product => {
-                return product.description.toLowerCase().includes(this.inputSearch.toLowerCase()) && (this.checkCategory.includes(product.category) || this.checkCategory.length == 0);
-            })
-        },
-        filtersPage3() {
-            this.fil = this.remaingProducts.filter(product => {
-                return product.description.toLowerCase().includes(this.inputSearch.toLowerCase()) && (this.checkCategory.includes(product.category) || this.checkCategory.length == 0);
-            })
+            }).slice(0, 18).sort((a, b) => {
+                return a.id - b.id;
+            });
         },
     },
 });

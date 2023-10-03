@@ -972,9 +972,6 @@ public class EccomerceApplication {
 					"https://www.lafazenda.com.ar/uploads/productos/Colombia_adelante6.webp",
 					List.of("https://www.lafazenda.com.ar/uploads/productos/Colombia_atras.webp"));
 			productRepository.save(product65);
-
-
-
 		};
 	}
 }
