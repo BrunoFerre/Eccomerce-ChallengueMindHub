@@ -2,14 +2,13 @@
 <html lang="en">
 
 <!--Metadata-->
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--Bootstrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <title>Matoffee | Procut</title>
+    <title>Matoffee | Products</title>
     <!--Favicon-->
     <link rel="shortcut icon" href="../images/favicon.png" type="image/x-icon">
     <!--Link to CSS-->
@@ -48,7 +47,7 @@
 
         <section id="prodetails" class="section-p1" id="product">
             <div class="single-pro-image" v-if="productDetails">
-                <img :src="selectedImage" alt="" id="MainImg" width="100%">
+                <img :src="selectedImage" alt="" id="MainImg">
                 <div class="small-img-group">
                     <div class="small-img-col" v-for="(image, index) in productImages" :key="index">
                         <img :src="image" alt="" width="100%" class="small-img" @click="changeMainImage(image)">

@@ -1349,6 +1349,11 @@ h4 {
     }
 }
 
+#MainImg{
+    align-items: center;
+    justify-content: center;
+}
+
 /* Footer */
 
 footer {
