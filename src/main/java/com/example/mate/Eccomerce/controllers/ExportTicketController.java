@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.text.DecimalFormat;
 
 @RestController
 @RequestMapping("/api")
@@ -78,6 +79,8 @@ public class ExportTicketController {
 
             PdfWriter.getInstance(document, byteArrayOutputStream);
 
+            BaseColor lightGreen = new BaseColor(223, 240, 216);
+
             // Abrir el documento
             document.open();
 
@@ -87,19 +90,13 @@ public class ExportTicketController {
             title.setSpacingAfter(20); // Espaciado después del título
             document.add(title);
 
-            Paragraph clientName= new Paragraph("Client: "+person.getFirstname()+" "+person.getLastname());
-            Paragraph addressStreet= new Paragraph("Address: "+purchaseOrder.getAdress().getStreet());
-            Paragraph addressNumber= new Paragraph("Number: "+purchaseOrder.getAdress().getNumber());
-            Paragraph addressCity= new Paragraph("City: "+purchaseOrder.getAdress().getCity());
-            Paragraph addressApartment= new Paragraph("Apartment: "+purchaseOrder.getAdress().getApartament());
-            Paragraph addressPostalCode= new Paragraph("Postal Code: "+purchaseOrder.getAdress().getZipCode());
 
-            document.add(clientName);
-            document.add(addressStreet);
-            document.add(addressNumber);
-            document.add(addressCity);
-            document.add(addressApartment);
-            document.add(addressPostalCode);
+            addParagraphWithBoldLabel(document, "Client: ", person.getFirstname() + " " + person.getLastname());
+            addParagraphWithBoldLabel(document, "Address: ", purchaseOrder.getAdress().getStreet());
+            addParagraphWithBoldLabel(document, "Number: ", String.valueOf(purchaseOrder.getAdress().getNumber()));
+            addParagraphWithBoldLabel(document, "City: ", purchaseOrder.getAdress().getCity());
+            addParagraphWithBoldLabel(document, "Apartment: ", purchaseOrder.getAdress().getApartament());
+            addParagraphWithBoldLabel(document, "Postal Code: ", purchaseOrder.getAdress().getZipCode());
 
 
             //Agrego espacio entre tabla y datos
@@ -132,16 +129,27 @@ public class ExportTicketController {
                 PdfPCell idCell = new PdfPCell(new Phrase(String.valueOf(details.getId())));
                 PdfPCell nameCell = new PdfPCell(new Phrase(details.getProduct().getName()));
                 PdfPCell quantityCell = new PdfPCell(new Phrase(String.valueOf(details.getQuantity())));
-                PdfPCell priceCell = new PdfPCell(new Phrase(String.valueOf(details.getPrice())));
-                PdfPCell subTotalCell = new PdfPCell(new Phrase(String.valueOf(details.getQuantity() * details.getPrice())));
+                PdfPCell priceCell = new PdfPCell(new Phrase(formatAmount(details.getPrice())));
+                PdfPCell subTotalCell = new PdfPCell(new Phrase(formatAmount(details.getQuantity() * details.getPrice())));
 
                 // Aplicar padding a las celdas de datos
                 idCell.setPadding(cellPadding);
+                idCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                idCell.setVerticalAlignment(Element.ALIGN_CENTER);
                 nameCell.setPadding(cellPadding);
+                nameCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                nameCell.setVerticalAlignment(Element.ALIGN_CENTER);
                 quantityCell.setPadding(cellPadding);
+                quantityCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                quantityCell.setVerticalAlignment(Element.ALIGN_CENTER);
                 priceCell.setPadding(cellPadding);
+                priceCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                priceCell.setVerticalAlignment(Element.ALIGN_CENTER);
                 subTotalCell.setPadding(cellPadding);
+                subTotalCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                subTotalCell.setVerticalAlignment(Element.ALIGN_CENTER);
 
+                subTotalCell.setBackgroundColor(lightGreen);
                 table.addCell(idCell);
                 table.addCell(nameCell);
                 table.addCell(quantityCell);
@@ -158,11 +166,18 @@ public class ExportTicketController {
             }
 
             //Agregar footer
+
             PdfPTable footer = new PdfPTable(5);
-            PdfPCell total1= new PdfPCell(new Phrase("Total"));
-            PdfPCell total2= new PdfPCell(new Phrase(String.valueOf(total)));
+            Font font = FontFactory.getFont(FontFactory.HELVETICA, 12, Font.BOLD);
+            PdfPCell total1= new PdfPCell(new Phrase("Total",font));
+            PdfPCell total2= new PdfPCell(new Phrase(formatAmount(total)));
             total1.setPadding(cellPadding);
             total2.setPadding(cellPadding);
+            total2.setBackgroundColor(lightGreen);
+            total1.setBackgroundColor(lightGreen);
+            total2.setHorizontalAlignment(Element.ALIGN_CENTER);
+            total1.setVerticalAlignment(Element.ALIGN_CENTER);
+            total2.setVerticalAlignment(Element.ALIGN_CENTER);
             footer.setWidthPercentage(100);
             footer.addCell(total1);
             footer.addCell("");
@@ -173,7 +188,7 @@ public class ExportTicketController {
             float[] columnWidths2 = {5f, 0f, 0f, 0f, 1f};
             footer.setWidths(columnWidths2);
 
-            footer.getDefaultCell().setBackgroundColor(BaseColor.GREEN);
+
             document.add(footer);
 
             //Cerrar el documento
@@ -194,5 +209,21 @@ public class ExportTicketController {
         } catch (DocumentException e) {
             return new ResponseEntity<>("Error generating the ticket: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    public  static String formatAmount(double amount){
+        // Crear un formato para valores monetarios
+        DecimalFormat formatoMoneda = new DecimalFormat("$ #,##0.00");
+
+        // Formatear el valor como un valor monetario
+
+        return formatoMoneda.format(amount);
+    }
+
+    private static void addParagraphWithBoldLabel(Document document, String label, String text) throws DocumentException {
+        Paragraph paragraph = new Paragraph();
+        paragraph.add(new Chunk(label, FontFactory.getFont(FontFactory.HELVETICA, 12, Font.BOLD)));
+        paragraph.add(new Chunk(text));
+        document.add(paragraph);
     }
 }
