@@ -20,6 +20,8 @@ public class Adress {
     @JoinColumn(name = "person_id")
     private Person person;
 
+    @OneToOne(mappedBy = "adress")
+    private PurchaseOrder purchaseOrder;
 
     public Adress() {
 
@@ -95,5 +97,13 @@ public class Adress {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public PurchaseOrder getPurchaseOrder() {
+        return purchaseOrder;
+    }
+
+    public void setPurchaseOrder(PurchaseOrder purchaseOrder) {
+        this.purchaseOrder = purchaseOrder;
     }
 }

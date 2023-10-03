@@ -588,6 +588,391 @@ public class EccomerceApplication {
 					List.of());
 			productRepository.save(product38);
 
+			Product product39= new Product("ITALIAN COFFEE MAKER 6 WELLS BLACK MAGEFESA",
+					"Discover the outstanding Italian-style coffee maker Magefesa Colombia Noir! Made with high-quality aluminum, this elegant coffee maker is not only durable but also suitable for gas, electric, and vitroceramic stoves. Its handle and knob are made of heat-resistant bakelite, ensuring safety and comfort. With a capacity of approximately 350ml, it can brew up to 6 delicious cups of richly flavored coffee. Standing at a compact height of 19.5cm, it is convenient for any kitchen. Experience the authentic Italian coffee with Magefesa Colombia Noir! Trusted brand: Magefesa.",
+					65.11,
+					34,
+					CategoryProduct.COFFEE_MAKER,
+					ColorProduct.BLACK,
+					12.00,
+					"https://acdn.mitiendanube.com/stores/102/583/products/colombia-noir-cafetera-italiana-magefesa-espana-espanola-aluminio-moka-pocillos-cafe-tienda-pepino-31-3afea726d8a870ccc516064233514296-1024-1024.webp",
+					List.of("https://acdn.mitiendanube.com/stores/102/583/products/colombia-noir-cafetera-italiana-magefesa-espana-espanola-aluminio-moka-pocillos-cafe-tienda-pepino-11-04f669eecbfe9ecea516064233512197-1024-1024.webp","https://acdn.mitiendanube.com/stores/102/583/products/colombia-noir-cafetera-italiana-magefesa-espana-espanola-aluminio-moka-pocillos-cafe-tienda-pepino-21-38fadeae9d27cbcab516064233513975-1024-1024.webp"));
+			productRepository.save(product39);
+
+			Product product40= new Product("PEUGEOT COFFEE GRINDER",
+					" Crafted from solid wood with meticulous attention to detail, this coffee grinder is a must-have." +
+							"-Brand: Peugeot" +
+							"-Material: Wood" +
+							"-Dimensions: 10 cm x 10 cm x 20 cm" +
+							"-Burrs: Steel (The best burrs in the world)" +
+							"-Features a container for freshly ground coffee.",
+					418.26,
+					10,
+					CategoryProduct.COFFEE_GRINDER,
+					ColorProduct.BROWN,
+					0,
+					"https://acdn.mitiendanube.com/stores/102/583/products/peugeot-molinillo-cafe-madera-manual-tienda-pepino-21-a49a198b45dc2b124214733718622198-1024-1024.webp",
+					List.of("https://acdn.mitiendanube.com/stores/102/583/products/wooden_manual_coffee_grinder1-7931a5192e24b6f00e14733716821388-1024-1024.webp","https://acdn.mitiendanube.com/stores/102/583/products/bm8521-madera-pequeno-manual-de-la-mano-molino-de-grano-de-cafe-amoladora-molino-triturador-hogar-11f67395d00b9cd2b514733716947337-1024-1024.webp"));
+			productRepository.save(product40);
+
+			Product product41 = new Product("ELECTRIC BISTRO BODUM COFFEE GRINDER",
+					"BODUM BISTRO ELECTRIC GRINDER" +
+							"-Turns coffee beans from horrible to fine quickly and efficiently" +
+							"-Compact and functional" +
+							"-Stainless steel cutting blade, strong and durable." +
+							"-Transparent lid allows visibility to achieve desired thickness." +
+							"-The comfortable push-button allows operation by pulsation or continuous grinding." +
+							"-150 WATTS" +
+							"-The grinding is not regulated, you grind and press the button as desired." +
+							"-MEASUREMENTS: Height 17 CM - Width 9.5 CM - Depth 8.7 CM" +
+							"BRAND: BODUM",
+					234.84,
+					24,
+					CategoryProduct.COFFEE_GRINDER,
+					ColorProduct.BLACK,
+					25,
+					"https://acdn.mitiendanube.com/stores/102/583/products/bodum-bistro-molinillo-cafe-electrico-muela-grano-coffee-moledor-tienda-pepino-11-8cb9fc6e2b0b5a871515978770902859-1024-1024.webp",
+					List.of("https://acdn.mitiendanube.com/stores/102/583/products/bodum-bistro-molinillo-cafe-electrico-muela-grano-coffee-moledor-tienda-pepino-71-22d0a298a7af8b76a515978770903154-1024-1024.webp","https://acdn.mitiendanube.com/stores/102/583/products/bodum-bistro-molinillo-cafe-electrico-muela-grano-coffee-moledor-tienda-pepino-31-5aa20bc6ee0d3a486f15978770904612-1024-1024.webp","https://acdn.mitiendanube.com/stores/102/583/products/bodum-bistro-molinillo-cafe-electrico-muela-grano-coffee-moledor-tienda-pepino-41-967d144719f4dad96f15978770905294-1024-1024.webp","https://acdn.mitiendanube.com/stores/102/583/products/bodum-bistro-molinillo-cafe-electrico-muela-grano-coffee-moledor-tienda-pepino-51-9ded23f861e6a86a0b15978770905697-1024-1024.webp"));
+			productRepository.save(product41);
+
+			Product product42 = new Product("BIALETTI MOKA EXPRESS 12-CUP",
+					"The one and only original since 1933. It embodies the charm of Italian coffee tradition. This is the number one coffee maker in the world, with over 250 million units sold. Indulge in the rich aroma and exquisite taste of authentic Italian espresso with the Bialetti Moka Express. Crafted with precision and quality, this iconic coffee maker has been enchanting coffee lovers for decades. Experience the timeless tradition and unparalleled quality that has made the Bialetti Moka Express a true legend in the coffee world.",
+					316.41,
+					23,
+					CategoryProduct.COFFEE_MAKER,
+					ColorProduct.SILVER,
+					0,
+					"https://www.lafazenda.com.ar/uploads/productos/bialetti_12_moka_express.webp",
+					List.of("https://acdn.mitiendanube.com/stores/102/583/products/bialetti-cafetera-italiana-moka-express-aluminio-9-pocillos-tienda-pepino-21-b565290c1115c7989815999286905431-1024-1024.webp","https://acdn.mitiendanube.com/stores/102/583/products/bialetti-cafetera-italiana-moka-express-aluminio-9-pocillos-tienda-pepino-61-3fa5c31f7214e8a04b16630171187742-1024-1024.webp","https://acdn.mitiendanube.com/stores/102/583/products/bialetti-cafetera-italiana-moka-express-aluminio-9-pocillos-tienda-pepino-51-80fbe58258ad47087916630171187288-1024-1024.webp"));
+			productRepository.save(product42);
+
+			Product product43 = new Product("BIALETTI RAINBOW YELLOW 6-CUP",
+					"The Bialetti Rainbow Yellow 6-Cup Moka Pot produces a rich and authentic espresso in just a few minutes. With its eye-catching yellow design, Bialetti's aluminum pot features the iconic octagonal shape that evenly distributes heat to enhance the aroma and flavor of your coffee. This coffee maker combines style and functionality, providing a unique experience when brewing your favorite cup of coffee. Add a splash of color to your morning routine with the Bialetti Rainbow Yellow, the perfect choice for coffee enthusiasts.",
+					181.70,
+					15,
+					CategoryProduct.COFFEE_MAKER,
+					ColorProduct.YELLOW,
+					16.00,
+					"https://http2.mlstatic.com/D_NQ_NP_897440-MLA41362517701_042020-O.webp",
+					List.of("https://http2.mlstatic.com/D_NQ_NP_761799-MLA41362517703_042020-O.webp"));
+			productRepository.save(product43);
+
+			Product product44 = new Product("BIALETTI SMART BLACK FRENCH PRESS",
+					"The Bialetti Smart Black French Press is perfect for preparing delicious coffee using the immersion method, which preserves the essential oils that paper filters absorb." +
+							"This coffee maker features a unique design with clean lines, a heat-resistant glass carafe customized with the Bialetti logo, a lid, plastic handle, and a silicone base." +
+							"Bialetti is an Italian brand that has been making its mark since 1933. They were the ones who created the iconic Moka coffee maker, aiming to bring the café-style espresso experience to homes. Now, Bialetti surprises us with their Smart French Press, offering a different way to savor coffee." +
+							"Enhance your coffee experience with the Bialetti Smart Black French Press, designed to deliver rich and flavorful coffee with ease.",
+					111.90,
+					17,
+					CategoryProduct.COFFEE_MAKER,
+					ColorProduct.BLACK,
+					0,
+					"https://ruffocoffee.com/wp-content/uploads/2022/08/Fotos-Producto-pWeb-48.png",
+					List.of("https://ruffocoffee.com/wp-content/uploads/2022/08/Fotos-Producto-pWeb-48.png","https://ruffocoffee.com/wp-content/uploads/2022/08/Fotos-Producto-pWeb-49.png","https://ruffocoffee.com/wp-content/uploads/2022/08/Fotos-Producto-pWeb-53.png"));
+			productRepository.save(product44);
+
+			Product product45 = new Product("BIALETTI SMART RED FRENCH PRESS",
+					"The Bialetti Smart Red French Press is perfect for preparing delicious coffee using the immersion method, which preserves the essential oils that paper filters absorb." +
+							"This coffee maker features a unique design with clean lines, a heat-resistant glass carafe customized with the Bialetti logo, a lid, plastic handle, and a silicone base." +
+							"Bialetti is an Italian brand that has been making its mark since 1933. They were the ones who created the iconic Moka coffee maker, aiming to bring the café-style espresso experience to homes. Now, Bialetti surprises us with their Smart French Press, offering a different way to savor coffee." +
+							"Enhance your coffee experience with the Bialetti Smart Red French Press, designed to deliver rich and flavorful coffee with ease.",
+					111.90,
+					17,
+					CategoryProduct.COFFEE_MAKER,
+					ColorProduct.RED,
+					0,
+					"https://ruffocoffee.com/wp-content/uploads/2022/07/5-4.png",
+					List.of("https://ruffocoffee.com/wp-content/uploads/2022/07/4.png","https://ruffocoffee.com/wp-content/uploads/2022/07/Fotos-Producto-pWeb-9.png","https://ruffocoffee.com/wp-content/uploads/2022/07/6-2.png"));
+			productRepository.save(product45);
+
+			Product product46 = new Product("BODUM JAVA BLACK FRENCH PRESS 3-CUP",
+					"Bodum, in its iconic plunger preparation method, brings us its Java model, distinguished by connoisseurs of good coffee around the world. This coffee maker offers us simplicity in preparation and purity in flavor." +
+							"The Bodum Java has all the qualities to transform your day full of aromas by making a delicious coffee in a few minutes, with coarsely ground coffee and hot water." +
+							"The Bodum Java coffee maker with its elegant-looking retro-style design, following the brand's motto, “a good design does not have to be expensive”, its simplicity, attractive and fast, has a borosilicate glass jug that does not alter the flavor of the coffee beans, achieving an ideal extraction of the aroma and flavor of the infusion. Its body, handle and lid are made of lightweight, BPA (Bisphenol) free plastic." +
+							"Bodum is a Danish brand founded in Copenhagen in 1944 by Peter Bodum. Since 1974, it has been making an impact since they launched the first French press coffee maker.",
+					111.71,
+					26,
+					CategoryProduct.COFFEE_MAKER,
+					ColorProduct.BLACK,
+					23.00,
+					"https://ruffocoffee.com/wp-content/uploads/2021/12/bodum-prensa-java-3poc-negra.jpg",
+					List.of("https://ruffocoffee.com/wp-content/uploads/2021/12/bodum-prensa-java-3poc-negra.jpg"));
+			productRepository.save(product46);
+
+			Product product47 = new Product("MULTI-BEVERAGE DOLCE GUSTO PICCOLO XS BLACK COFFEE MAKER",
+					"MULTI-BEVERAGE DOLCE GUSTO PICCOLO XS BLACK MOULINEX PV1A0858: Minimalist Design and Advanced Technology Manual Machine" +
+							"Enjoy over 20 varieties of hot and cold beverages with the Dolce Gusto Piccolo XS Black. With its high-pressure system of up to 15 bars, it delivers professional-quality drinks with a silky layer of cream. This sleek black coffee maker has a 1L capacity, 1500W power, and features an anti-drip device and water level indicator. With manual dosing, you can customize your drink to perfection. Experience the convenience and style of the Dolce Gusto Piccolo XS Black.",
+					279.39,
+					17,
+					CategoryProduct.COFFEE_MAKER,
+					ColorProduct.BLACK,
+					10.00,
+					"https://moulinexar.vtexassets.com/arquivos/ids/155801-800-800?v=637985929469570000&width=800&height=800&aspect=true",
+					List.of("https://moulinexar.vtexassets.com/arquivos/ids/155838-800-800?v=637985930738870000&width=800&height=800&aspect=true","https://moulinexar.vtexassets.com/arquivos/ids/155874-800-800?v=637985935740200000&width=800&height=800&aspect=true"));
+			productRepository.save(product47);
+
+			Product product48 = new Product("MULTI-BEVERAGE DOLCE GUSTO GENIO S PLUS BLACK COFFEE MAKER",
+					"MULTI-BEVERAGE DOLCE GUSTO GENIO S PLUS BLACK MOULINEX PV340858: Automated Machine with Minimalist Design and Advanced Technology" +
+							"Experience the convenience and sophistication of the Multi-Beverage Dolce Gusto Genio S Plus. This sleek black coffee maker offers a boost function for intensified coffee flavor and a temperature selector for customization. With over 20 varieties of hot and cold beverages to choose from, the high-pressure system delivers professional-quality drinks with a smooth layer of crema. Enjoy the convenience of the descaling alert and energy-saving ECO mode. With a power of 1500W and a capacity of 0.8L, this machine is the perfect addition to your kitchen.",
+					413.67,
+					7,
+					CategoryProduct.COFFEE_MAKER,
+					ColorProduct.BLACK,
+					24.00,
+					"https://moulinexar.vtexassets.com/arquivos/ids/155827-800-800?v=637985929734800000&width=800&height=800&aspect=true",
+					List.of("https://moulinexar.vtexassets.com/arquivos/ids/155863-800-800?v=637985931028730000&width=800&height=800&aspect=true","https://moulinexar.vtexassets.com/arquivos/ids/155898-800-800?v=637985936001000000&width=800&height=800&aspect=true","https://moulinexar.vtexassets.com/arquivos/ids/155929-800-800?v=637985936342730000&width=800&height=800&aspect=true"));
+			productRepository.save(product48);
+
+			Product product49 = new Product("BLACK CAFECITY COFFEE MAKER",
+					"BLACK CAFECITY COFFEE MAKER MOULINEX FG320558: 650W Power:" +
+							"-Permanent metal filter for easy cleaning." +
+							" -Heat-resistant glass carafe with a 6-cup capacity." +
+							"- Anti-drip system allows for serving a cup of coffee before the brewing cycle is complete." +
+							"- Removable filter." +
+							"- Water level indicator." +
+							"- 1.7L capacity." +
+							"- Black color." +
+							"The Cafecity Black Coffee Maker by Moulinex FG320558 is the perfect addition to your kitchen. With its 650W power, it brews your favorite coffee quickly and efficiently. The permanent metal filter ensures easy cleaning and eliminates the need for disposable filters. The heat-resistant glass carafe can hold up to 6 cups of coffee, allowing you to serve multiple guests or enjoy multiple cups throughout the day. The anti-drip system ensures a mess-free brewing process, so you can pour a cup of coffee before the cycle is complete. The removable filter and water level indicator make it easy to use and maintain. With a generous 1.7L capacity, you can brew enough coffee for the whole family. Embrace the simplicity and elegance of the Cafecity Black Coffee Maker.",
+					75.97,
+					26,
+					CategoryProduct.COFFEE_MAKER,
+					ColorProduct.BLACK,
+					0,
+					"https://moulinexar.vtexassets.com/arquivos/ids/155798-800-800?v=637985929441800000&width=800&height=800&aspect=true",
+					List.of("https://moulinexar.vtexassets.com/arquivos/ids/155835-800-800?v=637985930705770000&width=800&height=800&aspect=true"));
+			productRepository.save(product49);
+
+			Product product50 = new Product("ETHIOPIA SIDAMA COFFEE - RUFFO COFFEE ROASTER",
+					"SPECIALTY ETHIOPIA SIDAMA COFFEE - ROASTED IN OUR ROASTERY. -100% Arabica Beans." +
+							"-Medium Roast, No Sugar Added." +
+							"-250g." +
+							"Experience the exquisite flavors of our specialty coffee, meticulously roasted in-house. Made from 100% Arabica beans, this coffee provides a delightful and well-balanced taste." +
+							"The Ethiopia Sidama coffee originates in the Sidama region of Ethiopia. Grown at altitudes ranging from 1700 to 1900 meters, this coffee showcases the unique characteristics of the Heirloom variety. The natural processing method enhances the flavors and produces a moderate acidity." +
+							"Indulge in the enchanting notes of red fruits, flowers, and caramel, complemented by a moderate body and lingering finish. With a remarkable score of 86, this coffee is a true testament to our commitment to quality." +
+							"Enjoy the richness and depth of our specialty Ethiopia Sidama coffee, perfect for coffee enthusiasts seeking a unique and memorable experience.",
+					16.86,
+					140,
+					CategoryProduct.COFFEE,
+					ColorProduct.NONE,
+					0,
+					"https://ruffocoffee.com/wp-content/uploads/2023/06/Mas-fotos-productos-web-23-1.png",
+					List.of("https://ruffocoffee.com/wp-content/uploads/2023/06/Mas-fotos-productos-web-24-1.png"));
+			productRepository.save(product50);
+
+			Product product51= new Product("BRASIL BOURBON COFFEE - RUFFO COFFEE ROASTER",
+					"SPECIALTY BRASIL BOURBON COFFEE - RUFFO COFFEE ROASTER" +
+							"Indulge in the exceptional flavors of our specialty coffee, expertly roasted in-house. Made from 100% Arabica beans, this coffee guarantees a delicious and premium experience." +
+							"With a medium roast and no added sugar, each sip of this coffee delivers a delightful balance of flavors. Our 250g pack ensures you have enough to savor each moment." +
+							"This Brasil Bourbon coffee hails from the Minas Gerais region in Brazil. Grown at an altitude of 1150 meters, the Bourbon variety showcases its unique character. The natural processing method enhances the juiciness and brings out distinct flavor profiles.\n" +
+							"Embark on a sensory journey with notes of bittersweet cocoa and almonds. The silky body of this coffee resembles that of a peach." +
+							"With a score of 82, this coffee exemplifies our commitment to quality. Explore the rich flavors and enjoy a truly remarkable coffee experience with our specialty Brasil Bourbon coffee.",
+					12.86,
+					154,
+					CategoryProduct.COFFEE,
+					ColorProduct.NONE,
+					12.00,
+					"https://ruffocoffee.com/wp-content/uploads/2023/07/Mas-fotos-productos-web-27.png",
+					List.of("https://ruffocoffee.com/wp-content/uploads/2023/07/Mas-fotos-productos-web-28.png"));
+			productRepository.save(product51);
+
+			Product product52 = new Product("INDIA MALABAR COFFEE - KARELA - RUFFO COFFEE ROASTER",
+					"SPECIALTY INDIA MALABAR COFFEE - KARELA - RUFFO COFFEE ROASTER\n" +
+							"Experience the richness of our specialty coffee, meticulously roasted in our own roastery. Made from 100% Arabica beans, this coffee guarantees an exceptional and refined taste." +
+							"With a medium roast and no added sugar, every cup of this coffee offers a perfect balance of flavors. Our 250g package ensures you have enough to enjoy every sip." +
+							"This India Malabar - Karela coffee originates from the Malabar - Karela region in India. Grown at an altitude of 1400 meters, this coffee boasts a unique blend of the Kent and Lempira varieties. The washing process, along with drying through the monsoon winds, creates a distinct low acidity profile." +
+							"Indulge in the delightful notes of brown sugar, dried herbs, cedar, and dark tobacco. This coffee has a well-rounded body, providing a truly satisfying experience." +
+							"With a remarkable score of 87, this coffee exemplifies our dedication to quality. Explore the captivating flavors and savor the exceptional nature of our specialty India Malabar - Karela coffee.",
+					19.43,
+					122,
+					CategoryProduct.COFFEE,
+					ColorProduct.NONE,
+					0,
+					"https://ruffocoffee.com/wp-content/uploads/2023/07/Mas-fotos-productos-web-25.png",
+					List.of("https://ruffocoffee.com/wp-content/uploads/2023/07/Mas-fotos-productos-web-26.png"));
+			productRepository.save(product52);
+
+			Product product53 = new Product("COLOMBIA HUILA COFFEE - RUFFO COFFEE ROASTER",
+					"COLOMBIA HUILA COFFEE - RUFFO COFFEE ROASTER" +
+							"Introducing our Specialty Colombia Huila Coffee, expertly roasted in our own roastery. Made from 100% Arabica beans, this exquisite coffee promises a truly remarkable experience." +
+							"With a medium roast and no added sugar, each sip of this coffee envelops your senses in a delightful balance of flavors. Our 250g pack ensures you can savor every moment." +
+							"This coffee hails from the picturesque Huila region in Colombia, where it is cultivated at an altitude of 1500 meters. The Caturra and Castillo varieties shine through, enhanced by the meticulous washing process, which results in a low acidity profile." +
+							"Indulge in the captivating notes of chocolate, honey, sweet orange, and nuts, creating a harmonious combination of flavors. With a score of 84 according to the Specialty Coffee Association (SCA), this coffee is a testament to its exceptional quality." +
+							"Experience the essence of Colombia with our Specialty Colombia Huila Coffee, delivering a truly exceptional taste that will transport you to the coffee-growing regions of Huila.",
+					15.14,
+					164,
+					CategoryProduct.COFFEE,
+					ColorProduct.NONE,
+					0,
+					"https://ruffocoffee.com/wp-content/uploads/2023/04/Mas-fotos-productos-web-2023-04-11T155909.230.png",
+					List.of("https://ruffocoffee.com/wp-content/uploads/2023/04/Mas-fotos-productos-web-2023-04-11T160156.515.png"));
+			productRepository.save(product53);
+
+			Product product54 = new Product("MILD YERBA MATE WITH STEM 500g - UNIÓN",
+					"UNIÓN SUAVE ORIGINAL YERBA MATE is a mild yerba mate, carefully crafted with stems. It is characterized by a lighter flavor compared to regular yerba mate." +
+							"The UNIÓN brand was specifically created for consumers who prefer a less intense bitterness in their yerba mate. The brand utilizes varieties of yerba that are milder in terms of mateine content and bitterness." +
+							"Thanks to their careful selection of specific plants, UNIÓN has successfully transformed mate into a more accessible beverage for delicate palates." +
+							"This particular Yerba Mate is particularly popular among new mate consumers, providing a gentle introduction to the tradition and taste of mate. " +
+							"Experience the smoothness of UNIÓN SUAVE ORIGINAL YERBA MATE and embark on a delightful journey into the world of mate, perfect for those who prefer a mild and light flavor.",
+					6.19,
+					231,
+					CategoryProduct.YERBA_MATE,
+					ColorProduct.NONE,
+					14.00,
+					"https://www.gustoargentino.com/cdn/shop/files/Yerba-Mate-Suave-con-palo-500g-Union.png?v=1682697376&width=640",
+					List.of());
+			productRepository.save(product54);
+
+			Product product55 = new Product("YERBA MATE ORIGINAL CON PALO - TARAGÜI",
+					"ENJOY THE AUTHENTIC FLAVOR OF ARGENTINA WITH TARAGÜI ORIGINAL YERBA MATE WITH STEMS - 1kg or 500g." +
+							"This high-quality yerba mate is harvested in the Corrientes region and is renowned for its balanced flavor, with a touch of bitterness that is typical of the best Argentine yerbas." +
+							"With its fresh aroma and fine grinding, Taragüi yerba mate is perfect for enjoying at any time of the day when you need that calm boost of energy that a good mate provides." +
+							"Take advantage of this yerba mate to share with friends and family and experience the authentic flavor of Argentine yerba mate.",
+					3.67,
+					122,
+					CategoryProduct.YERBA_MATE,
+					ColorProduct.NONE,
+					0,
+					"https://www.gustoargentino.com/cdn/shop/products/yerba-mate-Taragui-original-con-palo-500g.png?v=1680535250&width=640",
+					List.of("https://www.gustoargentino.com/cdn/shop/files/Yerba-Mate-taragui.png?v=1688416681&width=640","https://www.gustoargentino.com/cdn/shop/files/Yerba-Mate-taragui-1.png?v=1688416680&width=640"));
+			productRepository.save(product55);
+
+			Product product56 = new Product("YERBA MATE WITH STEM - MAÑANITA",
+					"LIGHT AND ACCESSIBLE, YERBA MATE MAÑANITA is ideal for those who want to enjoy a smooth and authentic Yerba Mate." +
+							"Cultivated in the provinces of Misiones and Corrientes, in northern Argentina, YERBA MATE MAÑANITA is prepared using natural processes." +
+							"The leaves are harvested at the right moment to limit the caffeine content and bitterness." +
+							"Drying at high temperature for a short time allows the leaves to capture the aromas." +
+							"The Yerba Mate is aged for several months in 30 kg bags to ensure a consistent and similar flavor from one harvest to another.",
+					6.00,
+					142,
+					CategoryProduct.YERBA_MATE,
+					ColorProduct.NONE,
+					16.00,
+					"https://www.gustoargentino.com/cdn/shop/products/yerba-mate-mananita-1kg.png?v=1680723110&width=640",
+					List.of());
+			productRepository.save(product56);
+
+			Product product57 = new Product("YERBA MATE SILUETA NARANJA 500G - CBSÉ",
+					"CBSÉ ORANGE SILHOUETTE YERBA MATE 500G " +
+							"The CBSÉ Orange Silhouette Yerba Mate is a yerba mate with a orange flavor and less bitterness than a classic yerba mate." +
+							"CBSÉ Orange Silhouette Yerba Mate is especially suitable for people trying to lose weight. The composition was worked on in this way to help eliminate fats." +
+							"This exquisite blend of yerba mate with rose hip, pennyroyal, fennel, mint, lemon verbena, and boldo, flavored with orange. It is also enriched with vitamins B1, B2, B5, B6, B9, B12, and Zinc." +
+							"This is how CBSÉ Orange Silhouette Yerba Mate 500g has an authentic and natural flavor that will perfectly adapt to your mate preparations.",
+					8.5,
+					85,
+					CategoryProduct.YERBA_MATE,
+					ColorProduct.NONE,
+					9.7,
+					"https://www.gustoargentino.com/cdn/shop/files/Yerba-Mate-Silueta-Naranja-500g-Cbse.png?v=1682613819&width=640",
+					List.of());
+			productRepository.save(product57);
+
+			Product product58 = new Product("YERBA MATE AZUL TRADICIONAL - NOBLEZA GAUCHA",
+					"Enjoy the authentic flavor of Nobleza Gaucha's Yerba Mate Azul Tradicional." +
+							"With this mate, you have plenty to prepare traditional mate or tereré and share with friends and family. This high-quality yerba mate will make your mate experience unique.",
+					6.2,
+					112,
+					CategoryProduct.YERBA_MATE,
+					ColorProduct.NONE,
+					7.00,
+					"https://www.gustoargentino.com/cdn/shop/products/Yerba-Mate-Azul-Tradicional-500gr-Nobleza-Gaucha.png?v=1682694209&width=840",
+					List.of());
+			productRepository.save(product58);
+
+			Product product59 = new Product("YERBA MATE SILUETE PLUS 500G - CACHAMATE",
+					"Cachamate Siluet Plus is a unique blend of yerba mate and seaweed. This combination allows you to achieve a satiating sensation while helping to burn calories and fats. Additionally, the presence of green tea and orange peel in this blend provides you with antioxidants that will energize your body. Cachamate Siluet Plus is a well-balanced beverage that not only provides vitality but also promotes overall well-being. Incorporate this drink into your daily routine and enjoy the benefits of this harmonious fusion of ingredients.",
+					7.57,
+					65,
+					CategoryProduct.YERBA_MATE,
+					ColorProduct.NONE,
+					0,
+					"https://www.gustoargentino.com/cdn/shop/files/cachamate-yerba-mate-siluet-plus-500g-1.jpg?v=1690296475&width=640",
+					List.of());
+			productRepository.save(product59);
+
+			Product product60 = new Product("COLOMBIA SUPREMO X 25 EA",
+					"COLOMBIA SUPREMO X 25 U." +
+							"This high-altitude coffee distinguishes itself with its large and attractive bean, symbolizing the refinement of Colombian coffee. The combination of selective harvesting and processing through careful beneficiation, washing, and drying methods results in an outstanding coffee. It is smooth, with a clean cup, relatively high acidity, a well-balanced body, pronounced aroma, and an excellent sensory profile." +
+							"Content: 25 capsules." +
+							"Compatible with Nespresso machines." +
+							"Each capsule yields approximately 60 ml.",
+					13.14,
+					122,
+					CategoryProduct.COFFEE,
+					ColorProduct.NONE,
+					8.00,
+					"https://www.lafazenda.com.ar/uploads/productos/capsulas_nuevas_colombia_x_25.webp",
+					List.of("https://www.lafazenda.com.ar/uploads/productos/etiqueta_colombia_x_25.jpg","https://www.lafazenda.com.ar/uploads/productos/Reverso_colombia2.jpg"));
+			productRepository.save(product60);
+
+			Product product61 = new Product("COLOMBIA SUPREMO CAN x 50 UNITS",
+					"COLOMBIA SUPREMO CANNED COFFEE x 50 UNITS" +
+							"THIS HIGH-GROWN COFFEE is distinguished by its large and attractive beans and is the symbol of Colombian coffee refinement. The processes of selective harvesting and transformation of the fruit through its careful processing, washing, and drying together lead to the production of an outstanding coffee. It is smooth, with a clean cup, relatively high acidity, balanced body, pronounced aroma, and an excellent quality sensory profile." +
+							"Contents: 50 capsules" +
+							"Compatible with Nespresso machines" +
+							"Each capsule yields approximately 60 ml" +
+							"Intensity: 9/10" +
+							"Feel free to let me know if there's anything else I can assist you with!",
+					29.43,
+					85,
+					CategoryProduct.COFFEE,
+					ColorProduct.NONE,
+					12.00,
+					"https://www.lafazenda.com.ar/uploads/productos/colombia_x_50_lata.webp",
+					List.of("https://www.lafazenda.com.ar/uploads/productos/Colombia_lata_2.webp","https://www.lafazenda.com.ar/uploads/productos/Colombia_lata_3.webp"));
+			productRepository.save(product61);
+
+			Product product62 = new Product("BRAZIL AGATHA X 25 EA.",
+					"BRASIL AGATHA x 25 EA." +
+							"ORIGINATING from the southernmost part of Minas Gerais, this coffee has a slightly sweet, smooth, and aromatic taste, with a long aftertaste. Its intense fragrance and full body, combined with slightly citrusy notes and fruity aromas, prolong the pleasure with a very low caffeine content."+
+							"Content: 25 capsules" +
+							"Compatible with Nespresso machines" +
+							"Each capsule yields approximately 60 ml." +
+							"INTENSITY: 7/10",
+					13.14,
+					54,
+					CategoryProduct.COFFEE,
+					ColorProduct.NONE,
+					0,
+					"https://www.lafazenda.com.ar/uploads/productos/capsulas_nuevas_brasil_x_25.webp",
+					List.of("https://www.lafazenda.com.ar/uploads/productos/etiqueta_brasil_x_25.jpg","https://www.lafazenda.com.ar/uploads/productos/Reverso_brasil4.jpg"));
+			productRepository.save(product62);
+
+			Product product63 = new Product("HAZELNUT FLAVOR x 10 EA.",
+					"Compatible with Nespresso machines, the Hazelnut flavor x 10 capsules offer a unique and delightful coffee experience. Each capsule delivers approximately 60ml of exquisite hazelnut-infused coffee, providing a balanced intensity of 7/10. Whether you want to start your day with a flavorful hazelnut coffee or indulge in a deliciously aromatic cup after a meal, these capsules are the perfect choice. Enjoy the convenience of a gourmet coffee experience in the comfort of your own home with these Nespresso-compatible Hazelnut flavor capsules." +
+							"Experience a touch of sweetness and smoothness with the Nespresso-compatible Hazelnut flavor x 10 capsules. Every sip will transport you to a world of pleasure and satisfaction, as if you were in a luxury café. Don't miss the opportunity to elevate your coffee experience and enjoy the irresistible aroma and taste of hazelnut with these convenient and delicious capsules. Treat yourself to the delicious combination of hazelnut and coffee with just a simple push of a button.",
+					6.57,
+					84,
+					CategoryProduct.COFFEE,
+					ColorProduct.NONE,
+					0,
+					"https://www.lafazenda.com.ar/uploads/productos/Avellana_461.webp",
+					List.of());
+			productRepository.save(product63);
+
+			Product product64 = new Product("ITALIAN RISTRETTO WHOLE BEANS",
+					"Dive into the depths of bold flavor with our Italian Ristretto whole beans. The dark-roasted, Italian-style blend delivers a powerful and intense taste that is sure to awaken your senses. Indulge in the smooth and velvety texture of the deep mahogany crema, adding a touch of luxury to every sip." +
+							"Crafted from 100% roasted coffee, our Italian Ristretto beans are compatible with all types of coffee machines. With a strength rating of 10/10, this coffee will satisfy even the most discerning palates, making it the perfect choice for coffee enthusiasts seeking an unparalleled coffee experience. Experience the pinnacle of intensity and flavor with our Italian Ristretto whole beans.",
+					9.86,
+					142,
+					CategoryProduct.COFFEE,
+					ColorProduct.NONE,
+					12.00,
+					"https://www.lafazenda.com.ar/uploads/productos/Prueba_ristretto_(1).webp",
+					List.of("https://www.lafazenda.com.ar/uploads/productos/prueba_ristretto_atras.webp","https://www.lafazenda.com.ar/uploads/productos/ristretto_y_cafe_con_leche_2.webp"));
+			productRepository.save(product64);
+
+			Product product65 = new Product("COLOMBIAN COFFEE BEANS",
+					"Experience the rich and vibrant flavors of Colombian coffee beans. Sourced from its renowned origins, this coffee delivers an intense and invigorating cup. With a powerful and lingering taste, every sip leaves a lasting impression on your palate. The Colombian beans boast an intense character, complemented by hints of tropical fruit, a medium body, and balanced acidity." +
+							"Made from 100% roasted coffee, this Colombian blend is compatible with all types of coffee machines. With a strength rating of 9/10, this coffee is perfect for those seeking a bold and robust coffee experience. Indulge in the captivating aromas and flavors that this Colombian coffee has to offer—each cup is a journey to the heart of Colombian coffee culture.",
+					9.86,
+					98,
+					CategoryProduct.COFFEE,
+					ColorProduct.NONE,
+					0,
+					"https://www.lafazenda.com.ar/uploads/productos/Colombia_adelante6.webp",
+					List.of("https://www.lafazenda.com.ar/uploads/productos/Colombia_atras.webp"));
+			productRepository.save(product65);
+
 
 
 		};

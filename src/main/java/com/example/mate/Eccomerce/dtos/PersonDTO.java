@@ -17,6 +17,8 @@ public class PersonDTO {
     private String password;
 
     private Set<AdressDTO> address;
+
+    private Set<PurchaseOrderDTO> purchaseOrder;
     public PersonDTO() {
 
     }
@@ -28,6 +30,7 @@ public class PersonDTO {
         this.phone = person.getPhone();
         this.personType = person.getUserType();
         this.address = person.getAdress().stream().map(AdressDTO::new).collect(Collectors.toSet());
+        this.purchaseOrder = person.getPurchaseOrder().stream().map(PurchaseOrderDTO::new).collect(Collectors.toSet());
     }
 
     public PersonDTO(String firstname, String lastname, String email, String phone, String password) {
@@ -65,7 +68,16 @@ public class PersonDTO {
     public String getPassword() {
         return password;
     }
+
+    public PersonType getPersonType() {
+        return personType;
+    }
+
     public Set<AdressDTO> getAddress() {
         return address;
+    }
+
+    public Set<PurchaseOrderDTO> getPurchaseOrder() {
+        return purchaseOrder;
     }
 }

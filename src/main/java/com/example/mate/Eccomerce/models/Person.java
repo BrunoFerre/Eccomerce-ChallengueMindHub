@@ -22,6 +22,9 @@ public class Person {
     @OneToMany(mappedBy = "person",fetch = FetchType.EAGER)
     private List<Comment> comments = new ArrayList<>();
 
+    @OneToMany(mappedBy = "person",fetch = FetchType.EAGER)
+    private Set<PurchaseOrder> purchaseOrder = new HashSet<>();
+
     public Person() {
     }
 
@@ -36,6 +39,13 @@ public class Person {
     public void addAdress(Adress adress){
     adress.setPerson(this);
     this.adress.add(adress);
+    }
+    public void addPurchaseOrder(PurchaseOrder purchaseOrder){
+    purchaseOrder.setPerson(this);
+    this.purchaseOrder.add(purchaseOrder);
+    }
+    public Set<PurchaseOrder> getPurchaseOrder() {
+        return purchaseOrder;
     }
    public long getId() {
         return id;
@@ -100,4 +110,9 @@ public class Person {
     public Set<Adress> getAdress() {
         return adress;
     }
+
+    public void setPurchaseOrder(Set<PurchaseOrder> purchaseOrder) {
+        this.purchaseOrder = purchaseOrder;
+    }
+
 }
