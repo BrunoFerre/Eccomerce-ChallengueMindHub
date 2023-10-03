@@ -11,12 +11,12 @@ import com.example.mate.Eccomerce.models.Person;
 import com.example.mate.Eccomerce.models.PurchaseOrder;
 import com.example.mate.Eccomerce.service.POService;
 import com.example.mate.Eccomerce.service.PersonService;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -69,8 +69,8 @@ public class ExportTicketController {
         if (purchaseOrder==null){
             return new ResponseEntity<>("The purchase order was not found", HttpStatus.FORBIDDEN);
         }
-
         try {
+
             Document document = new Document(PageSize.A4, 50, 50, 50, 50);
 
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -100,12 +100,14 @@ public class ExportTicketController {
 
             //Agregar los datos
             for (Details details : purchaseOrder.getDetails()){
+                System.out.println(details.getId());
                 table.addCell(String.valueOf(details.getId()));
                 table.addCell(details.getProduct().getName());
                 table.addCell(String.valueOf(details.getQuantity()));
                 table.addCell(String.valueOf(details.getPrice()));
                 table.addCell(String.valueOf(details.getQuantity()*details.getPrice()));
             }
+            document.add(table);
 
             //Calcular Total
             double total=0;
