@@ -17,60 +17,62 @@
 </head>
 
 <body>
-	<!--Navbar-->
-	<header>
-		<a href="#" class="logo"><img src="../images/favicon_mate.png" alt="logo"></a>
-		<div class="bx bx-menu" id="menu-icon"></div>
-		<ul class="navbar">
-			<li><a href="/web/index.html">Home</a></li>
-			<li><a href="./shop.html">Shop</a></li>
-			<li><a href="./about.html">About Us</a></li>
-			<li><a href="./blog.html">Blog</a></li>
-			<li><a href="./login1.html">Log in</a></li>
-			<li><a href="#"><i class="bi bi-cart"></i></a></li>
-		</ul>
-	</header>
+		<!--Navbar-->
+		<nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+			<div class="container-fluid">
+				<a class="navbar-brand logo fs-1 d-flex align-items-center justify-content-center gap-3" href="#"><img
+						src="../images/favicon_mate.png" alt="logo">
+					<h1>Matoffee</h1>
+				</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+					data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+						<li><a href="../../index.html">Home</a></li>
+						<li><a href="./shop.html">Shop</a></li>
+						<li><a href="./about.html">About Us</a></li>
+						<li><a href="./blog.html">Blog</a></li>
+						<li><a href="#" class="btn bg-danger-subtle">Log out</a></li>
+						<li><a href="./cart.html"><i class="bi bi-cart"></i></a></li>
+				</div>
+			</div>
+		</nav>
+	
+		<!--Carousel-->
+		<header>
+			<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+				<div class="carousel-inner">
+					<div class="carousel-item active c-item">
+						<img src="../images/cafe_3.jpg" class="d-block w-100 c-img" alt="...">
+					</div>
+					<div class="carousel-item c-item">
+						<img src="../images/bg-banner.jpg" class="d-block w-100 c-img" alt="...">
+					</div>
+					<div class="carousel-item c-item">
+						<img src="../images/mate_3.jpeg" class="d-block w-100 c-img" alt="...">
+					</div>
+				</div>
+				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+					data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+					data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
+			</div>
+		</header>
     <main id="app">
 
         <section id="page-header">
 			<h2>#cart</h2>
 			<p>Your shopping cart</p>
 		</section>
-
-		<div>
-			<button class="btn btn-success custom-button" type="button" data-bs-toggle="offcanvas"
-				data-bs-target="#shoppingCard" aria-controls="shoppingCard">
-				<i class="bi bi-cart4"></i>
-				<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-					{{ cart.length }}
-					<span class="visually-hidden">unread messages</span>
-				</span>
-			</button>
-		
-			<div class="offcanvas offcanvas-end" tabindex="-1" id="shoppingCard" aria-labelledby="offcanvasRightLabel">
-				<div class="offcanvas-header">
-					<h5 class="offcanvas-title" id="offcanvasRightLabel">Shopping Card</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-				</div>
-				<div class="offcanvas-body d-flex flex-column">
-					<ul class="d-flex gap-3 flex-column p-0">
-						<li class="d-flex justify-content-around flex-wrap" v-for="(item, index) in cart" :key="index">
-							<div class="col-5">
-								{{ item.title }} - ${{ item.price }} x{{ item.quantity }}
-							</div>
-							<div class="col-4">
-								<button class="cart-button remove-button" @click="removeFromCart(index)">-</button>
-								<button class="cart-button add-button" @click="plusItem(index)">+</button>
-								<button class="cart-button delete-button" @click="removeAllFromCart(item.id)">x</button>
-							</div>
-						</li>
-					</ul>
-					<p>Total: ${{ calculateTotal() }}</p>
-					<button class="btn btn-success">Buy</button>
-				</div>
-			</div>
-		</div>
-
 		<section id="cart" class="section-p1">
 			<table width="100%">
 				<thead>
@@ -80,28 +82,30 @@
 						<td>Price</td>
 						<td>Quantity</td>
 						<td>Subtotal</td>
+						<td>Remove</td>
 					</tr>
 				</thead>
 				<tbody>
 					<!-- Utiliza v-for para iterar a través de los productos en el carrito -->
-					<tr v-for="(item, index) in cart" :key="index">
-						<td><img :src="item.image" :alt="item.title"></td>
-						<td>{{ item.title }}</td>
-						<td>${{ item.price }}</td>
-						<td>{{ item.quantity }} <button class="cart-button add-button" @click="plusItem(index)">+</button> <button class="cart-button remove-button" @click="removeFromCart(index)">-</button></td>
-						<td> ${{ calculateTotal() }} </td>
+					<tr v-for="(item, index) of cart" :key="index">
+						<td ><img :src="item.image" :alt="item.title"></td>
+						<td class="fs-4">{{ item.name }}</td>
+						<td class="fs-2">${{ item.price }}</td>
+						<td class="fs-2"><i class="bi bi-dash text-danger" @click="minusItem(index)"></i>{{ item.quantity }}<i class="bi bi-plus text-success" @click="plusItem(item)"></i> </td>
+						<td>${{ item.price * item.quantity }}</td>
+						<td><button class="btn btn-danger" @click="removeItem(index)"> Remove item</button></td>
 					</tr>
 				</tbody>
 			</table>
 		</section>
-		
+		<
 		<section id="cart-add" class="section-p1">
 			<div id="subtotal">
 				<h3>Cart Total</h3>
 				<table>
 					<tr>
 						<td>Subtotal:</td>
-						<td>${{ calculateTotal() }}</td>
+						<td>${{calculateSubtotal()}}</td>
 					</tr>
 					<tr>
 						<td>Shipping:</td>
@@ -109,7 +113,7 @@
 					</tr>
 					<tr>
 						<td><strong>Total</strong></td>
-						<td><strong>${{ calculateTotal() }}</strong></td>
+						<td><strong>${{calculateTotal()}}</strong></td>
 					</tr>
 				</table>
 				<button class="normal">Proceed to Buy</button>
@@ -139,5 +143,5 @@ integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cD
 crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@3.2.29/dist/vue.global.prod.js"></script>
-<script src="../scripts/shop.js"></script>
+<script src="../scripts/cartsPrueba.js"></script>
 </html>

@@ -2,6 +2,7 @@
 <html lang="en">
 
 <!--Metadata-->
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,7 +35,7 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
-					<li><a href="#">Home</a></li>
+					<li><a href="../../index.html">Home</a></li>
 					<li><a href="#">Shop</a></li>
 					<li><a href="./about.html">About Us</a></li>
 					<li><a href="./blog.html">Blog</a></li>
@@ -71,78 +72,78 @@
 		</div>
 	</header>
 
-	<main id="app" class="main_shop" v-cloak>
-		
-		<!--Filtro-->
-		<nav class="navbar navbar-expand-lg" style="background-color: #0c531e92;">
-			<div class="container-fluid">
-				<a class="navbar-brand text-light" href="#"> Search items: </a>
-				<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
-					data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-					<span class="navbar" id="icon_filter"> <img src="../images/filter.png"></span>
-				</button>
-				{{filters}}
-				<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
-					aria-labelledby="offcanvasNavbarLabel">
+	<main id="app" class="main_shop p-1" v-cloak>
+		<div class="d-flex justify-content-between">
+			<div>
+				<button class="btn btn-success btn-lg my-3" type="button" data-bs-toggle="offcanvas"
+					data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"><i
+						class="bi bi-funnel"></i></button>
+				<div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
+					id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
 					<div class="offcanvas-header">
-						<h4 class="offcanvas-title" id="offcanvasNavbarLabel">Filter items</h5>
+						<h5 class="offcanvas-title" id="offcanvasExampleLabel">Matoffee</h5>
 						<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 					</div>
-					<div class="offcanvas-body align-items-center justify-content-evenly">
-						<ul class="navbar-nav flex-grow-1 pe-3 gap-3 text-light">
-							<template v-if="categoryProducts.length>0" v-for="(filter) of categoryProducts">
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" :value="filter" :id="filter" v-model="checkCategory">
+					<div class="offcanvas-body">
+						<template v-if="categoryProducts.length>0" v-for="(filter) of categoryProducts">
+							<div class="form-check ">
+								<input class="form-check-input" type="checkbox" :value="filter" :id="filter"
+									v-model="checkCategory">
 								<label class="form-check-label" :for="filter">
 									{{filter.replace(/_/g, ' ')}}
 								</label>
 							</div>
 						</template>
-						</ul>
 						<form class="d-flex gap-3" role="search">
-							<input class="form-control" type="search" placeholder="Search" aria-label="Search" v-model="inputSearch">
+							<input class="form-control" type="search" placeholder="Search" aria-label="Search"
+								v-model="inputSearch">
 							<button type="button" class="btn btn-">Search</button>
 						</form>
+						<div class="dropdown mt-3">
+							<button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown">
+								Sort by:
+							</button>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="#" @click="orderMinorToMajor()">Order by Minor
+										Price</a>
+								</li>
+								<li><a class="dropdown-item" href="#" @click="orderMajorToMinor()">Order by Major
+										Price</a>
+								</li>
+								<li><a class="dropdown-item" href="#" @click="orderByName()">Order A-Z</a></li>
+								<li><a class="dropdown-item" href="#" @click="orderByNameReverse()">Order Z-a</a></li>
+							</ul>
+						</div>
 					</div>
 				</div>
 			</div>
-		</nav>
-
-		<!--Boton flotante-->
-		<div>
-			<button class="btn btn-success custom-button" type="button" data-bs-toggle="offcanvas"
-				data-bs-target="#shoppingCard" aria-controls="shoppingCard">
-				<i class="bi bi-cart4"></i>
-				<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-					{{ cart.length }}
-					<span class="visually-hidden">unread messages</span>
-				</span>
-			</button>
-
-			<div class="offcanvas offcanvas-end" tabindex="-1" id="shoppingCard" aria-labelledby="offcanvasRightLabel">
-				<div class="offcanvas-header">
-					<h5 class="offcanvas-title" id="offcanvasRightLabel">Shopping Card</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-				</div>
-				<div class="offcanvas-body d-flex flex-column">
-					<ul class="d-flex gap-3 flex-column p-0">
-						<li class="d-flex justify-content-around flex-wrap" v-for="(item, index) in cart" :key="index">
-							<div class="col-5">
-								{{ item.title }} - ${{ item.price }} x{{ item.quantity }}
+			<div>
+				<button class="btn btn-success btn-lg my-3" type="button" data-bs-toggle="offcanvas"
+					data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="bi bi-cart-check"></i></button>
+				<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
+					aria-labelledby="offcanvasRightLabel">
+					<div class="offcanvas-header">
+						<h5 class="offcanvas-title" id="offcanvasRightLabel">Shoopping Cart</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+					</div>
+					<div class="offcanvas-body d-flex flex-column gap-3">
+						<template v-if="cart.length>0" v-for="(item, index) in cart">
+							<div class="card">
+								<div class="card-body">
+									<h5 class="card-title">{{ item.name }}</h5>
+									<p class="card-text">Price: ${{ item.price }}</p>
+								</div>
 							</div>
-							<div class="col-4">
-								<button class="cart-button remove-button" @click="removeFromCart(index)">-</button>
-								<button class="cart-button add-button" @click="plusItem(index)">+</button>
-								<button class="cart-button delete-button" @click="removeAllFromCart(item.id)">x</button>
-							</div>
-						</li>
-					</ul>
-					<p>Total: ${{ calculateTotal() }}</p>
-					<button class="btn btn-success">Buy</button>
+						</template>
+						<template v-else>
+							<p>Cart is empty</p>
+						</template>
+						<a href="./cart.html" class="btn btn-outline-success mt-3">Checkout</a>
+					</div>
 				</div>
 			</div>
 		</div>
-
+		{{filters}}
 		<!--Texto card-venta-->
 		<section id="product1" class="section-p1">
 			<div class="pro-container container-fluid justify-content-evenly d-flex flex-wrap gap-2">
@@ -162,7 +163,13 @@
 						</div>
 						<h4>${{ product.price }}</h4>
 					</div>
-					<a href="#" @click="addToCart(product)"><i class="bi bi-cart2 cart"></i></a>
+					<template v-if="cart.some( fav =>  fav.id == product.id)">
+					<i class="bi bi-check-circle"> It is already in the cart</i>
+					<button v-if="product.stock == 0 " href="#" class="btn text-center " disabled><i
+							class="bi bi-cart"></i></button>
+					</template>
+					<li v-else href="#" @click="() => local( product, 'add' )" class="btn card-button"><i
+							class="bi bi-cart"></i></li>
 				</div>
 				<p v-else class="text-center display-1">No products found</p>
 			</div>
