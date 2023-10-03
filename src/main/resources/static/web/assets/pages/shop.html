@@ -68,8 +68,65 @@
 				<a href="#" class="navbar-brand  fw-semibold ms-5">
 
 				</a>
+<template v-if="categoryProducts.length>0" v-for="(categoryProduct) of categoryProducts">
+	<div class="form-check">
+		<input class="form-check-input" type="checkbox" :value="categoryProduct" :id="categoryProduct" v-model="checkCategory">
+		<label class="form-check-label" :for="categoryProduct">
+			{{categoryProduct.replace(/_/g, ' ')}}
+		</label>
+	  </div>
+</template>
+<input type="search" class="form-control w-25 h-25 m-3" placeholder="Search Name" aria-describedby="basic-addon2" v-model="inputSearch">
+<div class="btn-group">
+<button type="button" class="btn btn-primary "  @click.prevent="coffeeShop"> Coffee Shop</button>
+<button type="button" class="btn btn-primary"  @click.prevent="mateShop"> Mate Shop</button></button>
+</div>
+<form class="form">
+	<fieldset>
+	
+	<!-- Form Name -->
+	<legend>Form Name</legend>
+	
+	<!-- Multiple Radios -->
+	<div class="form-group">
+	  <label class="col-md-4 control-label" for="radios">Order By</label>
+	  <div class="col-md-4">
+	  <div class="radio">
+		<label for="radios-0">
+		  <input type="radio" name="radios" id="radios-0" value="1" @change.prevent="orderMinorToMajor()">
+		  Minor-Major
+		</label>
+		</div>
+	  <div class="radio">
+		<label for="radios-1">
+		  <input type="radio" name="radios" id="radios-1" value="2" @change.prevent="orderMajorToMinor()">
+		  Major-Minor
+		</label>
+		</div>
+	  <div class="radio">
+		<label for="radios-2">
+		  <input type="radio" name="radios" id="radios-2" value="3" @change.prevent="orderByNameReverse()">
+		  A-Z
+		</label>
+		</div>
+	  <div class="radio">
+		<label for="radios-3">
+		  <input type="radio" name="radios" id="radios-3" value="4" @change.prevent="orderByName()">
+		  Z-A
+		</label>
+		</div>
+	  </div>
+	  <div class="col-md-4">
+		<button class="btn btn-primary" type="submit" @click.prevent="clearFilters()">Clear filters</button>
+	  </div>
+	</div>
+	
+	</fieldset>
+	</form>
+	
+{{filters}}
 
-				<!-- NAV BUTTON  -->
+<!-- NAV BUTTON  -->
 				<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral">
 					<span class="navbar-toggler-icon"></span>
 				</button>
@@ -184,7 +241,7 @@
 
 		<section id="product1" class="section-p1" >
 			<div class="pro-container" data-aos="fade-up" >
-				<div class="pro" :key="product.id" v-for="product of products" >
+				<div v-if="fil.length>0" class="pro" :key="product.id" v-for="product of fil" >
 					<a :href="'product.html?id=' + product.id">
 						<img :src="product.image" :alt="product.title" class="pro-img">
 					</a>
@@ -202,6 +259,7 @@
 					</div>
 					<a href="#" @click="addToCart(product)"><i class="bi bi-cart2 cart"></i></a>
 				</div>
+				<p v-else> No hay productos</p>
 			</div>
 
 		</section>
