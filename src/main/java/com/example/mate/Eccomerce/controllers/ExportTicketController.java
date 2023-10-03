@@ -90,7 +90,8 @@ public class ExportTicketController {
             title.setSpacingAfter(20); // Espaciado después del título
             document.add(title);
 
-
+            addParagraphWithBoldLabel(document, "Id Order", String.valueOf(purchaseOrder.getId()));
+            addParagraphWithBoldLabel(document, "Date: ", purchaseOrder.getDate().toString());
             addParagraphWithBoldLabel(document, "Client: ", person.getFirstname() + " " + person.getLastname());
             addParagraphWithBoldLabel(document, "Address: ", purchaseOrder.getAdress().getStreet());
             addParagraphWithBoldLabel(document, "Number: ", String.valueOf(purchaseOrder.getAdress().getNumber()));
