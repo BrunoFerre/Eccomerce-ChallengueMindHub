@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<!--Metadata-->
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,8 +11,6 @@
 	<title>Matoffee | Shop</title>
 	<!--Favicon-->
 	<link rel="shortcut icon" href="../images/favicon.png" type="image/x-icon">
-	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
 	<!--Link to CSS-->
 	<link rel="stylesheet" href="../style/style1.css">
 	<!--Box Icons-->
@@ -20,191 +19,117 @@
 </head>
 
 <body>
+
 	<!--Navbar-->
+	<nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+		<div class="container-fluid">
+			<a class="navbar-brand logo fs-1 d-flex align-items-center justify-content-center gap-3" href="#"><img
+					src="../images/favicon_mate.png" alt="logo">
+				<h1>Matoffee</h1>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+					<li><a href="#">Home</a></li>
+					<li><a href="#">Shop</a></li>
+					<li><a href="./about.html">About Us</a></li>
+					<li><a href="./blog.html">Blog</a></li>
+					<li><a href="#" class="btn bg-danger-subtle">Log out</a></li>
+					<li><a href="#cart"><i class="bi bi-cart"></i></a></li>
+			</div>
+		</div>
+	</nav>
+
+	<!--Carousel-->
 	<header>
-		<a href="#" class="logo"><img src="../images/favicon_mate.png" alt="logo"></a>
-		<div class="bx bx-menu" id="menu-icon"></div>
-
-		<ul class="navbar">
-			<li><a href="/web/index.html">Home</a></li>
-			<li><a href="#">Shop</a></li>
-			<li><a href="./about.html">About Us</a></li>
-			<li><a href="./blog.html">Blog</a></li>
-			<li><a href="./login1.html">Log in</a></li>
-			<li><a href="./cart.html"><i class="bi bi-cart"></i></a></li>
-		</ul>
+		<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+			<div class="carousel-inner">
+				<div class="carousel-item active c-item">
+					<img src="../images/cafe_3.jpg" class="d-block w-100 c-img" alt="...">
+				</div>
+				<div class="carousel-item c-item">
+					<img src="../images/bg-banner.jpg" class="d-block w-100 c-img" alt="...">
+				</div>
+				<div class="carousel-item c-item">
+					<img src="../images/mate_3.jpeg" class="d-block w-100 c-img" alt="...">
+				</div>
+			</div>
+			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+				data-bs-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Previous</span>
+			</button>
+			<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+				data-bs-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Next</span>
+			</button>
+		</div>
 	</header>
-	<style>
-		nav,
-		.offcanvas {
-			background-color: #5dd3a0bf;
-		}
 
-		.navbar-toggler {
-			border: none;
-		}
-
-		.navbar-toggler:focus {
-			outline: none;
-			box-shadow: none;
-		}
-
-		@media (max-width: 768px) {
-			.navbar-nav>li:hover {
-				background-color: #0dcaf0;
-			}
-		}
-	</style>
-	<main id="app">
-
-		<section id="page-header">
-			<h2>#stayHome</h2>
-			<p>Save more with coupons & up to 70% off</p>
-		</section>
-
-		<nav class="navbar navbar-expand-ms navbar-dark" data-aos="fade-right">
-			<!-- NAV CONTAINER START -->
+	<main id="app" class="main_shop">
+		
+		<!--Filtro-->
+		<nav class="navbar navbar-expand-lg" style="background-color: #0c531e92;">
 			<div class="container-fluid">
-				<a href="#" class="navbar-brand  fw-semibold ms-5">
-
-				</a>
-<template v-if="categoryProducts.length>0" v-for="(categoryProduct) of categoryProducts">
-	<div class="form-check">
-		<input class="form-check-input" type="checkbox" :value="categoryProduct" :id="categoryProduct" v-model="checkCategory">
-		<label class="form-check-label" :for="categoryProduct">
-			{{categoryProduct.replace(/_/g, ' ')}}
-		</label>
-	  </div>
-</template>
-<input type="search" class="form-control w-25 h-25 m-3" placeholder="Search Name" aria-describedby="basic-addon2" v-model="inputSearch">
-<div class="btn-group">
-<button type="button" class="btn btn-primary "  @click.prevent="coffeeShop"> Coffee Shop</button>
-<button type="button" class="btn btn-primary"  @click.prevent="mateShop"> Mate Shop</button></button>
-</div>
-<form class="form">
-	<fieldset>
-	
-	<!-- Form Name -->
-	<legend>Form Name</legend>
-	
-	<!-- Multiple Radios -->
-	<div class="form-group">
-	  <label class="col-md-4 control-label" for="radios">Order By</label>
-	  <div class="col-md-4">
-	  <div class="radio">
-		<label for="radios-0">
-		  <input type="radio" name="radios" id="radios-0" value="1" @change.prevent="orderMinorToMajor()">
-		  Minor-Major
-		</label>
-		</div>
-	  <div class="radio">
-		<label for="radios-1">
-		  <input type="radio" name="radios" id="radios-1" value="2" @change.prevent="orderMajorToMinor()">
-		  Major-Minor
-		</label>
-		</div>
-	  <div class="radio">
-		<label for="radios-2">
-		  <input type="radio" name="radios" id="radios-2" value="3" @change.prevent="orderByNameReverse()">
-		  A-Z
-		</label>
-		</div>
-	  <div class="radio">
-		<label for="radios-3">
-		  <input type="radio" name="radios" id="radios-3" value="4" @change.prevent="orderByName()">
-		  Z-A
-		</label>
-		</div>
-	  </div>
-	  <div class="col-md-4">
-		<button class="btn btn-primary" type="submit" @click.prevent="clearFilters()">Clear filters</button>
-	  </div>
-	</div>
-	
-	</fieldset>
-	</form>
-	
-{{filters}}
-
-<!-- NAV BUTTON  -->
-				<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral">
-					<span class="navbar-toggler-icon"></span>
+				<a class="navbar-brand text-light" href="#"> Search items: </a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+					data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+					<span class="navbar" id="icon_filter"> <img src="../images/filter.png"></span>
 				</button>
-				<!-- OFFCANVAS MAIN CONTAINER START -->
-				<section class="offcanvas offcanvas-start" id="menuLateral" tabindex="-1">
-					<div class="offcanvas-header" data-bs-theme="dark">
-						<h5 class="offcanvas-title text-info">Matoffee Shop</h5>
-						<button class="btn-close" type="button" aria-label="Close" data-bs-dismiss="offcanvas"></button>
+				<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
+					aria-labelledby="offcanvasNavbarLabel">
+					<div class="offcanvas-header">
+						<h4 class="offcanvas-title" id="offcanvasNavbarLabel">Filter items</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 					</div>
-					<!-- OFF CANVAS MENU LINKS  START-->
-					<div class="offcanvas-body d-flex flex-column justify-content-between px-0">
-						<ul class="navbar-nav fs-5 justify-content-evenly">
-							<li class="nav-item p-3 py-md-1">
-								<p class="nav-link">Color</p>
-								<select name="" id="">
-									<option value="">Negro</option>
-									<option value="">Rojo</option>
-									<option value="">Azul</option>
-									<option value="">Verde</option>
-									<option value="">Amarillo</option>
-								</select>
-							</li>
-							<li class="nav-item p-3 py-md-1">
-								<p class="nav-link">Price</p>
-								<select name="" id="">
-									<option value="">
-										$0 - $100
-									</option>
-									<option value="">
-										$100 - $200
-									</option>
-									<option value="">
-										$200 - $300
-									</option>
-									<option value="">
-										$300 - $400
-									</option>
-									<option value="">
-										$400 - $500
-									</option>
-							</li>
-
-
-							<li class="nav-item p-3 py-md-1">
-								<p class="nav-link">Pampa</p>
-								<select name="" id="">
-									<option value="">Manitos</option>
-									<option value="">Pampa</option>
-								</select>
-							</li>
-							<li class="nav-item p-3 py-md-1">
-								<p class="nav-link">Pampa</p>
-								<select name="" id="">
-									<option value="">Manitos</option>
-									<option value="">Pampa</option>
-								</select>
-							</li>
-							<li class="nav-item p-3 py-md-1">
-								<p class="nav-link">Termo Personalizado</p>
-								<select name="" id="">
-									<option value="">Si</option>
-									<option value="">No</option>
-								</select>
-							</li>
-							<li class="nav-item p-3 py-md-1">
-								<button>Buscar</button>
-							</li>
-
-							<li class="nav-item p-3 py-md-1">
-								<a class="nav-link" @click="logout()" href="/web/Index.html">Log out</a>
-							</li>
+					<div class="offcanvas-body align-items-center justify-content-evenly">
+						<ul class="navbar-nav flex-grow-1 pe-3 gap-3 text-light">
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+								<label class="form-check-label" for="flexCheckDefault">
+									Default checkbox
+								</label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+								<label class="form-check-label" for="flexCheckDefault">
+									Default checkbox
+								</label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+								<label class="form-check-label" for="flexCheckDefault">
+									Default checkbox
+								</label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+								<label class="form-check-label" for="flexCheckDefault">
+									Default checkbox
+								</label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+								<label class="form-check-label" for="flexCheckDefault">
+									Default checkbox
+								</label>
+							</div>
 						</ul>
+						<form class="d-flex gap-3" role="search">
+							<input class="form-control" type="search" placeholder="Search" aria-label="Search">
+							<button type="button" class="btn btn-">Search</button>
+						</form>
 					</div>
-				</section>
-				<!-- OFFCANVAS MAIN CONTAINER END  -->
+				</div>
 			</div>
 		</nav>
 
+		<!--Boton flotante-->
 		<div>
 			<button class="btn btn-success custom-button" type="button" data-bs-toggle="offcanvas"
 				data-bs-target="#shoppingCard" aria-controls="shoppingCard">
@@ -239,15 +164,16 @@
 			</div>
 		</div>
 
-		<section id="product1" class="section-p1" >
-			<div class="pro-container" data-aos="fade-up" >
-				<div v-if="fil.length>0" class="pro" :key="product.id" v-for="product of fil" >
+		<!--Texto card-venta-->
+		<section id="product1" class="section-p1">
+			<div class="pro-container container-fluid justify-content-evenly d-flex flex-wrap gap-2">
+				<div class="pro gap-3 d-flex flex-wrap" :key="product.id" v-for="product in products">
 					<a :href="'product.html?id=' + product.id">
-						<img :src="product.image" :alt="product.title" class="pro-img">
+						<img :src="product.image" :alt="product.title" class="h-50">
 					</a>
 					<div class="des">
 						<span>Matoffee</span>
-						<h5>{{ product.name }}</h5>
+						<p>{{ product.title }}</p>
 						<div class="start">
 							<i class="bi bi-star-fill"></i>
 							<i class="bi bi-star-fill"></i>
@@ -259,19 +185,19 @@
 					</div>
 					<a href="#" @click="addToCart(product)"><i class="bi bi-cart2 cart"></i></a>
 				</div>
-				<p v-else> No hay productos</p>
 			</div>
 
 		</section>
 
 		<section id="pagination" class="section-p1">
-			<a href="#">1</a>
-			<a href="./shopPage2.html">2</a>
-			<a href="./shopPage3.html">3</a>
+			<a href="">1</a>
+			<a href="">2</a>
 			<a href=""><i class="bi bi-arrow-right"></i></a>
 		</section>
 
 	</main>
+
+	<!--Pie de pagina-->
 	<footer class="contact" id="contact">
 		<div class="social">
 			<a href="https://www.facebook.com/"><i class='bx bxl-facebook'></i></a>
@@ -294,8 +220,5 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@3.2.29/dist/vue.global.prod.js"></script>
 <script src="../scripts/shop.js"></script>
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-	AOS.init();
-  </script>
+
 </html>
