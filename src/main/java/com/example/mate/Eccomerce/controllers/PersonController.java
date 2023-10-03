@@ -93,4 +93,18 @@ public class PersonController {
         personRepository.save(person);
         return new ResponseEntity<>("Welcome to the admin", HttpStatus.CREATED);
     }
+
+    @PatchMapping("/updatePhone")
+    public ResponseEntity<Object> updatePhone(@RequestParam long id, @RequestParam String phone){
+        Person person = personRepository.findById(id).orElse(null);
+        if (person == null){
+            return new ResponseEntity<>("The user was not found", HttpStatus.NOT_FOUND);
+        }
+        if (phone.isBlank()){
+            return new ResponseEntity<>("The phone cannot be empty", HttpStatus.BAD_REQUEST);
+        }
+        person.setPhone(phone);
+        personRepository.save(person);
+        return new ResponseEntity<>("The phone was updated", HttpStatus.OK);
+    }
 }
