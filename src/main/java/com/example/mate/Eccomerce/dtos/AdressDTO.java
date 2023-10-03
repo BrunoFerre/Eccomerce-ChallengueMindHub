@@ -1,6 +1,7 @@
 package com.example.mate.Eccomerce.dtos;
 
 import com.example.mate.Eccomerce.models.Adress;
+import com.example.mate.Eccomerce.models.Person;
 
 public class AdressDTO {
     private long id;
@@ -11,6 +12,8 @@ public class AdressDTO {
     private long floor;
 
     private boolean active;
+    private Person person;
+
     public AdressDTO() {
     }
 
@@ -58,5 +61,9 @@ public class AdressDTO {
 
     public boolean isActive() {
         return active;
+    }
+
+    public Person getPerson() {
+        return person;
     }
 }

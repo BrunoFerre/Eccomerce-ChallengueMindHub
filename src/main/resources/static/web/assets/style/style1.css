@@ -552,6 +552,7 @@ font-size: 1.25rem;
     margin: 15px 0;
     transition: 0.2s ease;
     position: relative;
+    min-height: 15rem;
 }
 
 #product1 .pro img{
@@ -688,7 +689,6 @@ font-size: 1.25rem;
     margin-right: 50px;
 
 }
-
 .small-img-group{
     display: flex;
     justify-content: space-between!important;
@@ -1333,3 +1333,6 @@ overflow-x: auto;
     }
   }
   
+  .pro-img{
+    object-fit: contain;
+  }

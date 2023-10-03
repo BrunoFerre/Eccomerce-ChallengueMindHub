@@ -51,7 +51,7 @@ public class CRUDAnswerController {
         return new ResponseEntity<>(answers, HttpStatus.OK);
     }
 
-    @PostMapping("add")
+    @PostMapping("/add")
     public ResponseEntity<Object> addAnswer(@RequestParam String answer, @RequestParam long commentId, Authentication authentication){
         if (answer.isBlank()){
             return new ResponseEntity<>("The answer cannot be empty", HttpStatus.BAD_REQUEST);

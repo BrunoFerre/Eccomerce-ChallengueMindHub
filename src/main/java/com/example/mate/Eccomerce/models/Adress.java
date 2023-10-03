@@ -35,7 +35,6 @@ public class Adress {
         this.floor = floor;
         this.status = status;
     }
-
     public long getId() {
         return id;
     }
