@@ -1553,11 +1553,20 @@ footer .col h4 {
     .menu-account {
         display: flex;
         justify-content:flex-end;
-        margin-left: 100px;
-        align-items: center;
+        margin-right: 10px;
+        margin-top: 10px;
+        height: auto;
+        width: 45rem;
+        height: auto;  
+        border-radius: 20px;
+        padding: 20px;
         gap: 3rem;
+        }
+    .img-account{
+        width: 25rem;
 
     }
+     }
 
 /* Button Cart */
 .custom-button {
