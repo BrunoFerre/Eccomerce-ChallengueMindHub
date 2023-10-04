@@ -11,6 +11,9 @@ const app = Vue.createApp({
             filerByPrice: [],
             page2: [],
             remaingProducts: [],
+            addressId: null,
+            paymentMethod: "",
+            details: [],
         };
     },
     created() {
@@ -28,6 +31,120 @@ const app = Vue.createApp({
                     console.error('Error al obtener los productos', error);
                 });
             this.loadCartFromLocalStorage();
+        },
+        buyCart() {
+            const homeBanking = "https://homebanking-production-0510.up.railway.app/api/payment_point"
+            const objHB = {
+                "cardNumber": "4000 2324 5432 1298",
+                "cvv": 331,
+                "amount": 200,
+                "description": "hola"
+            }
+            const objMatoffeePrueba = {
+                "addressId": 2,
+                "paymentMethod": "DEBIT",
+                "details": [
+                    {
+                        "productId": 56,
+                        "quantity": 1
+                    }
+                ]
+            }
+            axios.post(homeBanking, objHB)
+                .then(res => {
+                    console.log(res.data, "entro a la peticion");
+                    axios.post("/api/purchase/purchaseOrder", objMatoffeePrueba)
+                        .then(res => {
+                            console.log("Buy Success!");
+                            console.log(res.data);
+                            const purchaseOrderDTO = res.data;
+                            const wantsToDownload = window.confirm("Buy success, ¿do you want to download PDF?")
+                            if (wantsToDownload) {
+                                axios.get('/api/ticket', purchaseOrderDTO, {
+                                    responseType: 'blob' // Especificar que esperamos una respuesta binaria (blob)
+                                })
+                                    .then(ticketResponse => {
+                                        const blob = new Blob([ticketResponse.data], { type: 'application/pdf' });
+                                        const blobURL = URL.createObjectURL(blob);
+                                        const downloadLink = document.createElement('a');
+                                        downloadLink.href = blobURL;
+                                        downloadLink.download = 'ticket.pdf';
+                                        downloadLink.click();
+                                        URL.revokeObjectURL(blobURL);
+                                    })
+                                    .catch(ticketError => {
+                                        console.error(ticketError);
+                                    });
+                            }
+
+                        })
+                        .catch(error => {
+                            console.log(error.response.data.text()
+                                .then(res => {
+                                    console.log(res);
+                                }))
+                        })
+                }
+                )
+                .catch(error => {
+                    console.log(error);
+                    console.log("error en la peticion de HomeBanking");
+                })
+        },
+        prueba() {
+            axios.get('localhost:8080/api/ticket', {
+                "id": 1,
+                "amount": 1910.48,
+                "date": "2023-10-03T01:53:28.205016",
+                "paymentMethod": "DEBIT",
+                "personID": 2,
+                "details": [
+                    {
+                        "id": 3,
+                        "quantity": 12.0,
+                        "price": 12.86,
+                        "productID": 51
+                    },
+                    {
+                        "id": 4,
+                        "quantity": 1.0,
+                        "price": 88.91,
+                        "productID": 29
+                    },
+                    {
+                        "id": 1,
+                        "quantity": 3.0,
+                        "price": 413.67,
+                        "productID": 48
+                    },
+                    {
+                        "id": 2,
+                        "quantity": 6.0,
+                        "price": 71.04,
+                        "productID": 8
+                    }
+                ],
+                "adress": {
+                    "id": 2,
+                    "street": "Calle 123",
+                    "number": 12345,
+                    "city": "Villa Quien",
+                    "apartament": "TuyaBB",
+                    "floor": 21,
+                    "active": true
+                }
+            }, { responseType: 'blob' })
+                .then(res => {
+                    const blob = new Blob([response.data], { type: 'application/pdf' });
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'ticket.pdf';
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                    console.log(res.data);
+                    "ticket.pdf"
+                })
         },
         // Button Cart
         addToCart(product) {

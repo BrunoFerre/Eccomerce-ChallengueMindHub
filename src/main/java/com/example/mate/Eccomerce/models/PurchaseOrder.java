@@ -27,11 +27,11 @@ public class PurchaseOrder {
     public PurchaseOrder() {
     }
 
-    public PurchaseOrder( double amount, LocalDateTime date, PaymentMethod paymentMethod,Adress adress) {
+    public PurchaseOrder( double amount, LocalDateTime date, PaymentMethod paymentMethod,String ticket) {
         this.amount = amount;
         this.date = date;
         this.paymentMethod = paymentMethod;
-        this.adress = adress;
+        this.ticket = ticket;
     }
 
     public long getId() {

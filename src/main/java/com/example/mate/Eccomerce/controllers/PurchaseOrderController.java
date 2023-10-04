@@ -2,7 +2,9 @@ package com.example.mate.Eccomerce.controllers;
 
 import com.example.mate.Eccomerce.dtos.*;
 import com.example.mate.Eccomerce.models.*;
+import com.example.mate.Eccomerce.repositories.PurchaseOrderRepository;
 import com.example.mate.Eccomerce.service.*;
+import com.example.mate.Eccomerce.utils.TicketGen;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +33,8 @@ public class PurchaseOrderController {
 
     @Autowired
     private AddressService addressService;
+    @Autowired
+    private PurchaseOrderRepository purchaseOrderRepository;
 
     @GetMapping("/history")
     public List<PurchaseOrderDTO> getPurchaseHistory(Authentication authentication) {
@@ -53,6 +57,9 @@ public class PurchaseOrderController {
         if (purchaseOrderBDTO.getAddressId()<=0){
             return new ResponseEntity<>("The address id cannot be 0",HttpStatus.BAD_REQUEST);
         }
+        if(current==null){
+            return new ResponseEntity<>("The user was not found",HttpStatus.NOT_FOUND);
+        }
         Adress adress = addressService.findById(purchaseOrderBDTO.getAddressId());
         if (adress==null){
             return new ResponseEntity<>("The address was not found", HttpStatus.NOT_FOUND);
@@ -66,8 +73,18 @@ public class PurchaseOrderController {
         if (purchaseOrderBDTO.getPaymentMethod()==null){
             return new ResponseEntity<>("The payment method cannot be null",HttpStatus.BAD_REQUEST);
         }
-        PurchaseOrder purchaseOrder = new PurchaseOrder(0, LocalDateTime.now(), purchaseOrderBDTO.getPaymentMethod(), adress);
+        PurchaseOrder purchaseOrder = new PurchaseOrder(0, LocalDateTime.now(), purchaseOrderBDTO.getPaymentMethod(),"00");
+        purchaseOrder.setPerson(current);
         double aux=0;
+        String ticket;
+        do {
+            ticket = TicketGen.generateTicket();
+        }while(purchaseOrderRepository.existsByTicket(ticket));
+        purchaseOrder.setTicket(ticket);
+        current.addPurchaseOrder(purchaseOrder);
+        purchaseOrder.setPerson(current);
+        poService.save(purchaseOrder);
+        personService.save(current);
         for (CreateDetailsDTO createDetailsDTO : purchaseOrderBDTO.getDetails()) {
             if (createDetailsDTO.getProductId() <= 0) {
                 return new ResponseEntity<>("The product id cannot be 0",HttpStatus.BAD_REQUEST);
@@ -91,10 +108,9 @@ public class PurchaseOrderController {
             aux+=product.getPrice()*createDetailsDTO.getQuantity();
         }
         purchaseOrder.setAmount(aux);
-        current.addPurchaseOrder(purchaseOrder);
         poService.save(purchaseOrder);
         personService.save(current);
         PurchaseOrderDTO purchaseOrderDTO = new PurchaseOrderDTO(purchaseOrder);
-        return new ResponseEntity<>("Success" + purchaseOrderDTO,HttpStatus.OK);
+        return new ResponseEntity<>(purchaseOrderDTO, HttpStatus.OK);
     }
 }
