@@ -14,11 +14,8 @@ createApp({
 
     },
     methods: {
-        prevent(event) {
-            event.preventDefault()
-        },
         logIn() {
-            axios.post("/api/login", Person)
+             axios.post('/api/login','email='+this.email+'&password='+this.password)
                 .then((response) => {
                     if (this.email.contains('@admin')) {
                         location.href = "./manager.html"
@@ -35,7 +32,6 @@ createApp({
                 email: this.email,
                 password: this.password
             }
-            console.log(Person);
             Swal.fire({
                 title: 'Register Mind Hub Brother?',
                 inputAttributes: {
@@ -48,9 +44,7 @@ createApp({
                     return axios
                         .post("/api/person/add", Person)
                         .then(response => {
-                            setTimeout(() => {
                                 this.logIn();
-                            }, 2000)
                         })
                         .catch(error => {
                             console.log(error)

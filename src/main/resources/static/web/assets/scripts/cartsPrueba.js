@@ -68,7 +68,6 @@ createApp({
                 }
                 payObj.details.push(this.obj)
             }
-           
             console.log(payObj)
             Swal.fire({
                 title: 'Do you want to make the purchase?',
