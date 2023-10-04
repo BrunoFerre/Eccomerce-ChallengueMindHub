@@ -1528,6 +1528,18 @@ footer .col h4 {
     margin: 20px;
 }
 
+.menu-item-welcome {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    width: 30rem;
+    height: auto;  
+    border-radius: 20px;
+    padding: 20px;
+    margin: 20px;
+}
+
 @media (max-width: 799px) {
     .menu-account {
         display: flex;
