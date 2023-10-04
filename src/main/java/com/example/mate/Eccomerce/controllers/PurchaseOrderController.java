@@ -73,18 +73,15 @@ public class PurchaseOrderController {
         if (purchaseOrderBDTO.getPaymentMethod()==null){
             return new ResponseEntity<>("The payment method cannot be null",HttpStatus.BAD_REQUEST);
         }
-        PurchaseOrder purchaseOrder = new PurchaseOrder(0, LocalDateTime.now(), purchaseOrderBDTO.getPaymentMethod(),"00");
-        purchaseOrder.setPerson(current);
-        double aux=0;
         String ticket;
         do {
             ticket = TicketGen.generateTicket();
         }while(purchaseOrderRepository.existsByTicket(ticket));
-        purchaseOrder.setTicket(ticket);
-        current.addPurchaseOrder(purchaseOrder);
+        PurchaseOrder purchaseOrder = new PurchaseOrder(0, LocalDateTime.now(), purchaseOrderBDTO.getPaymentMethod(), ticket);
+        purchaseOrder.setAdress(adress);
         purchaseOrder.setPerson(current);
-        poService.save(purchaseOrder);
-        personService.save(current);
+
+        double aux=0;
         for (CreateDetailsDTO createDetailsDTO : purchaseOrderBDTO.getDetails()) {
             if (createDetailsDTO.getProductId() <= 0) {
                 return new ResponseEntity<>("The product id cannot be 0",HttpStatus.BAD_REQUEST);
@@ -100,17 +97,20 @@ public class PurchaseOrderController {
                 return new ResponseEntity<>("The product is out of stock", HttpStatus.BAD_REQUEST);
             }
             Details details = new Details(createDetailsDTO.getQuantity(), product.getPrice());
+            detailsService.save(details);
+            purchaseOrder.addDetails(details);
             product.addDetails(details);
             product.setStock(product.getStock() - createDetailsDTO.getQuantity());
-            purchaseOrder.addDetails(details);
-            detailsService.save(details);
             productService.save(product);
             aux+=product.getPrice()*createDetailsDTO.getQuantity();
         }
+        purchaseOrder.setTicket(ticket);
         purchaseOrder.setAmount(aux);
-        poService.save(purchaseOrder);
+        current.addPurchaseOrder(purchaseOrder);
         personService.save(current);
+        poService.save(purchaseOrder);
         PurchaseOrderDTO purchaseOrderDTO = new PurchaseOrderDTO(purchaseOrder);
-        return new ResponseEntity<>(purchaseOrderDTO, HttpStatus.OK);
+        return new ResponseEntity<>("Purchase made successfully, your ticket number is: " + ticket, HttpStatus.OK);
     }
+
 }
