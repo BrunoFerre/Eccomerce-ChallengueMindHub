@@ -40,13 +40,10 @@ public class PersonController {
     @PostMapping("/add")
     public ResponseEntity<Object> add(@RequestBody PersonDTO personDTO) {
 
-        String emailPattern = "^[A-Za-z0-9+_.-]+@(.+)$";
-        if (personDTO.getEmail().isBlank() || !personDTO.getEmail().matches(emailPattern)) {
+        if (personDTO.getEmail().isBlank()) {
             return new ResponseEntity<>("Email is invalid or required", HttpStatus.BAD_REQUEST);
         }
-
-        String passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=]).{8,}$";
-        if (personDTO.getPassword().isBlank() || !personDTO.getPassword().matches(passwordPattern)) {
+        if (personDTO.getPassword().isBlank()) {
             return new ResponseEntity<>("Password is invalid or required", HttpStatus.BAD_REQUEST);
         }
 
