@@ -22,7 +22,7 @@ const app = Vue.createApp({
             axios.get('/api/products')
                 .then((response) => {
                     const products = response.data;
-                    this.products = products.sort((a,b)=>a.id-b.id);
+                    this.products = products.sort((a, b) => a.id - b.id);
                     this.categoryProducts = [...new Set(this.products.map(product => product.category))]
                 })
                 .catch((error) => {
@@ -95,8 +95,8 @@ const app = Vue.createApp({
             }
         },
         local(product, accion) {
-            if (accion == 'add'){
-                this.cart.push({...product, quantity: 1});
+            if (accion == 'add') {
+                this.cart.push({ ...product, quantity: 1 });
             }
             localStorage.setItem('cart', JSON.stringify(this.cart))
         }
@@ -109,7 +109,13 @@ const app = Vue.createApp({
                 return a.id - b.id;
             });
         },
+        changeStorage() {
+            window.addEventListener('storage', (event) => {
+                if (event.key === 'cart') {
+                    this.cart = JSON.parse(localStorage.getItem('cart')??[]);
+                }
+            })
     },
+}
 });
-
 app.mount('#app');

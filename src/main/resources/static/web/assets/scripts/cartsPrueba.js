@@ -25,7 +25,6 @@ createApp({
         },
         plusItem(product) {
             const exist = this.cart.findIndex((p) => p.id === product.id);
-        
             if (exist !== -1) {
                 this.cart[exist].quantity++;
             }else{
@@ -54,7 +53,16 @@ createApp({
         removeItem(index) {
             this.cart.splice(index, 1);
             localStorage.setItem('cart', JSON.stringify(this.cart));
-        }
+        },
     },
+    computed: {
+        changeStorage() {
+            window.addEventListener('storage', (event) => {
+                if (event.key === 'cart') {
+                    this.cart = JSON.parse(localStorage.getItem('cart')) ?? [];
+                }
+            }) 
+        }
+    }
 
 }).mount('#app');

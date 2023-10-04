@@ -33,11 +33,10 @@ public class PersonDTO {
         this.purchaseOrder = person.getPurchaseOrder().stream().map(PurchaseOrderDTO::new).collect(Collectors.toSet());
     }
 
-    public PersonDTO(String firstname, String lastname, String email, String phone, String password) {
+    public PersonDTO(String firstname, String lastname, String email,String password) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
-        this.phone = phone;
         this.password = password;
     }
 
