@@ -112,7 +112,7 @@
 						<td><strong>${{calculateTotal()}}</strong></td>
 					</tr>
 				</table>
-				<button class="normal">Proceed to Buy</button>
+				<button type="button" @click.prevent="pay()" class="normal">Proceed to Buy</button>
 {{changeStorage}}
 				
 			</div>
@@ -135,6 +135,8 @@
 <p>&#169; Cohort-49 All Right Reserved </p>
 </footer>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 crossorigin="anonymous"></script>

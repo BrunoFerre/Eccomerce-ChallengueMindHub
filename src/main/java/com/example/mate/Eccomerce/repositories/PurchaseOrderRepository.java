@@ -6,5 +6,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource
 public interface PurchaseOrderRepository extends JpaRepository<PurchaseOrder, Long> {
-
+    boolean existsByTicket(String ticket);
+    PurchaseOrder findByTicket(String ticket);
 }

@@ -5,6 +5,7 @@ createApp({
     data() {
         return {
             cart: [],
+            obj:{}
         };
     },
     created() {
@@ -27,8 +28,8 @@ createApp({
             const exist = this.cart.findIndex((p) => p.id === product.id);
             if (exist !== -1) {
                 this.cart[exist].quantity++;
-            }else{
-                this.cart.push({...product, quantity: 1});
+            } else {
+                this.cart.push({ ...product, quantity: 1 });
             }
             localStorage.setItem('cart', JSON.stringify(this.cart));
         },
@@ -36,7 +37,7 @@ createApp({
             const item = this.cart[index]
             if (item.quantity > 1) {
                 item.quantity--;
-            }else if(item.quantity === 1){
+            } else if (item.quantity === 1) {
                 this.removeItem(index)
             }
         },
@@ -55,7 +56,20 @@ createApp({
             localStorage.setItem('cart', JSON.stringify(this.cart));
         },
         pay() {
+            let payObj={
+                addressId:1,
+                paymentMethodId:"DEBIT",
+                details:[]
+            }
+            for (const product  of this.cart) {
+                this.obj={
+                    productId:product.id,
+                    quantity:product.quantity
+                }
+                payObj.details.push(this.obj)
+            }
            
+            console.log(payObj)
             Swal.fire({
                 title: 'Do you want to make the purchase?',
                 inputAttributes: {
@@ -66,14 +80,38 @@ createApp({
                 showLoaderOnConfirm: true,
                 preConfirm: login => {
                     return axios
-                        .post("/api/purchase/purchaseOrder", Person)
+                        .post("/api/purchase/purchaseOrder", payObj)
                         .then(response => {
-                           Swal.fire({
-                               title: 'Purchase made successfully',
-                               icon: 'success',
-                               text: "Your ticket is:" +response.data,
-                               confirmButtonColor: '#5b31be93',
-                           })
+                            Swal.fire({
+                                icon: 'success',
+                                text: 'The purchase was successful,Do you want to print your invoice?',
+                                inputAttributes: {
+                                    autocapitalize: 'off',
+                                },
+                                showCancelButton: true,
+                                confirmButtonColor: 'Yes',
+                                showLoaderOnConfirm: true,
+                                preConfirm: login => {
+                                    axios.get('/api/ticket', 'ticket=' + response.data,{responseType: 'blob'})
+                                        .then(response => {
+                                            const blob = new Blob([response.data], { type: 'application/pdf' });
+                                            const link = window.URL.createObjectURL(blob);
+                                            const a = document.createElement('a');
+                                            a.href = link;
+                                            a.download = 'ticket.pdf';
+                                            a.click();
+                                            window.URL.revokeObjectURL(link);
+                                        }).catch(error => {
+                                            const e = error.response.data.text().then(e => {
+                                                Swal.fire({
+                                                    icon: 'error',
+                                                    text: e,
+                                                    confirmButtonColor: '#5b31be93',
+                                                })
+                                            })
+                                        })
+                                }
+                            })
                         })
                         .catch(error => {
                             console.log(error)
@@ -94,7 +132,7 @@ createApp({
                 if (event.key === 'cart') {
                     this.cart = JSON.parse(localStorage.getItem('cart')) ?? [];
                 }
-            }) 
+            })
         }
     }
 
