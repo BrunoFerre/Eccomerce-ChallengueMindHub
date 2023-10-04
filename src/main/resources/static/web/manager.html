@@ -38,8 +38,7 @@
         </div>
     </nav>
 
-    <main class="d-flex flex-column align-items-center container-fluid my-3 gap-5" id="manager">
-        {{prueba}}
+    <main class="d-flex flex-column align-items-center container-fluid my-3 p-4 gap-5" id="manager">
         <div class="accordion accordion-flush col-11" id="accordionFlushExample">
             <!--Accordion Uno-->
             <div class="accordion-item">
@@ -55,48 +54,45 @@
                             <div class="row align-items-center justify-content-center">
                                 <div class="col-md-6 d-flex flex-column gap-2">
                                     <label for="productName" class="form-label">Product Name</label>
-                                    <input class="form-control" type="text" name="productName" id="productName">
+                                    <input v-model="productName" class="form-control" type="text" name="productName"
+                                        id="productName">
 
                                     <label for="price" class="form-label">Price</label>
-                                    <input class="form-control" type="number" name="price" id="price">
+                                    <input v-model="productPrice" class="form-control" type="number" name="price"
+                                        id="price">
 
                                     <label for="stock" class="form-label">Stock</label>
-                                    <input class="form-control" type="number" name="stock" id="stock">
+                                    <input v-model="productStock" class="form-control" type="number" name="stock"
+                                        id="stock">
 
                                     <label for="category" class="form-label">Category</label>
-                                    <select v-model="prueba1" class="form-select" name="category" id="category">
-                                        <option value="1">Prueba 1</option>
-                                        <option value="2">Prueba 2</option>
-                                        <option value="5">Prueba 3</option>
-                                        <option value="3">Prueba 4</option>
-                                        <option value="4">Prueba 5</option>
-                                    </select>
+                                    <input v-model="productCategory" type="text" class="form-control" name="category"
+                                        id="category" placeholder="Category in capital letters">
 
                                     <label for="color">Color</label>
-                                    <select class="form-select" name="color" id="color">
-                                        <option value="color">prueba 1</option>
-                                        <option value="">Prueba 2</option>
-                                        <option value="">Prueba 3</option>
-                                        <option value="">Prueba 4</option>
-                                        <option value="">Prueba 5</option>
-                                    </select>
+                                    <input v-model="productColor" class="form-control" type="text" name="color"
+                                        id="color" placeholder="Color in capital letters">
 
                                     <label class="form-label" for="discount">Discount</label>
-                                    <input class="form-control" type="number" name="discount" id="discount">
+                                    <input v-model="productDiscount" class="form-control" type="number" name="discount"
+                                        id="discount">
 
                                 </div>
 
                                 <div class="col-md-6 d-flex flex-column gap-2 align-items-center"
                                     style="padding-top: 0.4rem;">
                                     <label for="descrition" class="form-label">Description</label>
-                                    <textarea class="form-control" name="descrition" id="descrition" cols="31"
-                                        rows="11"></textarea>
+                                    <textarea v-model="productDescription" class="form-control" name="descrition"
+                                        id="descrition" cols="31" rows="11"></textarea>
 
                                     <label class="form-label" for="image">Image</label>
-                                    <input class="form-control" type="text" name="image" id="image">
+                                    <input v-model="productImage" class="form-control" type="text" name="image"
+                                        id="image">
 
                                     <label for="imageCollection" class="form-label pb-1">Image Collection</label>
-                                    <input class="form-control" type="text" name="imageCollection" id="imageCollection">
+                                    <input v-model="preImageCollection" class="form-control" type="text"
+                                        name="imageCollection" id="imageCollection"
+                                        placeholder="Separate the urls by ','">
 
                                 </div>
                                 <button type="button" class="btn btn-add mt-3">Add Product</button>
@@ -116,9 +112,14 @@
                 <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                     <div class="accordion-body justify-content-center align-items-center">
                         <label for="productId">Product Id</label>
-                        <input type="number" name="productId" id="productId">
+                        <input v-model="updatePriceId" type="number" name="productId" id="productId">
                         <label for="newPrice">New Price</label>
-                        <input type="number" name="newPrice" id="newPrice">
+                        <input v-model="updatePriceValue" type="number" name="newPrice" id="newPrice">
+                        <button @click="updatePrice" type="button" class="btn btn-success">Update Price</button>
+                        <label for="productId">Product Id</label>
+                        <input v-model="updateStockId" type="number" name="productId" id="productId">
+                        <label for="newStock">New Stock</label>
+                        <input v-model="updateStockValue" type="number" name="newStock" id="newStock">
                     </div>
                 </div>
             </div>

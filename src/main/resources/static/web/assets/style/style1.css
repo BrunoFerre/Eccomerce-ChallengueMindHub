@@ -4,7 +4,7 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css");
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;600;700&display=swap');
 
-
+/*Configuraciones generales*/
 * {
     font-family: 'Poppins', sans-serif;
 }
@@ -23,11 +23,6 @@ section {
     padding: 50px 10%;
 }
 
-
-img {
-    width: 100%;
-}
-
 /*Scroll personalizado*/
 body::-webkit-scrollbar {
     width: 7px;
@@ -39,7 +34,6 @@ body::-webkit-scrollbar-thumb {
 }
 
 /*Nav*/
-
 .logo {
     display: flex;
     align-items: center;
@@ -57,13 +51,19 @@ body::-webkit-scrollbar-thumb {
 }
 
 .navbar a {
-    font-size: 1rem;
+    font-size: 1.2rem;
     padding: 11px 20px;
     color: var(--second-color);
     font-weight: 600;
     text-decoration: none;
 }
 
+.a_nav:hover {
+    text-decoration: underline;
+    width: 100%;
+    height: 3px;
+    color: #022807;
+}
 
 .logo h1 {
     color: var(--second-color);
@@ -78,7 +78,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 a,
-h4 {
+h4,h2 {
     font-family: 'Croissant One', cursive;
 
 }
@@ -93,10 +93,8 @@ h4 {
 
 
 .main_login {
-
     background-color: #ebdbc8;
     background-image: url("data:image/svg+xml,%3Csvg width='42' height='44' viewBox='0 0 42 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Page-1' fill='none' fill-rule='evenodd'%3E%3Cg id='brick-wall' fill='%23a792ac' fill-opacity='0.4'%3E%3Cpath d='M0 0h42v44H0V0zm1 1h40v20H1V1zM0 23h20v20H0V23zm22 0h20v20H22V23z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-
 }
 
 .home-img img {
@@ -148,11 +146,16 @@ h4 {
 }
 
 .btn_login {
-    padding: 7px 16px;
     border: 2px solid var(--second-color);
     border-radius: 40px;
     color: var(--second-color);
-    font-weight: 500;
+    height: 2.5rem;
+    width: 8rem;
+    font-size: 15px;
+}
+
+.login_register {
+    font-size: 18px !important;
 }
 
 .btn_login:hover {
@@ -451,17 +454,12 @@ h4 {
     border-radius: 4rem;
 }
 
-.login_input,
-.login_button {
-    border: none;
-    font-size: medium;
-}
+
 
 .login_input {
     width: 100%;
     background: none;
     color: white;
-    padding-block: 1rem;
 }
 
 .login_input::placeholder {
@@ -503,6 +501,14 @@ h4 {
 
 }
 
+.bg_filter_nav {
+    background-color: #0e664f95;
+}
+
+.bg_filter_nav h4 {
+    color: #fff;
+}
+
 /*Ivan*/
 /*Shop Page*/
 #product1 {
@@ -512,13 +518,12 @@ h4 {
 #product1 .pro-container {
     display: flex;
     justify-content: space-between;
-    padding-top: 20px;
     flex-wrap: wrap;
 }
 
 #product1 .pro {
-    min-height: 20rem;
-    width: 18rem !important;
+    width: 23%;
+    min-width: 250px;
     padding: 10px 12px;
     border: 3px solid #115c0bcb;
     border-radius: 25px;
@@ -527,17 +532,36 @@ h4 {
     margin: 15px 0;
     transition: 0.2s ease;
     position: relative;
-    align-items: center;
-    justify-content: center;
     background-color: #fff;
 }
 
+/* Cards  */
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 1rem;
+    border: 1px solid #e1e1e1;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    height: 25rem;
+}
+
+
 #product1 .pro img {
-    border-radius: 15px;
+    border-radius: 25px;
+    width: 100%;
 }
 
 #product1 .pro:hover {
-    box-shadow: 20px 20px 10px #0000005c;
+    box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.383);
+}
+
+#product1 .pro .des {
+    text-align: start;
+    padding: 10px 0;
 }
 
 #product1 .pro .des span {
@@ -546,8 +570,13 @@ h4 {
 }
 
 #product1 .pro .des i {
+    padding-top: 7px;
     color: rgb(243, 181, 25);
     font-size: 14px;
+}
+
+#product1 .pro .des i {
+    font-size: 12px;
 }
 
 #product1 .pro .des h4 {
@@ -569,21 +598,6 @@ h4 {
     position: absolute;
     bottom: 20px;
     right: 10px;
-}
-
-.pro {
-    width: 100%;
-}
-
-.pro img {
-    width: 50%;
-    height: auto;
-}
-
-.des {
-    width: 50%;
-    /* Puedes ajustar el valor del padding según tus necesidades */
-    box-sizing: border-box;
 }
 
 @media (max-width: 800px) {
@@ -634,7 +648,6 @@ h4 {
 
 .main_shop {
     background-color: #ebdbc8;
-    margin-bottom: 2rem;
 }
 
 #pagination {
@@ -1289,10 +1302,12 @@ h4 {
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
-.a{
+
+.a {
     height: 25rem;
     object-fit: contain;
 }
+
 /* Estilo para el botón "Agregar" (verde) */
 .add-button {
     background-color: #28a745;
@@ -1371,13 +1386,13 @@ footer .col {
 }
 
 footer h4 {
-    font-size: 14px;
+    font-size: 20px;
     padding-bottom: 20px;
 }
 
 footer p {
     margin: 0 0 8px 0;
-    font-size: 13px;
+    font-size: 15px;
 
 }
 
@@ -1426,21 +1441,310 @@ footer .col h4 {
 
 }
 
-#prodetails{
+#prodetails {
     min-height: 20rem;
 }
 
-#manager{
+#manager {
     background-color: #e1e1e1;
 }
 
-.accordion-item{
-    background-color:#e2e9e1;
+.accordion-item {
+    background-color: #e2e9e1;
     color: black;
     font-size: large;
 }
 
-.btn-add{
+.btn-add {
     background-color: #e2e9e1;
     width: 15rem;
+}
+
+#app_link {
+    text-decoration: none;
+    color: #05550e;
+}
+
+#main_about {
+    background-color: #e1e1e1;
+}
+
+
+/* Account Page */
+#menu .menu-item {
+    border-left: 4px solid #5e7e29;
+    color: #5e7e29;
+    font-family: Festivo;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    margin: 0;
+    background-color: #008148;
+}
+
+.menu-item a {
+    font-size: 13px;
+    text-decoration: none;
+    color: #222;
+    font-weight: 600;
+    padding: 15px 0;
+    background-color: #1e393280;
+    display: flex;
+    align-items: center;
+    margin: 3px 1px;
+    justify-content: center;
+    width: 10rem;
+    border-left: 8px solid #5e7e29;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+    border-block: 3px solid #5e7e29;
+    margin-left: 100px;
+}
+
+.menu-item a:hover {
+    color: #fff;
+    background-color: #5e7e29;
+    border-left: 6px solid #5e7e29;
+}
+
+.menu-account {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 3rem;
+}
+
+.menu-perfil {
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+    border: #000000;
+    background-color: #62ad8394;
+    height: auto;
+    width: 30rem;
+    height: auto;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+    transition: all 0.5s ease;
+    cursor: pointer;
+    border-block: 3px solid #62ad82ae;
+    border-right: 4px solid #62ad82ae;
+}
+
+.perfil-header {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: center;
+    gap: 1rem;
+    margin: 0.5rem;
+    border-style: double;
+    border-color: #000000;
+    border-radius: 20px;
+    padding: 20px 20px;
+}
+
+.perfil-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.button-edit {
+    background-color: #008148;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.table-products {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    border-style: double;
+}
+
+.table-products thead tr {
+    background-color: #008148;
+    color: #ffffff;
+    text-align: left;
+}
+
+.table-products th,
+.table-products td {
+    padding: 12px 15px;
+}
+
+.table-products tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.menu-img {
+    border-radius: 20px;
+    width: 30rem;
+}
+
+.img-account {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 40px;
+    margin: 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+    border-block: 4px solid #62ad8394;
+    border-right: 6px solid #62ad8394;
+
+}
+
+.main-account {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    width: 30rem;
+    height: auto;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 20px;
+}
+
+.menu-item-welcome {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    width: 30rem;
+    height: auto;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 20px;
+}
+
+@media (max-width: 799px) {
+    .menu-account {
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 10px;
+        margin-top: 10px;
+        height: auto;
+        width: 45rem;
+        height: auto;
+        border-radius: 20px;
+        padding: 20px;
+        gap: 3rem;
+    }
+
+    .img-account {
+        width: 26rem;
+    }
+}
+
+@media (max-width: 477px) {
+    .menu-account {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        height: auto;
+        width: 24rem;
+        height: auto;
+        border-radius: 20px;
+        padding: 20px;
+        margin: 20px;
+    }
+}
+
+/* Button Cart */
+.custom-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+}
+
+[v-cloak] {
+    display: none;
+}
+
+.cart-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Estilo para el botón "Agregar" (verde) */
+.add-button {
+    background-color: #28a745;
+    color: #fff;
+}
+
+/* Estilo para el botón "Quitar" (rojo) */
+.remove-button {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+/* Estilo para el botón "Eliminar" (rojo oscuro) */
+.delete-button {
+    background-color: #8b0000;
+    color: #fff;
+}
+
+/* Cambio de color al pasar el mouse */
+.cart-button:hover {
+    filter: brightness(1.2);
+}
+
+/* Estilos para el spinner a pantalla completa */
+.fullscreen-spinner-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    /* Fondo blanco */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* Estilos para el spinner */
+.spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid #007bff;
+    /* Color del spinner */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    /* Animación de giro */
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }

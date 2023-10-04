@@ -1,4 +1,4 @@
-const app = Vue.createApp({
+const appLogin = Vue.createApp({
     data() {
         return {
             email: '',
@@ -8,10 +8,16 @@ const app = Vue.createApp({
             showRegistrationForm: false,
             firstname1: '',
             lastname1: '',
+            isLogin: false
         };
+    },
+    created() {
+        this.verifyiLogin()
     },
     methods: {
         login() {
+            console.log(this.email);
+            console.log(this.password);
             axios.post('/api/login','email='+this.email+'&password='+this.password)
             .then(response => {
                 if(this.email.includes('@admi')){
@@ -19,6 +25,8 @@ const app = Vue.createApp({
                 }else{
                     location.href = './shop.html'
                 }
+                localStorage.setItem('isLoggedIn', 'true')
+                this.verifyiLogin();
             }).catch(error => {
                 console.log(error)
                 Swal.fire({
@@ -28,6 +36,14 @@ const app = Vue.createApp({
                     footer: 'Please try again!'
                 })
             })
+        },
+        verifyiLogin() {
+            let login = localStorage.getItem('isLoggedIn');
+            if (login) {
+                this.isLogin = true
+            } else {
+                this.isLogin = false
+            }
         },
         register() {
             let Person = {
@@ -49,7 +65,9 @@ const app = Vue.createApp({
                     return axios
                         .post("/api/person/add",  Person)
                         .then(response => {
-                                this.logIn();
+                            console.log(this.email);
+                            console.log(this.password);
+                                this.login();
                         })
                         .catch(error => {
                             Swal.fire({
@@ -65,6 +83,18 @@ const app = Vue.createApp({
         toggleForm() {
             this.showRegistrationForm = !this.showRegistrationForm;
         },
+        logOut() {
+            axios.post('/api/logout')
+                .then(response => {
+                    this.isLogin = false
+                    console.log(response);
+                    localStorage.removeItem('isLoggedIn');
+                    window.location.href ='../../index.html';
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+        },
     },
 });
-app.mount('#app');
+appLogin.mount('#login');

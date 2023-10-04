@@ -12,6 +12,7 @@ const app = Vue.createApp({
             page2: [],
             remaingProducts: [],
             cart: [],
+            productHome: [],
         };
     },
     created() {
@@ -24,6 +25,7 @@ const app = Vue.createApp({
                     const products = response.data;
                     this.products = products.sort((a, b) => a.id - b.id);
                     this.categoryProducts = [...new Set(this.products.map(product => product.category))]
+                    this.getProductHome();
                 })
                 .catch((error) => {
                     console.error('Error al obtener los productos', error);
@@ -99,6 +101,13 @@ const app = Vue.createApp({
                 this.cart.push({ ...product, quantity: 1 });
             }
             localStorage.setItem('cart', JSON.stringify(this.cart))
+        },
+        getProductHome() {
+            console.log(this.products);
+            this.productHome = this.products.filter((product) => {
+                return product.discount > 0
+            }).splice(0,4)
+            console.log(this.productHome);
         }
     },
     computed: {
