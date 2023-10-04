@@ -990,6 +990,11 @@ h4 {
     padding: 30px;
 }
 
+#subtotal1 {
+    margin-bottom: 30px;
+    border: 1px solid #e2e9e1;
+    padding: 30px;
+}
 #subtotal table {
     border-collapse: collapse;
     width: 100%;

@@ -12,7 +12,7 @@ public class PurchaseOrderDTO {
     private long id;
     private double amount;
     private LocalDateTime date;
-
+    private String ticket;
     private PaymentMethod paymentMethod;
 
     private long personID;
@@ -28,6 +28,7 @@ public class PurchaseOrderDTO {
         this.date = PO.getDate();
         this.paymentMethod = PO.getPaymentMethod();
         this.details = PO.getDetails().stream().map(DetailsDTO::new).collect(Collectors.toList());
+        this.ticket = PO.getTicket();
         this.adress = new AdressDTO(PO.getAdress()); ;
         this.personID = PO.getPerson().getId();
     }
@@ -50,6 +51,10 @@ public class PurchaseOrderDTO {
 
     public long getPersonID() {
         return personID;
+    }
+
+    public String getTicket() {
+        return ticket;
     }
 
     public List<DetailsDTO> getDetails() {
