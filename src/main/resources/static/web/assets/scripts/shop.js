@@ -95,7 +95,7 @@ const app = Vue.createApp({
             }
         },
         local(product, accion) {
-            if (accion == 'add') {
+            if (accion == 'add'){
                 this.cart.push({...product, quantity: 1});
             }
             localStorage.setItem('cart', JSON.stringify(this.cart))
