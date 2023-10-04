@@ -5,6 +5,7 @@ const app = Vue.createApp({
             password: '',
             firstName: '',
             lastName: '',
+            showRegistrationForm: false,
             firstname1: '',
             lastname1: '',
         };
@@ -30,8 +31,8 @@ const app = Vue.createApp({
         },
         register() {
             let Person = {
-                firstname: this.firstname,
-                lastname: this.lastname,
+                firstname: this.firstName,
+                lastname: this.lastName,
                 email: this.email,
                 password: this.password,
             }
