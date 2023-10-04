@@ -1426,3 +1426,18 @@ footer .col h4 {
 #prodetails{
     min-height: 20rem;
 }
+
+#manager{
+    background-color: #e1e1e1;
+}
+
+.accordion-item{
+    background-color:#e2e9e1;
+    color: black;
+    font-size: large;
+}
+
+.btn-add{
+    background-color: #e2e9e1;
+    width: 15rem;
+}
