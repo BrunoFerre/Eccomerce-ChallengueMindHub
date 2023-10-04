@@ -1380,6 +1380,7 @@ footer .col h4 {
 
 }
 
+/* Account Page */
 #menu .menu-item {
     border-left: 4px solid #5e7e29;
     color: #5e7e29;
@@ -1527,28 +1528,6 @@ footer .col h4 {
     margin: 20px;
 }
 
-@media (max-width: 477px) {
-    .menu-account {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 3rem;
-        border: #000000;    
-        background-color: #62ad8394;
-        height: auto;
-        width: 30rem;
-        height: auto;  
-        border-radius: 20px;
-        padding: 20px;
-        margin: 20px;
-        box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
-        transition: all 0.5s ease;
-        cursor: pointer;
-        border-block: 3px solid #62ad82ae;
-        border-right: 4px solid #62ad82ae;
-    } 
-}
-
 @media (max-width: 799px) {
     .menu-account {
         display: flex;
@@ -1563,10 +1542,25 @@ footer .col h4 {
         gap: 3rem;
         }
     .img-account{
-        width: 25rem;
-
+        width: 26rem;
     }
-     }
+}
+
+@media (max-width: 477px) {
+    .menu-account {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        height: auto;
+        width: 24rem;
+        height: auto;  
+        border-radius: 20px;
+        padding: 20px;
+        margin: 20px;
+    }
+}
 
 /* Button Cart */
 .custom-button {

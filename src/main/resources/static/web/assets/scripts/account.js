@@ -6,18 +6,20 @@ const app = Vue.createApp({
             firstName: "",
             lastName: "",
             showRegistrationForm: null,
+            showImageTemplate: true,
         };
     },
     methods: {
         toggleForm(formName) {
-          console.log(`toggleForm(${formName}) is called`);
-          if (this.showRegistrationForm === formName) {
-            // Si el formulario que se hizo clic ya está abierto, ciérralo
-            this.showRegistrationForm = null;
-          } else {
-            // De lo contrario, ábrelo
-            this.showRegistrationForm = formName;
-          }
+            if (this.showRegistrationForm === formName) {
+                // Si el formulario que se hizo clic ya está abierto, ciérralo
+                this.showRegistrationForm = null;
+            } else {
+                // De lo contrario, ábrelo
+                this.showRegistrationForm = formName;
+                // Cierra el template de la imagen
+                this.showImageTemplate = false;
+            }
         },
         logout() {
             Swal.fire({
