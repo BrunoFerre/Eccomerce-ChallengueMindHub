@@ -1,11 +1,12 @@
 const app = Vue.createApp({
     data() {
         return {
-            email: "",
-            password: "",
-            firstName: "",
-            lastName: "",
-            showRegistrationForm: false, 
+            email: '',
+            password: '',
+            firstName: '',
+            lastName: '',
+            firstname1: '',
+            lastname1: '',
         };
     },
     methods: {
@@ -34,6 +35,7 @@ const app = Vue.createApp({
                 email: this.email,
                 password: this.password,
             }
+            console.log(Person);
             Swal.fire({
                 title: 'Register Matoffee?',
                 inputAttributes: {
@@ -43,7 +45,6 @@ const app = Vue.createApp({
                 confirmButtonText: 'Yes',
                 showLoaderOnConfirm: true,
                 preConfirm: login => {
-                    this.emailAddress = this.email + "@" + this.emailType
                     return axios
                         .post("/api/person/add",  Person)
                         .then(response => {
