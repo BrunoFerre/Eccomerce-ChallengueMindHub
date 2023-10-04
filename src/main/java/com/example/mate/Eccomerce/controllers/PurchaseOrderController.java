@@ -110,7 +110,7 @@ public class PurchaseOrderController {
         personService.save(current);
         poService.save(purchaseOrder);
         PurchaseOrderDTO purchaseOrderDTO = new PurchaseOrderDTO(purchaseOrder);
-        return new ResponseEntity<>("Purchase made successfully, your ticket number is: " + ticket, HttpStatus.OK);
+        return new ResponseEntity<>(ticket, HttpStatus.OK);
     }
 
 }
