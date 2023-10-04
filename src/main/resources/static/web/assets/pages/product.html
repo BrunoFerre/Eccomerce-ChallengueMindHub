@@ -48,7 +48,7 @@
 
         <section id="prodetails" class="section-p1" id="product">
             <div class="single-pro-image" v-if="productDetails">
-                <img :src="selectedImage" alt="" id="MainImg" width="100%">
+                <img :src="selectedImage" alt="" id="MainImg" width="100%" class="a">
                 <div class="small-img-group">
                     <div class="small-img-col" v-for="(image, index) in productImages" :key="index">
                         <img :src="image" alt="" width="100%" class="small-img" @click="changeMainImage(image)">
@@ -60,8 +60,11 @@
                 <h4 class="text-center">{{ productDetails.title }}</h4>
                 <div class="d-flex gap-3 align-items-center justify-content-center">
                     <h2>${{ productDetails.price }}</h2>
-                    <input type="number" id="productQuantity" value="1">
-                    <button class="normal" @click="plusItem(index)">Add to Cart</button>
+                    <template v-if="cart.some( fav =>  fav.id == productDetails.id)">
+                        <i class="bi bi-check-circle"> It is already in the cart</i>
+                    </template>
+                    <button v-else class="normal" @click="() => local( productDetails, 'add' )">Add to Cart</button>
+
                 </div>
                 <p class="mt-5" id="productDescription">{{ productDetails.description }}</p>
             </div>
