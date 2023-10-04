@@ -272,6 +272,7 @@ h4 {
 
 .social a .bx:hover {
     background: var(--main-color);
+    color: white;
 }
 
 .links {
@@ -1349,10 +1350,6 @@ h4 {
     }
 }
 
-#MainImg{
-    align-items: center;
-    justify-content: center;
-}
 
 /* Footer */
 
@@ -1404,8 +1401,8 @@ footer a:hover {
 }
 
 .logoFooter {
-    margin-bottom: 30px;
-    width: 5rem;
+    height: 8rem;
+    width: 8rem;
 }
 
 footer .install .row1 img {
@@ -1424,4 +1421,8 @@ footer .col h4 {
     font-size: 13px;
     margin-top: 20px;
 
+}
+
+#prodetails{
+    min-height: 20rem;
 }

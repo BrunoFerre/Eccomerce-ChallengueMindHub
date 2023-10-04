@@ -47,7 +47,7 @@
 
         <section id="prodetails" class="section-p1" id="product">
             <div class="single-pro-image" v-if="productDetails">
-                <img :src="selectedImage" alt="" id="MainImg">
+                <img :src="selectedImage" alt="product" id="MainImg">
                 <div class="small-img-group">
                     <div class="small-img-col" v-for="(image, index) in productImages" :key="index">
                         <img :src="image" alt="" width="100%" class="small-img" @click="changeMainImage(image)">
