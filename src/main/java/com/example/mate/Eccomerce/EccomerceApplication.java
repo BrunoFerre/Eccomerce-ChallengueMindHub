@@ -428,9 +428,9 @@ public class EccomerceApplication {
 			productRepository.save(product25);
 
 			Product product26= new Product("PREMIUM LEATHER BLACK YERBA CONTAINER",
-					"The Yerba Container 100% Leather is much more than a container; It is a statement of style and quality in every aspect of your matte experience." +
-							"100% Genuine Leather: The Yerba Container is made of high quality leather that not only adds a touch of elegance, but also ensures durability and resistance." +
-							"Its exquisite design reflects its appreciation for tradition and good taste. The yerba container is more than a container; It's an accessory." +
+					"The Yerba Container 100% Leather is much more than a container; It is a statement of style and quality in every aspect of your matte experience. " +
+							"100% Genuine Leather: The Yerba Container is made of high quality leather that not only adds a touch of elegance, but also ensures durability and resistance. " +
+							"Its exquisite design reflects its appreciation for tradition and good taste. The yerba container is more than a container; It's an accessory. " +
 							"Specifically designed to transport yerba, the yerba container maintains its freshness and quality with each transfer.",
 					26.30,
 					27,
