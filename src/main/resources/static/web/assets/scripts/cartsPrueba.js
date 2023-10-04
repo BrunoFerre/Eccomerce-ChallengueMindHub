@@ -54,6 +54,39 @@ createApp({
             this.cart.splice(index, 1);
             localStorage.setItem('cart', JSON.stringify(this.cart));
         },
+        pay() {
+           
+            Swal.fire({
+                title: 'Do you want to make the purchase?',
+                inputAttributes: {
+                    autocapitalize: 'off',
+                },
+                showCancelButton: true,
+                confirmButtonText: 'Yes',
+                showLoaderOnConfirm: true,
+                preConfirm: login => {
+                    return axios
+                        .post("/api/purchase/purchaseOrder", Person)
+                        .then(response => {
+                           Swal.fire({
+                               title: 'Purchase made successfully',
+                               icon: 'success',
+                               text: "Your ticket is:" +response.data,
+                               confirmButtonColor: '#5b31be93',
+                           })
+                        })
+                        .catch(error => {
+                            console.log(error)
+                            Swal.fire({
+                                icon: 'error',
+                                text: error.response.data,
+                                confirmButtonColor: '#5b31be93',
+                            })
+                        });
+                },
+                allowOutsideClick: () => !Swal.isLoading(),
+            });
+        }
     },
     computed: {
         changeStorage() {
