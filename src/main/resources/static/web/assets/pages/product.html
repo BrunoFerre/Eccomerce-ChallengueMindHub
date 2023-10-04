@@ -21,7 +21,7 @@
 
 <body>
     <!--Navbar-->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+    <nav id="login" class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
         <div class="container-fluid">
             <a class="navbar-brand logo fs-1 d-flex align-items-center justify-content-center gap-3" href="#"><img
                     src="../images/favicon_mate.png" alt="logo">
@@ -32,12 +32,19 @@
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li><a href="./shop.html">Shop</a></li>
-                    <li><a href="./about.html">About Us</a></li>
-                    <li><a href="./blog.html">Blog</a></li>
-                    <li><a href="#">Log in</a></li>
+            <div class="collapse navbar-collapse align-items-center" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+                    <li class="d-flex align-items-center"><a href="../../index.html">Home</a></li>
+                    <li class="d-flex align-items-center"><a href="./shop.html">Shop</a></li>
+                    <li class="d-flex align-items-center"><a href="./about.html">About Us</a></li>
+                    <li class="d-flex align-items-center"><a href="./blog.html">Blog</a></li>
+                    <template v-if="!isLogin">
+                        <li class="d-flex align-items-center"><a href="./login1.html">Login</a></li>
+                    </template>
+                    <template v-else>
+                        <li class="d-flex align-items-center"><a href="./account.html">Account</a></li>
+                        <li><button @click="logOut" class="btn bg-danger-subtle">Log out</button></li>
+                    </template>
                     <li><a href="#cart"><i class="bi bi-cart"></i></a></li>
             </div>
         </div>
@@ -49,9 +56,6 @@
             <div class="single-pro-image" v-if="productDetails">
                 <img :src="selectedImage" alt="product" id="MainImg">
                 <div class="small-img-group">
-                    <div class="small-img-col" v-for="(image, index) in productImages" :key="index">
-                        <img :src="image" alt="" width="100%" class="small-img" @click="changeMainImage(image)">
-                    </div>
                 </div>
             </div>
             <div class="single-pro-details" v-if="productDetails">
@@ -171,31 +175,6 @@
             </div>
         </section>
 
-        <section id="product1" class="section-p1">
-            <h2>Featured Products</h2>
-            <p>Summer Collection New Modern Design</p>
-            <div class="pro-container">
-                <div class="pro" :key="product.id" v-for="(product, index) in products.slice(0, 4)">
-                    <a :href="'product.html?id=' + product.id">
-                        <img :src="product.image" :alt="product.title">
-                        <div class="des">
-                            <span>Matoffee</span>
-                            <h5>{{ product.title }}</h5>
-                            <div class="start">
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                            </div>
-                            <h4>${{ product.price }}</h4>
-                        </div>
-                        <a href=""><i class="bi bi-cart2 cart"></i></a>
-                    </a>
-                </div>
-            </div>
-        </section>
-
     </main>
     <!--Pie de pagina-->
     <footer class="col-12 d-flex align-items-center d-flex flex-wrap gap-5 justify-content-evenly p-4">
@@ -226,5 +205,6 @@
 <script src="https://cdn.jsdelivr.net/npm/vue@3.2.29/dist/vue.global.prod.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="../scripts/product.js"></script>
+<script src="../scripts/login.js"></script>
 
 </html>

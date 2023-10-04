@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,59 +15,46 @@
 	<!--Box Icons-->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 </head>
+
 <body>
-		<!--Navbar-->
-		<nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
-			<div class="container-fluid">
-				<a class="navbar-brand logo fs-1 d-flex align-items-center justify-content-center gap-3" href="#"><img
-						src="../images/favicon_mate.png" alt="logo">
-					<h1>Matoffee</h1>
-				</a>
-				<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-					data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-					aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
-						<li><a href="../../index.html">Home</a></li>
-						<li><a href="./shop.html">Shop</a></li>
-						<li><a href="./about.html">About Us</a></li>
-						<li><a href="./blog.html">Blog</a></li>
-						<li><a href="#" class="btn bg-danger-subtle">Log out</a></li>
-						<li><a href="./cart.html"><i class="bi bi-cart"></i></a></li>
-				</div>
+	<!--Navbar-->
+	<nav id="login" class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+		<div class="container-fluid">
+			<a class="navbar-brand logo fs-1 d-flex align-items-center justify-content-center gap-3" href="#"><img
+					src="../images/favicon_mate.png" alt="logo">
+				<h1>Matoffee</h1>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+					<li><a href="../../index.html">Home</a></li>
+					<li><a href="./shop.html">Shop</a></li>
+					<li><a href="./about.html">About Us</a></li>
+					<li><a href="./blog.html">Blog</a></li>
+					<template v-if="!isLogin">
+						<li><a href="./login1.html">Login</a></li>
+					</template>
+					<template v-else>
+						<li><a href="./account.html">Account</a></li>
+						<li><button @click="logOut" class="btn bg-danger-subtle">Log out</button></li>
+					</template>
+					<li><a href="./cart.html"><i class="bi bi-cart"></i></a></li>
 			</div>
-		</nav>
-	
-		<!--Carousel-->
-		<header>
-			<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-				<div class="carousel-inner">
-					<div class="carousel-item active c-item">
-						<img src="../images/cafe_3.jpg" class="d-block w-100 c-img" alt="...">
-					</div>
-					<div class="carousel-item c-item">
-						<img src="../images/bg-banner.jpg" class="d-block w-100 c-img" alt="...">
-					</div>
-					<div class="carousel-item c-item">
-						<img src="../images/mate_3.jpeg" class="d-block w-100 c-img" alt="...">
-					</div>
-				</div>
-				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
-					data-bs-slide="prev">
-					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">Previous</span>
-				</button>
-				<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
-					data-bs-slide="next">
-					<span class="carousel-control-next-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">Next</span>
-				</button>
-			</div>
-		</header>
-    <main id="app">
-        <section id="page-header">
+		</div>
+	</nav>
+
+	<!--Carousel-->
+	<!--Carousel-->
+	<header class="d-flex p-2 justify-content-evenly gap-2">
+		<img src="../images/mate_carousel.webp" alt="" class="w-50 rounded-4">
+		<img src="../images/granocafe.jpg" alt="" class="w-50 rounded-4">
+	</header>
+	<main id="app">
+		<section id="page-header">
 			<h2>#cart</h2>
 			<p>Your shopping cart</p>
 		</section>
@@ -85,10 +73,11 @@
 				<tbody>
 					<!-- Utiliza v-for para iterar a través de los productos en el carrito -->
 					<tr v-for="(item, index) of cart" :key="index">
-						<td ><img :src="item.image" :alt="item.title"></td>
+						<td><img :src="item.image" :alt="item.title"></td>
 						<td class="fs-4">{{ item.name }}</td>
 						<td class="fs-2">${{ item.price }}</td>
-						<td class="fs-2"><i class="bi bi-dash text-danger" @click="minusItem(index)"></i>{{ item.quantity }}<i class="bi bi-plus text-success" @click="plusItem(item)"></i> </td>
+						<td class="fs-2"><i class="bi bi-dash text-danger" @click="minusItem(index)"></i>{{
+							item.quantity }}<i class="bi bi-plus text-success" @click="plusItem(item)"></i> </td>
 						<td>${{ item.price * item.quantity }}</td>
 						<td><button class="btn btn-danger" @click="removeItem(index)"> Remove item</button></td>
 					</tr>
@@ -113,32 +102,34 @@
 					</tr>
 				</table>
 				<button class="normal">Proceed to Buy</button>
-{{changeStorage}}
-				
+				{{changeStorage}}
+
 			</div>
 		</section>
-        
-</main>
-<footer class="contact" id="contact">
-<div class="social">
-<a href="https://www.facebook.com/"><i class='bx bxl-facebook'></i></a>
-<a href="https://www.whatsapp.com/"><i class='bx bxl-whatsapp'></i></a>
-<a href="https://www.youtube.com/"><i class='bx bxl-youtube'></i></a>
-<a href=""><i class='bx bxl-github'></i></a>
-<a href="https://www.instagram.com/"><i class='bx bxl-instagram'></i></a>
-</div>
-<div class="links">
-<a href="#">Privacy Policy</a>
-<a href="#">Terms Of Use </a>
-<a href="#">Our Company</a>
-</div>
-<p>&#169; Cohort-49 All Right Reserved </p>
-</footer>
+
+	</main>
+	<footer class="contact" id="contact">
+		<div class="social">
+			<a href="https://www.facebook.com/"><i class='bx bxl-facebook'></i></a>
+			<a href="https://www.whatsapp.com/"><i class='bx bxl-whatsapp'></i></a>
+			<a href="https://www.youtube.com/"><i class='bx bxl-youtube'></i></a>
+			<a href=""><i class='bx bxl-github'></i></a>
+			<a href="https://www.instagram.com/"><i class='bx bxl-instagram'></i></a>
+		</div>
+		<div class="links">
+			<a href="#">Privacy Policy</a>
+			<a href="#">Terms Of Use </a>
+			<a href="#">Our Company</a>
+		</div>
+		<p>&#169; Cohort-49 All Right Reserved </p>
+	</footer>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-crossorigin="anonymous"></script>
+	integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+	crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@3.2.29/dist/vue.global.prod.js"></script>
 <script src="../scripts/cartsPrueba.js"></script>
+<script src="../scripts/login.js"></script>
+
 </html>

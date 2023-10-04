@@ -41,7 +41,7 @@
   </nav>
 
   <!--Entradas-->
-  <main id="app" v-cloak>
+  <main id="login" v-cloak>
     <!--Log in-->
     <div class="d-flex align-items-center justify-content-evenly main_login">
       <template v-if="!showRegistrationForm">
@@ -50,16 +50,16 @@
             <h1 class="login_title">Login</h1>
             <div class="login_inputs">
               <div class="login_box">
-                <input type="email" placeholder="Email" required class="login_input">
+                <input v-model="email" type="email" placeholder="Email" required class="login_input">
                 <i class="ri-mail-fill"></i>
               </div>
               <div class="login_box">
-                <input type="password" placeholder="Password" required class="login_input">
+                <input v-model="password" type="password" placeholder="Password" required class="login_input">
                 <i class="ri-lock-password-fill"></i>
               </div>
             </div>
             <div class="login_register gap-3">
-              <button type="submit" class="login_button btn_login mb-4">Login</button>
+              <button type="submit" @click.prevent="login" class="login_button btn_login mb-4">Login</button>
               <p>Don't have an account?</p> <a href="#" @click="showRegistrationForm = true">Register</a>
             </div>
           </form>

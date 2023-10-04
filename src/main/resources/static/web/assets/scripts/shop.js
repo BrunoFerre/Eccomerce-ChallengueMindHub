@@ -12,10 +12,12 @@ const app = Vue.createApp({
             page2: [],
             remaingProducts: [],
             cart: [],
+            isLogin: false
         };
     },
     created() {
         this.getData();
+        this.isLoginV();
     },
     methods: {
         getData() {
@@ -99,7 +101,26 @@ const app = Vue.createApp({
                 this.cart.push({ ...product, quantity: 1 });
             }
             localStorage.setItem('cart', JSON.stringify(this.cart))
-        }
+        },
+        isLoginV() {
+            let login = localStorage.getItem('isLoggedIn');
+            if (login) {
+                this.isLogin = true
+            } else {
+                this.isLogin = false
+            }
+        },
+        logOut() {
+            axios.post('/api/logout')
+                .then(response => {
+                    console.log(response);
+                    window.location.reload();
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+        },
+
     },
     computed: {
         filters() {
@@ -112,10 +133,10 @@ const app = Vue.createApp({
         changeStorage() {
             window.addEventListener('storage', (event) => {
                 if (event.key === 'cart') {
-                    this.cart = JSON.parse(localStorage.getItem('cart')??[]);
+                    this.cart = JSON.parse(localStorage.getItem('cart') ?? []);
                 }
             })
-    },
-}
+        },
+    }
 });
 app.mount('#app');

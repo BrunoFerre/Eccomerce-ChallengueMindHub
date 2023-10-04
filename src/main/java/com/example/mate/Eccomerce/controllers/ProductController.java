@@ -38,7 +38,6 @@ public class ProductController {
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
-
     @GetMapping("/products/{id}")
     public ResponseEntity<Object> getProductById(@PathVariable long id){
         if (id<=0){
