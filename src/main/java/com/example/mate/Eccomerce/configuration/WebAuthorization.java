@@ -22,9 +22,10 @@ public class WebAuthorization {
 
         http.
                 authorizeRequests()
+                .antMatchers(HttpMethod.POST, "/api/login", "/api/person/add").permitAll()
+
                 .antMatchers("/web/**").permitAll()
 
-                .antMatchers(HttpMethod.POST, "/api/login", "/api/person/add").permitAll()
 
                 .antMatchers(HttpMethod.GET, "/api/products", "/api/products", "/api/products/{category}","/api/comments/product").permitAll()
 

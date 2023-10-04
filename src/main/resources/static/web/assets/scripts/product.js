@@ -9,6 +9,7 @@ const app = Vue.createApp({
                 '../images/2.jpeg', 
             ],
             products: [], 
+            cart: [],
         };
     },
     created() {
@@ -18,6 +19,7 @@ const app = Vue.createApp({
     },
     methods: {
         loadProductDetails(productId) {
+            this.cart = JSON.parse(localStorage.getItem('cart')) ?? [];
             axios.get(`/api/products/${productId}`)
                 .then((response) => {
                     this.productDetails = response.data;
@@ -42,6 +44,13 @@ const app = Vue.createApp({
                     console.error('Error al obtener los productos', error);
                 });
         },
+
+        local(product, accion) {
+            if (accion == 'add') {
+                this.cart.push({ ...product, quantity: 1 });
+            }
+            localStorage.setItem('cart', JSON.stringify(this.cart))
+        }
     },
 });
 

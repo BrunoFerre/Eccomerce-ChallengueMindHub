@@ -1,78 +1,147 @@
 
 const { createApp } = Vue;
 
-const app1 = createApp({
+createApp({
     data() {
         return {
             cart: [],
-            spinner: true
+            showForm: false,
+            cardNumber: "",
+            dueDate: "",
+            cvv: "",
         };
     },
     created() {
-        axios
-            .get('/api/products')
-            .then((res) => {
-                this.spinner = false;
-                this.products = res.data;
-                console.log(this.products);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-        this.loadCartFromLocalStorage();
+        this.getData();
     },
     methods: {
-        addToCart(product) {
-            const existingCartItemIndex = this.cart.findIndex(item => item.id === product.id);
-
-            if (existingCartItemIndex !== -1) {
-                // Si el producto ya existe en el carrito, aumenta la cantidad
-                this.cart[existingCartItemIndex].quantity++;
+        getData() {
+            this.cart = JSON.parse(localStorage.getItem('cart')) ?? [];
+            axios.get('/api/products')
+                .then((res) => {
+                    this.spinner = false;
+                    this.products = res.data;
+                    console.log(this.products);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        },
+        plusItem(product) {
+            const exist = this.cart.findIndex((p) => p.id === product.id);
+            if (exist !== -1) {
+                this.cart[exist].quantity++;
             } else {
-                // Si es un nuevo producto, agrégalo al carrito
                 this.cart.push({ ...product, quantity: 1 });
             }
-
-            this.saveCartToLocalStorage();
-        },
-        saveCartToLocalStorage() {
             localStorage.setItem('cart', JSON.stringify(this.cart));
         },
-        loadCartFromLocalStorage() {
-            const savedCart = localStorage.getItem('cart');
-            if (savedCart) {
-                this.cart = JSON.parse(savedCart);
+        minusItem(index) {
+            const item = this.cart[index]
+            if (item.quantity > 1) {
+                item.quantity--;
+            } else if (item.quantity === 1) {
+                this.removeItem(index)
             }
         },
         calculateTotal() {
-            return this.cart.reduce((total, item) => total + item.price * item.quantity, 0);
+            return this.cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
         },
-        removeFromCart(index) {
-            const item = this.cart[index];
-            if (item.quantity > 1) {
-                // Si hay más de un elemento de este producto en el carrito, disminuye la cantidad
-                item.quantity--;
-            } else {
-                // Si solo hay un elemento de este producto, elimina el producto del carrito
-                this.cart.splice(index, 1);
+        calculateSubtotal() {
+            return this.cart.reduce((acc, item) => acc + (item.quantity * item.price), 0);
+        },
+        clearCart() {
+            this.cart = [];
+            localStorage.removeItem('cart');
+        },
+        removeItem(index) {
+            this.cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(this.cart));
+        },
+        pay() {
+            let payObj = {
+                addressId: 2,
+                paymentMethod: "DEBIT",
+                details: []
+            }
+            for (const product of this.cart) {
+                this.obj = {
+                    productId: product.id,
+                    quantity: product.quantity
+                }
+                payObj.details.push(this.obj)
+            }
+            console.log(payObj)
+                        axios.post("/api/purchase/purchaseOrder", payObj)
+                        .then(response => {
+                            console.log(response);
+                            const ticket = response.data
+                            console.log(ticket);
+                            axios.get(`/api/ticket?ticket=${ticket}`,{ responseType: 'blob' })
+                            .then(response => {
+                                const blob = new Blob([response.data], { type: 'application/pdf' });
+                                console.log(blob);
+                                const url = window.URL.createObjectURL(blob);
+                                const a = document.createElement('a');
+                                a.href = url;
+                                a.download = 'ticket.pdf';
+                                a.click();
+                                window.URL.revokeObjectURL(url);
+                                this.clearCart()
+                                location.reload()
+                            })
+                            .catch(error => {
+                                console.log(error)
+                            })
+                        })
+                        .catch(error => {
+                                console.log(error.response.data.text()
+                                .then(res=>{
+                                    console.log(res);
+                                }));
+                            });
+        },
+        showFormPay() {
+            this.showForm = !this.showForm;
+        },
+        sendBuy() {
+            let total = this.calculateTotal()
+            let cardDate = {
+                cardNumber: this.cardNumber,
+                cvv: this.cvv,
+                amount: total,
+                description: "Payment for the purchase in the store: Mattoof",
             }
 
-            this.saveCartToLocalStorage();
+            console.log(cardDate)
+            Swal.fire({
+                title: 'Do you want to make the purchase?',
+                inputAttributes: {
+                    autocapitalize: 'off',
+                },
+                showCancelButton: true,
+                confirmButtonText: 'Yes',
+                showLoaderOnConfirm: true,
+                preConfirm: login => {
+                    return axios.post("https://homebanking-production-0510.up.railway.app/api/payment_point", cardDate).then(response => {
+                            console.log(response);
+                            this.pay()
+                        })
+                        .catch(error => {
+                            console.log(error)
+                        
+                        })
+                }
+            })
         },
-        removeAllFromCart(id) {
-            this.cart = this.cart.filter((item) => id !== item.id);
-        },
-        plusItem(index) {
-            const item = this.cart[index];
-            item.quantity++;
+        computed: {
+            changeStorage() {
+                window.addEventListener('storage', (event) => {
+                    if (event.key === 'cart') {
+                        this.cart = JSON.parse(localStorage.getItem('cart')) ?? [];
+                    }
+                })
+            }
         }
-
-    },
-    computed: {
-        prueba() {
-            console.log(this.cart);
-        },
-    },
-});
-
-app1.mount('#app');
+}
+}).mount('#app');

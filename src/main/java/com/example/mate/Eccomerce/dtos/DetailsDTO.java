@@ -7,7 +7,7 @@ import com.example.mate.Eccomerce.models.PurchaseOrder;
 
 public class DetailsDTO {
     private long id;
-    private double quantity;
+    private int quantity;
     private double price;
     private long productID;
     public DetailsDTO() {
@@ -24,7 +24,7 @@ public class DetailsDTO {
         return id;
     }
 
-    public double getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 

@@ -1,40 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!--Bootstrap-->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-	<title>Matoffee | Blog</title>
-	<!--Favicon-->
-	<link rel="shortcut icon" href="../images/favicon.png" type="image/x-icon">
-	<!--Link to CSS-->
-	<link rel="stylesheet" href="../style/style1.css">
-	<!--Box Icons-->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Matoffee | Blog</title>
+    <!--Favicon-->
+    <link rel="shortcut icon" href="../images/favicon.png" type="image/x-icon">
+    <!--Link to CSS-->
+    <link rel="stylesheet" href="../style/style1.css">
+    <!--Box Icons-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 
 </head>
 
 <body>
-	<!--Navbar-->
-	<header>
-		<a href="#" class="logo"><img src="../images/favicon_mate.png" alt="logo"></a>
-		<div class="bx bx-menu" id="menu-icon"></div>
-		<ul class="navbar">
-			<li><a href="/web/index.html">Home</a></li>
-			<li><a href="./shop.html">Shop</a></li>
-			<li><a href="./about.html">About Us</a></li>
-            <li><a href="#">Blog</a></li>
-			<li><a href="./login1.html">Log in</a></li>
-            <li><a href="./cart.html"><i class="bi bi-cart"></i></a></li>
-		</ul>
-	</header>
+    <!--Navbar-->
+    <!--Navbar-->
+    <nav id="login" class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand logo fs-1 d-flex align-items-center justify-content-center gap-3" href="#"><img
+                    src="../images/favicon_mate.png" alt="logo">
+                <h1>Matoffee</h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="login" class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+                    <li><a href="../../index.html">Home</a></li>
+                    <li><a href="./shop.html">Shop</a></li>
+                    <li><a href="./about.html">About Us</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <template v-if="!isLogin">
+                        <li><a href="./login1.html">Login</a></li>
+                    </template>
+                    <template v-else>
+                        <li><button @click="logOut" class="btn bg-danger-subtle">Log out</button></li>
+                    </template>
+                    <li> <a href="./cart.html"><i class="bi bi-cart"></i></a></li>
+            </div>
+        </div>
+    </nav>
+    <header class="d-flex p-2 justify-content-evenly gap-2">
+        <img src="../images/mate_carousel.webp" alt="" class="w-50 rounded-4">
+        <img src="../images/granocafe.jpg" alt="" class="w-50 rounded-4">
+    </header>
     <main>
-        <section id="page-header">
-			<h2>#readmore</h2>
-			<p>Read all case studies about our products!</p>
-		</section>
+
 
         <section id="blog">
             <div class="blog-box">
@@ -42,84 +60,96 @@
                     <img src="../images/2.jpeg" alt="">
                 </div>
                 <div class="blog-details">
-                    <h4>sdadsa asdasd asda </h4>
-                    <p>dsadasdsadasd</p>
+                    <h4>Matofee has discounts for the month of October</h4>
+                    <p>During the month of October there will be offers on coffee and mate products</p>
                     <a href="">CONTINUE READING</a>
                 </div>
                 <H1>13/09</H1>
             </div>
             <div class="blog-box">
                 <div class="blog-img">
-                    <img src="../images/2.jpeg" alt="">
+                    <img src="../images/blog1.jpeg" alt="">
                 </div>
                 <div class="blog-details">
-                    <h4>sdadsa asdasd asda </h4>
-                    <p>dsadasdsadasd</p>
+                    <h4>Yerba mate was captured in the pages of National Geographic</h4>
+                    <p>This shows the space that national infusion is gaining in the world.</p>
                     <a href="">CONTINUE READING</a>
                 </div>
-                <H1>13/09</H1>
+                <H1>17/09</H1>
             </div>
             <div class="blog-box">
                 <div class="blog-img">
-                    <img src="../images/2.jpeg" alt="">
+                    <img src="../images/blog2.jpg" alt="">
                 </div>
                 <div class="blog-details">
-                    <h4>sdadsa asdasd asda </h4>
-                    <p>dsadasdsadasd</p>
+                    <h4>Yerba from northeastern Argentina available to everyone</h4>
+                    <p>The activity, with free admission, will take place on Saturday, August 26 and Sunday, August 27,
+                        2023 in the Ocre hall of La Rural in the city of Buenos Aires.</p>
                     <a href="">CONTINUE READING</a>
                 </div>
-                <H1>13/09</H1>
+                <H1>25/09</H1>
             </div>
             <div class="blog-box">
                 <div class="blog-img">
-                    <img src="../images/2.jpeg" alt="">
+                    <img src="../images/blog3.png" alt="">
                 </div>
                 <div class="blog-details">
-                    <h4>sdadsa asdasd asda </h4>
-                    <p>dsadasdsadasd</p>
+                    <h4>WHAT IS THE BEST COFFEE MAKER FOR MAKING CAPPUCCINO? (IN 2023)</h4>
+                    <p>Dare to prepare your favorite coffee at home with your own coffee maker to make cappuccino....
+                    </p>
                     <a href="">CONTINUE READING</a>
                 </div>
-                <H1>13/09</H1>
+                <H1>29/09</H1>
             </div>
             <div class="blog-box">
                 <div class="blog-img">
-                    <img src="../images/2.jpeg" alt="">
+                    <img src="../images/blog4.png" alt="">
                 </div>
                 <div class="blog-details">
-                    <h4>sdadsa asdasd asda </h4>
-                    <p>dsadasdsadasd</p>
+                    <h4>DIFFERENCES BETWEEN NORMAL COFFEE MAKER AND EXPRESS COFFEE MAKER</h4>
+                    <p>Do you suppose all coffee is the same? Well no. The main differences between a normal coffee
+                        maker and...</p>
                     <a href="">CONTINUE READING</a>
                 </div>
-                <H1>13/09</H1>
+                <H1>1/10</H1>
             </div>
         </section>
 
         <section id="pagination" class="section-p1">
-			<a href="">1</a>
-			<a href="">2</a>
-			<a href=""><i class="bi bi-arrow-right"></i></a>
-		</section>
+            <a href="">1</a>
+            <a href="">2</a>
+            <a href=""><i class="bi bi-arrow-right"></i></a>
+        </section>
 
     </main>
-<footer class="contact" id="contact">
-    <div class="social">
-        <a href="https://www.facebook.com/"><i class='bx bxl-facebook'></i></a>
-        <a href="https://www.whatsapp.com/"><i class='bx bxl-whatsapp'></i></a>
-        <a href="https://www.youtube.com/"><i class='bx bxl-youtube'></i></a>
-        <a href=""><i class='bx bxl-github'></i></a>
-        <a href="https://www.instagram.com/"><i class='bx bxl-instagram'></i></a>
-    </div>
-    <div class="links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms Of Use </a>
-        <a href="#">Our Company</a>
-    </div>
-    <p>&#169; Cohort-49 All Right Reserved </p>
-</footer>
+
+    <!--Pie de pagina-->
+    <footer class="col-12 d-flex align-items-center d-flex flex-wrap gap-5 justify-content-evenly p-4">
+        <img class="logoFooter" src="../images/favicon_mate.png" alt="logo">
+        <div>
+            <h4>Contact</h4>
+            <p><strong>Address:</strong> Calle 123, Colonia, 12345</p>
+            <p><strong>Phone:</strong> +1 5589 55488 55</p>
+            <p><strong>Hours:</strong> 10:00 - 18:00, Mon - Sat</p>
+        </div>
+        <div class="follow">
+            <h4>Follow Us</h4>
+            <div class="social">
+                <a href="https://www.facebook.com/"><i class='bx bxl-facebook'></i></a>
+                <a href="https://www.whatsapp.com/"><i class='bx bxl-whatsapp'></i></a>
+                <a href="https://www.youtube.com/"><i class='bx bxl-youtube'></i></a>
+                <a href=""><i class='bx bxl-github'></i></a>
+                <a href="https://www.instagram.com/"><i class='bx bxl-instagram'></i></a>
+            </div>
+        </div>
+    </footer>
+    <p class="copyright"> &#169; Cohort-49 All Right Reserved </p>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@3.2.29/dist/vue.global.prod.js"></script>
+<script src="../scripts/login.js"></script>
+
 </html>

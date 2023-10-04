@@ -26,7 +26,7 @@ public class EccomerceApplication {
 		return (args) -> {
 			Person admin = new Person("Bruno Marcos", "Ferreira",
 					"fbrunomarcos@gmail.com", "123456", passwordEncoder.encode("pass123"), PersonType.ADMIN);
-			Adress adress = new Adress("Calle Admin", 123, "Jardin America", "Casa", 2, true);
+			Adress adress = new Adress("Calle Admin", 123, "Jardin America", "Casa", 2, true, "CP1239");
 			admin.addAdress(adress);
 			personRepository.save(admin);
 			adressRepository.save(adress);
@@ -972,9 +972,6 @@ public class EccomerceApplication {
 					"https://www.lafazenda.com.ar/uploads/productos/Colombia_adelante6.webp",
 					List.of("https://www.lafazenda.com.ar/uploads/productos/Colombia_atras.webp"));
 			productRepository.save(product65);
-
-
-
 		};
 	}
 }

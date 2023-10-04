@@ -2,7 +2,9 @@ package com.example.mate.Eccomerce.controllers;
 
 import com.example.mate.Eccomerce.dtos.*;
 import com.example.mate.Eccomerce.models.*;
+import com.example.mate.Eccomerce.repositories.PurchaseOrderRepository;
 import com.example.mate.Eccomerce.service.*;
+import com.example.mate.Eccomerce.utils.TicketGen;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +33,8 @@ public class PurchaseOrderController {
 
     @Autowired
     private AddressService addressService;
+    @Autowired
+    private PurchaseOrderRepository purchaseOrderRepository;
 
     @GetMapping("/history")
     public List<PurchaseOrderDTO> getPurchaseHistory(Authentication authentication) {
@@ -53,6 +57,9 @@ public class PurchaseOrderController {
         if (purchaseOrderBDTO.getAddressId()<=0){
             return new ResponseEntity<>("The address id cannot be 0",HttpStatus.BAD_REQUEST);
         }
+        if(current==null){
+            return new ResponseEntity<>("The user was not found",HttpStatus.NOT_FOUND);
+        }
         Adress adress = addressService.findById(purchaseOrderBDTO.getAddressId());
         if (adress==null){
             return new ResponseEntity<>("The address was not found", HttpStatus.NOT_FOUND);
@@ -66,7 +73,13 @@ public class PurchaseOrderController {
         if (purchaseOrderBDTO.getPaymentMethod()==null){
             return new ResponseEntity<>("The payment method cannot be null",HttpStatus.BAD_REQUEST);
         }
-        PurchaseOrder purchaseOrder = new PurchaseOrder(0, LocalDateTime.now(), purchaseOrderBDTO.getPaymentMethod(), adress);
+        String ticket;
+        do {
+            ticket = TicketGen.cardNumber();
+        }while(purchaseOrderRepository.existsByTicket(ticket));
+        PurchaseOrder purchaseOrder = new PurchaseOrder(0, LocalDateTime.now(), purchaseOrderBDTO.getPaymentMethod(), ticket);
+        purchaseOrder.setAdress(adress);
+        purchaseOrder.setPerson(current);
         double aux=0;
         for (CreateDetailsDTO createDetailsDTO : purchaseOrderBDTO.getDetails()) {
             if (createDetailsDTO.getProductId() <= 0) {
@@ -83,17 +96,20 @@ public class PurchaseOrderController {
                 return new ResponseEntity<>("The product is out of stock", HttpStatus.BAD_REQUEST);
             }
             Details details = new Details(createDetailsDTO.getQuantity(), product.getPrice());
+            detailsService.save(details);
+            purchaseOrder.addDetails(details);
             product.addDetails(details);
             product.setStock(product.getStock() - createDetailsDTO.getQuantity());
-            purchaseOrder.addDetails(details);
-            detailsService.save(details);
             productService.save(product);
             aux+=product.getPrice()*createDetailsDTO.getQuantity();
         }
+        purchaseOrder.setTicket(ticket);
         purchaseOrder.setAmount(aux);
         current.addPurchaseOrder(purchaseOrder);
         poService.save(purchaseOrder);
+        purchaseOrder.setPerson(current);
         personService.save(current);
-        return new ResponseEntity<>("Success",HttpStatus.OK);
+        PurchaseOrderDTO purchaseOrderDTO = new PurchaseOrderDTO(purchaseOrder);
+        return new ResponseEntity<>(ticket, HttpStatus.OK);
     }
 }

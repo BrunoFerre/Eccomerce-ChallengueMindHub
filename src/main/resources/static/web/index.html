@@ -1,180 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<!--Metadata-->
+
+<!--Metadata-->
+
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!--Bootstrap-->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-	<title>Matoffee | Index</title>
-	<!--Favicon-->
-	<link rel="shortcut icon" href="./assets/images/favicon.png" type="image/x-icon">
-	<!--Link to CSS-->
-	<link rel="stylesheet" href="./assets/style/style1.css">
-	<!--Box Icons-->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--Bootstrap-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <title>Matoffee</title>
+  <!--Favicon-->
+  <link rel="shortcut icon" href="./assets/images/favicon.png" type="image/x-icon">
+  <!--Link to CSS-->
+  <link rel="stylesheet" href="./assets/style/style1.css">
+  <!--Box Icons-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 </head>
 
 <body>
-	<!--Navbar-->
- 
-	<header>
-		<a href="#" class="logo fs-1"><img src="./assets/images/favicon_mate.png" alt="logo"><h1>Matoffee</h1></a>
-		<div class="bx bx-menu" id="menu-icon"></div>
-		<ul class="navbar">
-			<li><a href="/web/index.html">Home</a></li>
-			<li><a href="./assets/pages/shop.html">Shop</a></li>
-			<li><a href="./assets/pages/about.html">About Us</a></li>
-      <li><a href="./assets/pages/blog.html">Blog</a></li>
-			<li><a href="./assets/pages/login1.html">Log in</a></li>
-      <li><a href="./assets/pages/cart.html"><i class="bi bi-cart"></i></a></li>
-		</ul>
-	</header>
 
-	<div class="blank_space">
+  <!--Navbar-->
 
-	</div>
-  
-	<!--Home-->
-	<main class="mb-4">
-    <section class="home" id="home" >
-			<div class="home-text" >
-				<span>Welcome To</span>
-				<h1>Matoffee Shop</h1>
-				<h2>Free Coffee or Mate is a <br>tap away</h2>
-				<a href="#" class="btn">Join Now</a>
-			</div>
-			<div class="home-img" >
-				<img src="./assets/images/cafetera.png" alt="">
-			</div>
-		</section>
+  <nav id="login" class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+    <div class="container-fluid">
+      <a class="navbar-brand logo fs-1 d-flex align-items-center justify-content-center gap-3" href="#"><img
+          src="./assets/images/favicon_mate.png" alt="logo">
+        <h1>Matoffee</h1>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+          <li class="d-flex align-items-center"><a href="#">Home</a></li>
+          <li class="d-flex align-items-center"><a href="./assets/pages/shop.html">Shop</a></li>
+          <li class="d-flex align-items-center"><a href="./assets/pages/about.html">About Us</a></li>
+          <li class="d-flex align-items-center"><a href="./assets/pages/blog.html">Blog</a></li>
+          <template v-if="!isLogin">
+            <li class="d-flex align-items-center"><a href="./assets/pages/login1.html">Login</a></li>
+          </template>
+          <template v-else>
+            <li class="d-flex align-items-center"><a href="./assets/pages/account.html">Account</a></li>
+            <li><button @click="logOut" class="btn bg-danger-subtle">Log out</button></li>
+          </template>
+          <li><a href="./assets/pages/cart.html"><i class="bi bi-cart"></i></a></li>
+      </div>
+    </div>
+  </nav>
 
+  <!--Bienvenida-->
+  <header class="container-fluid p-0" id="home">
+    <section class="home d-flex align-items-center justify-content-evenly" id="home">
+      <div class="home-text">
+        <span>Welcome To</span>
+        <h1>Matoffee Shop</h1>
+        <h2>Free Coffee or Mate is a <br>tap away</h2>
+        <a href="../web/assets/pages/login1.html" class="btn">Join Now</a>
+      </div>
+      <div class="home-img  d-none d-lg-block">
+        <img src="./assets/images/cafetera.png" alt="coffee maker">
+      </div>
+    </section>
+  </header>
+
+  <!--Home-->
+  <main class="mb-4">
     <section id="product1" class="section-p1">
-      <h2>Featured Products</h2>
+      <h2 id="shop">Featured Products</h2>
       <p>Summer Collection New Modern Design</p>
-      <div class="pro-container">
-          <div class="pro">
-              <img src="./assets/images/1.png" alt="">
-              <div class="des">
-                  <span>Matoffee</span>
-                  <h5>Mate Imperial PREMIUM LISO</h5>
-                  <div class="start">
-                      <i class="bi bi-star-fill"></i>
-                      <i class="bi bi-star-fill"></i>
-                      <i class="bi bi-star-fill"></i>
-                      <i class="bi bi-star-fill"></i>
-                      <i class="bi bi-star-fill"></i>
-                  </div>
-                  <h4>78$</h4>
-              </div>
-              <a href=""><i class="bi bi-cart2 cart"></i></i></a>
-          </div>
-          <div class="pro">
-              <img src="./assets/images/2.png" alt="">
-              <div class="des">
-                  <span>Matoffee</span>
-                  <h5>Mate Imperial PREMIUM LISO</h5>
-                  <div class="start">
-                      <i class="bi bi-star-fill"></i>
-                      <i class="bi bi-star-fill"></i>
-                      <i class="bi bi-star-fill"></i>
-                      <i class="bi bi-star-fill"></i>
-                      <i class="bi bi-star-fill"></i>
-                  </div>
-                  <h4>78$</h4>
-              </div>
-              <a href=""><i class="bi bi-cart2 cart"></i></i></a>
-          </div>
-          <div class="pro">
-              <img src="./assets/images/2.jpeg" alt="">
-              <div class="des">
-                  <span>Matoffee</span>
-                  <h5>Mate Imperial PREMIUM LISO</h5>
-                  <div class="start">
-                      <i class="bi bi-star-fill"></i>
-                      <i class="bi bi-star-fill"></i>
-                      <i class="bi bi-star-fill"></i>
-                      <i class="bi bi-star-fill"></i>
-                      <i class="bi bi-star-fill"></i>
-                  </div>
-                  <h4>78$</h4>
-              </div>
-              <a href=""><i class="bi bi-cart2 cart"></i></i></a>
-          </div>
-          <div class="pro">
-            <img src="./assets/images/2.jpeg" alt="">
-            <div class="des">
-                <span>Matoffee</span>
-                <h5>Mate Imperial PREMIUM LISO</h5>
-                <div class="start">
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                </div>
-                <h4>78$</h4>
+
+      <!--Card-->
+      <div class="pro-container justify-content-evenly">
+        <div class="pro">
+          <img src="./assets/images/1.png" alt="">
+          <div class="des">
+            <span>Matoffee</span>
+            <h5>Mate Imperial PREMIUM LISO</h5>
+            <div class="start">
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
             </div>
-            <a href=""><i class="bi bi-cart2 cart"></i></i></a>
+            <h4>78$</h4>
+          </div>
+          <a href="./assets/pages/login1.html"><i class="bi bi-cart2 cart"></i></i></a>
+        </div>
+        <div class="pro">
+          <img src="./assets/images/2.png" alt="">
+          <div class="des">
+            <span>Matoffee</span>
+            <h5>Mate Imperial PREMIUM LISO</h5>
+            <div class="start">
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+            </div>
+            <h4>78$</h4>
+          </div>
+          <a href="./assets/pages/login1.html"><i class="bi bi-cart2 cart"></i></i></a>
+        </div>
+        <div class="pro">
+          <img src="./assets/images/2.jpeg" alt="">
+          <div class="des">
+            <span>Matoffee</span>
+            <h5>Mate Imperial PREMIUM LISO</h5>
+            <div class="start">
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+            </div>
+            <h4>78$</h4>
+          </div>
+          <a href="./assets/pages/login1.html"><i class="bi bi-cart2 cart"></i></i></a>
+        </div>
+        <div class="pro">
+          <img src="./assets/images/2.jpeg" alt="">
+          <div class="des">
+            <span>Matoffee</span>
+            <h5>Mate Imperial PREMIUM LISO</h5>
+            <div class="start">
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+            </div>
+            <h4>78$</h4>
+          </div>
+          <a href=""><i class="bi bi-cart2 cart"></i></i></a>
         </div>
       </div>
     </section>
 
-		<section class="aboutUs" id="about_us">
-			<div class="heading">
-				<span>The Story</span>
-				<h1>About Us</h1>
-			</div>
-			<div class="container">
-				<div class="delivery-img">
-					<img src="./assets/images/bg-banner.jpg" alt="banner_shop">
-				</div>
-				<div class="mt-4 d-flex flex-column">
-					<h2 class="fw-bold sub-title">The beginning of everything</h2>
-					<p>Our store began with the purpose of giving happiness to our customers through typical South
-						American
-						drinks. We are a group of 4 entrepreneurs between Argentina, Chile and Colombia who want to
-						bring
-						American culture and drinks that have been in existence for decades throughout the world.</p>
-					<div class="d-flex mt-3 flex-column flex-lg-row justify-content-between">
-						<div class="col-12 col-lg-6">
-							<h3 class="fw-bold fst-italic sub-title">Coffee</h3>
-							<p>
-								Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem dolores accusamus nisi perspiciatis natus illo officia ipsam mollitia asperiores voluptates, ut officiis est ea laboriosam. Deserunt, dolore ullam numquam vero cupiditate quibusdam eligendi, quam rerum tempora quas, reiciendis non porro! Earum nam maiores officiis dolorem incidunt iusto doloribus magnam laudantium.
-							</p>
-						</div>
-						<div class="col-12 col-lg-6">
-							<h3 class="fw-bold fst-italic sub-title">Mate</h3>
-							<p>
-								Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus eos modi deserunt nemo aspernatur. Ab, quae aliquam eum numquam libero dolorem expedita quam voluptates porro blanditiis, itaque hic! Omnis in natus dolor commodi accusantium earum? Totam maxime illum id, praesentium sunt nemo voluptatibus adipisci quam fugit unde asperiores iste aliquid!
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
+    <!--Acerca de nosotros resumen-->
+    <section class="aboutUs" id="about_us">
+      <div class="heading">
+        <span id="aboutUs">The Story</span>
+        <h1>About Us</h1>
+      </div>
+      <div class="container-fluid">
+        <div class="d-flex gap-3 align-items-center">
+          <video autoplay loop class=" d-none d-sm-block col-6 rounded-4">
+            <source src="./assets/images/preparando _cafe.mp4" type="video/mp4">
+          </video>
+          <div>
+            <h2 class="fw-bold sub-title">The beginning of everything</h2>
+            <p>Our store started with the purpose of giving happiness to our customers through typical South
+              American drinks. We are a group of 4 entrepreneurs between Argentina, Chile and Colombia who
+              want to bring to the whole world the American culture and drinks that have existed for
+              decades,
+              bringing one and a thousand stories to the whole world.</p>
+          </div>
+        </div>
+        <div class="mt-4 d-flex flex-column">
 
-	</main>
-	<footer class="contact" id="contact">
-		<div class="social">
-			<a href="https://www.facebook.com/"><i class='bx bxl-facebook'></i></a>
-			<a href="https://www.whatsapp.com/"><i class='bx bxl-whatsapp'></i></a>
-			<a href="https://www.youtube.com/"><i class='bx bxl-youtube'></i></a>
-			<a href=""><i class='bx bxl-github'></i></a>
-			<a href="https://www.instagram.com/"><i class='bx bxl-instagram'></i></a>
-		</div>
-		<div class="links">
-			<a href="#">Privacy Policy</a>
-			<a href="#">Terms Of Use </a>
-			<a href="#">Our Company</a>
-		</div>
-		<p>&#169; Cohort-49 All Right Reserved </p>
-	</footer>
+          <div class="d-flex mt-3 flex-column flex-lg-row justify-content-between">
+            <div class="col-12 col-lg-6">
+              <h3 class="fw-bold fst-italic sub-title">Coffee</h3>
+              <p>
+                One of the best known beverages worldwide is coffee, this beverage known for its diverse
+                preparations could not be missing in our catalog. With its peculiar aroma we want to
+                captivate you and give you the pleasure of tasting every drop of quality.
+              </p>
+            </div>
+            <div class="col-12 col-lg-6">
+              <h3 class="fw-bold fst-italic sub-title">Mate</h3>
+              <p>
+                Mate is a drink with South American origins that has been around for decades. Since its discovery it has
+                been a predominant drink in Argentina, Uruguay and Paraguay. It is obtained from the mate plant and its
+                main grower is Argentina. It is a natural stimulant because it contains caffeine and antioxidant.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!--Pie de pagina-->
+  <footer class="col-12 d-flex align-items-center d-flex flex-wrap gap-5 justify-content-evenly p-4">
+    <img class="logoFooter" src="./assets/images/favicon_mate.png" alt="logo">
+    <div>
+      <h4>Contact</h4>
+      <p><strong>Address:</strong> Calle 123, Colonia, 12345</p>
+      <p><strong>Phone:</strong> +1 5589 55488 55</p>
+      <p><strong>Hours:</strong> 10:00 - 18:00, Mon - Sat</p>
+    </div>
+    <div class="follow">
+      <h4>Follow Us</h4>
+      <div class="social">
+        <a href="https://www.facebook.com/"><i class='bx bxl-facebook'></i></a>
+        <a href="https://www.whatsapp.com/"><i class='bx bxl-whatsapp'></i></a>
+        <a href="https://www.youtube.com/"><i class='bx bxl-youtube'></i></a>
+        <a href=""><i class='bx bxl-github'></i></a>
+        <a href="https://www.instagram.com/"><i class='bx bxl-instagram'></i></a>
+      </div>
+    </div>
+  </footer>
+  <p class="copyright"> &#169; Cohort-49 All Right Reserved </p>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.2.29/dist/vue.global.prod.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="./assets/scripts/login.js"></script>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-	crossorigin="anonymous"></script>
+
 </html>
