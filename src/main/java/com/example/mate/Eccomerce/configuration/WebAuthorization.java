@@ -28,11 +28,11 @@ public class WebAuthorization {
 
                 .antMatchers(HttpMethod.GET, "/api/products", "/api/products", "/api/products/{category}","/api/comments/product").permitAll()
 
-                .antMatchers(HttpMethod.POST, "/api/comments/add", "/api/answers/add", "/api/punctuations/add","/api/adress/add").hasAuthority("CLIENT")
+                .antMatchers(HttpMethod.POST, "/api/comments/add", "/api/answers/add", "/api/punctuations/add","/api/adress/add","/api/purchase/purchaseOrder").hasAuthority("CLIENT")
 
                 .antMatchers(HttpMethod.GET, "/api/person/all").hasAuthority("ADMIN")
 
-                .antMatchers(HttpMethod.GET, "/api/person/{id}").hasAuthority("CLIENT")
+                .antMatchers(HttpMethod.GET, "/api/person/{id}","/api/purchase/history","/api/purchase/{id}","/api/ticket").hasAuthority("CLIENT")
 
                 .antMatchers(HttpMethod.PATCH, "/api/comments/update", "/api/answers/update","/api/adress/delete").hasAuthority("CLIENT")
 
@@ -45,7 +45,6 @@ public class WebAuthorization {
                 .antMatchers(HttpMethod.PATCH, "/api/products/stock", "/api/products/discount", "/api/products/price").hasAuthority("ADMIN")
 
                 .antMatchers(HttpMethod.DELETE, "/api/products/{id}").hasAuthority("ADMIN")
-
                 .anyRequest().denyAll();
 
         http.formLogin()

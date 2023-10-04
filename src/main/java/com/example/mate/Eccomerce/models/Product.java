@@ -11,7 +11,6 @@ import java.util.Set;
 
 @Entity
 public class Product {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO,generator = "native")
     @GenericGenerator(name="native", strategy = "native")
@@ -73,7 +72,8 @@ public class Product {
         this.category = createProductDTO.getCategory();
         this.color = createProductDTO.getColor();
         this.discount = createProductDTO.getDiscount();
-        this.imageCollection= createProductDTO.getImageCollection();
+        this.image= createProductDTO.getImage();
+        this.imageCollection = createProductDTO.getImageCollection();
         this.points.add(0);
     }
 

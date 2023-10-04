@@ -51,19 +51,6 @@ public class ProductController {
         return new ResponseEntity<>(productDTO,HttpStatus.OK);
     }
 
-    @GetMapping("/products/{category}")
-    public ResponseEntity<Object> getProductByCategory(@PathVariable CategoryProduct category){
-        try{
-            Set<ProductDTO> products= productService.findByCategory(category);
-            if (products.isEmpty()){
-                return new ResponseEntity<>("The products was not found", HttpStatus.NOT_FOUND);
-            }
-            return new ResponseEntity<>(products,HttpStatus.OK);
-        }catch (IllegalArgumentException e){
-            return new ResponseEntity<>("The category was not found",HttpStatus.BAD_REQUEST);
-        }
-    }
-
     @PatchMapping("/products/discount")
     public ResponseEntity<Object> updateDiscount(@RequestParam long id,@RequestParam double discount){
         if (id<=0){

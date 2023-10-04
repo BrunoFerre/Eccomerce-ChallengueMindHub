@@ -9,5 +9,9 @@ public enum CategoryProduct {
     SETS_BACKPACK,
     YERBA_MATE,
     MATE_ACCESSORIES,
-    BULBS
+    BULBS,
+    COFFEE_MAKER,
+    COFFEE,
+    COFFEE_GRINDER,
+
 }

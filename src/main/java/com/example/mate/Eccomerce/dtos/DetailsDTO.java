@@ -7,11 +7,9 @@ import com.example.mate.Eccomerce.models.PurchaseOrder;
 
 public class DetailsDTO {
     private long id;
-    private double quantity;
+    private int quantity;
     private double price;
-
-    private PurchaseOrderDTO purchaseOrder;
-    private ProductDTO product;
+    private long productID;
     public DetailsDTO() {
     }
 
@@ -19,23 +17,22 @@ public class DetailsDTO {
         this.id = details.getId();
         this.quantity = details.getQuantity();
         this.price = details.getPrice();
+        this.productID = details.getProduct().getId();
     }
 
     public long getId() {
         return id;
     }
 
-    public double getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
     public double getPrice() {
         return price;
     }
-    public PurchaseOrderDTO getPurchaseOrder() {
-        return purchaseOrder;
+    public long getProductID() {
+        return productID;
     }
-    public ProductDTO getProduct() {
-        return product;
-    }
+
 }

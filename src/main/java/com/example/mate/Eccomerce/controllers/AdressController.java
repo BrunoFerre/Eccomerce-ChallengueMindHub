@@ -43,17 +43,21 @@ public class AdressController {
             return new ResponseEntity<>("Street is required", HttpStatus.BAD_REQUEST);
         }
         Person person = personRepository.findByEmail(authentication.getName());
-        Adress adress= new Adress(adressDTO.getStreet(),adressDTO.getNumber(),adressDTO.getCity(),adressDTO.getApartament(),adressDTO.getFloor(),true);
+        Adress adress= new Adress(adressDTO.getStreet(),adressDTO.getNumber(),adressDTO.getCity(),adressDTO.getApartament(),adressDTO.getFloor(),true,adressDTO.getZipCode());
         person.addAdress(adress);
         adressRepository.save(adress);
         personRepository.save(person);
         return new ResponseEntity<>("Adress Assigned",HttpStatus.CREATED);
     }
-    @PatchMapping("/delete")
-    public ResponseEntity<Object> deleteAdress(@RequestParam  Long id){
+    @PatchMapping("/delete/{id}")
+    public ResponseEntity<Object> deleteAdress(@RequestParam  Long id, Authentication authentication){
+        Person person = personRepository.findByEmail(authentication.getName());
         Adress adress=adressRepository.findById(id).orElse(null);
         if (adress==null){
             return new ResponseEntity<>("Adress not found",HttpStatus.NOT_FOUND);
+        }
+        if (adress.getPerson().getId() != person.getId()){
+            return new ResponseEntity<>("Adress not yours",HttpStatus.BAD_REQUEST);
         }
         if (!adress.isStatus()){
             return new ResponseEntity<>("Adress already deleted",HttpStatus.BAD_REQUEST);

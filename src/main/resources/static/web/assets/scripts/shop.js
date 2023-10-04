@@ -1,49 +1,36 @@
 const app = Vue.createApp({
     data() {
         return {
-            products: [], 
+            products: [],
             cart: [],
-            spinner: true
+            spinner: true,
+            categoryProducts: [],
+            checkCategory: [],
+            inputSearch: '',
+            fil: [],
+            filerByPrice: [],
+            page2: [],
+            remaingProducts: [],
+            cart: [],
         };
     },
-    mounted() {
-        axios.get('https://fakestoreapi.com/products')
-            .then((response) => {
-                this.products = response.data;
-            })
-            .catch((error) => {
-                console.error('Error al obtener los productos', error);
-            });
-        this.loadCartFromLocalStorage();
+    created() {
+        this.getData();
     },
-    
     methods: {
+        getData() {
+            axios.get('/api/products')
+                .then((response) => {
+                    const products = response.data;
+                    this.products = products.sort((a,b)=>a.id-b.id);
+                    this.categoryProducts = [...new Set(this.products.map(product => product.category))]
+                })
+                .catch((error) => {
+                    console.error('Error al obtener los productos', error);
+                });
+            this.cart = JSON.parse(localStorage.getItem('cart')) ?? [];
+        },
         // Button Cart
-        addToCart(product) {
-            const existingCartItemIndex = this.cart.findIndex(item => item.id === product.id);
-
-            if (existingCartItemIndex !== -1) {
-                // Si el producto ya existe en el carrito, aumenta la cantidad
-                this.cart[existingCartItemIndex].quantity++;
-            } else {
-                // Si es un nuevo producto, agrégalo al carrito
-                this.cart.push({ ...product, quantity: 1 });
-            }
-
-            this.saveCartToLocalStorage();
-        },
-        saveCartToLocalStorage() {
-            localStorage.setItem('cart', JSON.stringify(this.cart));
-        },
-        loadCartFromLocalStorage() {
-            const savedCart = localStorage.getItem('cart');
-            if (savedCart) {
-                this.cart = JSON.parse(savedCart);
-            }
-        },
-        calculateTotal() {
-            return this.cart.reduce((total, item) => total + item.price * item.quantity, 0);
-        },
         removeFromCart(index) {
             const item = this.cart[index];
             if (item.quantity > 1) {
@@ -62,11 +49,65 @@ const app = Vue.createApp({
         plusItem(index) {
             const item = this.cart[index];
             item.quantity++;
+        },
+        orderMinorToMajor() {
+            this.filterByPrice = this.products.sort((a, b) => {
+                return a.price - b.price
+            })
+        },
+        orderMajorToMinor() {
+            this.filterByPrice = this.products.sort((a, b) => {
+                return b.price - a.price
+            })
+        },
+        orderByName() {
+            this.filterByPrice = this.products.sort((a, b) => {
+                return a.name.localeCompare(b.name)
+            })
+        },
+        orderByNameReverse() {
+            this.filterByPrice = this.products.sort((a, b) => {
+                return b.name.localeCompare(a.name)
+            })
+        },
+        clearFilters() {
+            location.reload();
+        },
+        coffeeShop() {
+            this.fil = this.products.filter((product) => {
+                return product.name.includes('coffee') || product.description.includes('coffee')
+            })
+        },
+        mateShop() {
+            this.fil = this.products.filter((product) => {
+                return product.name.includes('mate') || product.description.includes('mate')
+            })
+        },
+        page(page) {
+            if (page == 1) {
+                this.fil = this.products.slice(0, 18).sort((a, b) => {
+                    return a.id - b.id;
+                })
+            } else {
+                this.fil = this.products.slice((page - 1) * 18, page * 18).sort((a, b) => {
+                    return a.id - b.id;
+                })
+            }
+        },
+        local(product, accion) {
+            if (accion == 'add'){
+                this.cart.push({...product, quantity: 1});
+            }
+            localStorage.setItem('cart', JSON.stringify(this.cart))
         }
     },
     computed: {
-        prueba() {
-            console.log(this.cart);
+        filters() {
+            this.fil = this.products.filter(product => {
+                return product.description.toLowerCase().includes(this.inputSearch.toLowerCase()) && (this.checkCategory.includes(product.category) || this.checkCategory.length == 0);
+            }).slice(0, 18).sort((a, b) => {
+                return a.id - b.id;
+            });
         },
     },
 });
