@@ -79,18 +79,19 @@
 						<td class="fs-2"><i class="bi bi-dash text-danger" @click="minusItem(index)"></i>{{
 							item.quantity }}<i class="bi bi-plus text-success" @click="plusItem(item)"></i> </td>
 						<td>${{ item.price * item.quantity }}</td>
-						<td><button class="btn btn-danger" @click="removeItem(index)"> Remove item</button></td>
+						<td><button class="btn btn-danger ss text-white" @click="removeItem(index)"> Remove item</button></td>
 					</tr>
 				</tbody>
 			</table>
 		</section>
+		{{changeStorage}}
 		<section id="cart-add" class="section-p1 d-flex align-items-center justify-content-around">
 			<div id="subtotal">
 				<h3>Cart Total</h3>
-				<table>
+				<table class="fs-4">
 					<tr>
 						<td>Subtotal:</td>
-						<td>${{calculateSubtotal()}}</td>
+						<td class="fs-5">${{calculateSubtotal()}}</td>
 					</tr>
 					<tr>
 						<td>Shipping:</td>
@@ -102,7 +103,6 @@
 					</tr>
 				</table>
 				<button v-if="!showForm" type="button" @click.prevent="showFormPay()" class="normal">Proceed to Buy</button>
-				{{changeStorage}}
 			</div>
 			<div id="subtotal1">
 				<form class="form-horizontal" v-if="showForm">

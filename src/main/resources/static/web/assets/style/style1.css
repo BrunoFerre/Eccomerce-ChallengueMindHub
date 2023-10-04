@@ -966,7 +966,14 @@ h4 {
 #subtotal h3 {
     padding-bottom: 15px;
 }
-
+.ss:hover{
+    background-color: red !important;
+    color: white;
+    cursor: pointer;
+}
+.bi:hover{
+    cursor: pointer;
+}
 #coupon input {
     padding: 10px 20px;
     outline: none;
