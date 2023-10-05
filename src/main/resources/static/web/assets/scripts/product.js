@@ -2,13 +2,13 @@ const app = Vue.createApp({
     data() {
         return {
             productDetails: null,
-            selectedImage: '', 
-            productImages: [ 
+            selectedImage: '',
+            productImages: [
                 '../images/1.png',
                 '../images/2.jpeg',
-                '../images/2.jpeg', 
+                '../images/2.jpeg',
             ],
-            products: [], 
+            products: [],
             cart: [],
         };
     },

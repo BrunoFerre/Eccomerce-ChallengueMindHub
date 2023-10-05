@@ -281,8 +281,7 @@ const manager = createApp({
                         });
                 }
             });
-        }
-        ,
+        },
         logOut() {
             Swal.fire({
                 title: 'Confirm Logout',
@@ -307,7 +306,13 @@ const manager = createApp({
                         });
                 }
             });
-        }
+        },
+
+        formatPrice(number) {
+            let reset = new Intl.NumberFormat('en-En', { style: 'currency', currency: 'USD' })
+            let balanceFormat = reset.format(number)
+            return balanceFormat
+        },
 
     },
     computed: {

@@ -25,6 +25,12 @@ public class PersonController {
     public List<PersonDTO> getAll(){
         return personRepository.findAll().stream().map(PersonDTO::new).collect(Collectors.toList());
     }
+    @GetMapping("/current")
+    public PersonDTO getCurrent(Authentication authentication){
+        Person person = personRepository.findByEmail(authentication.getName());
+        return new PersonDTO(person);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Object> getById(@PathVariable long id, Authentication authentication){
         if (authentication == null){

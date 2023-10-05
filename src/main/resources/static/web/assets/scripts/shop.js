@@ -12,12 +12,11 @@ const app = Vue.createApp({
             page2: [],
             remaingProducts: [],
             cart: [],
-            isLogin: false
+            productHome: [],
         };
     },
     created() {
         this.getData();
-        this.isLoginV();
     },
     methods: {
         getData() {
@@ -26,6 +25,7 @@ const app = Vue.createApp({
                     const products = response.data;
                     this.products = products.sort((a, b) => a.id - b.id);
                     this.categoryProducts = [...new Set(this.products.map(product => product.category))]
+                    this.getProductHome();
                 })
                 .catch((error) => {
                     console.error('Error al obtener los productos', error);
@@ -102,25 +102,18 @@ const app = Vue.createApp({
             }
             localStorage.setItem('cart', JSON.stringify(this.cart))
         },
-        isLoginV() {
-            let login = localStorage.getItem('isLoggedIn');
-            if (login) {
-                this.isLogin = true
-            } else {
-                this.isLogin = false
-            }
+        getProductHome() {
+            console.log(this.products);
+            this.productHome = this.products.filter((product) => {
+                return product.discount > 0
+            }).splice(0, 4)
+            console.log(this.productHome);
         },
-        logOut() {
-            axios.post('/api/logout')
-                .then(response => {
-                    console.log(response);
-                    window.location.reload();
-                })
-                .catch(error => {
-                    console.log(error);
-                })
+        formatPrice(number) {
+            let reset = new Intl.NumberFormat('en-En', { style: 'currency', currency: 'USD' })
+            let balanceFormat = reset.format(number)
+            return balanceFormat
         },
-
     },
     computed: {
         filters() {

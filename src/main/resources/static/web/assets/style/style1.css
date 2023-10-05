@@ -4,7 +4,6 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css");
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;600;700&display=swap");
 
-/*Configuraciones generales*/
 * {
   font-family: "Poppins", sans-serif;
 }
@@ -23,6 +22,10 @@ section {
   padding: 50px 10%;
 }
 
+img {
+  width: 100%;
+}
+
 /*Scroll personalizado*/
 body::-webkit-scrollbar {
   width: 7px;
@@ -34,6 +37,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 /*Nav*/
+
 .logo {
   display: flex;
   align-items: center;
@@ -51,18 +55,11 @@ body::-webkit-scrollbar-thumb {
 }
 
 .navbar a {
-  font-size: 1.2rem;
+  font-size: 1rem;
   padding: 11px 20px;
   color: var(--second-color);
   font-weight: 600;
   text-decoration: none;
-}
-
-.a_nav:hover {
-  text-decoration: underline;
-  width: 100%;
-  height: 3px;
-  color: #022807;
 }
 
 .logo h1 {
@@ -144,16 +141,11 @@ h4 {
 }
 
 .btn_login {
+  padding: 7px 16px;
   border: 2px solid var(--second-color);
   border-radius: 40px;
   color: var(--second-color);
-  height: 2.5rem;
-  width: 8rem;
-  font-size: 15px;
-}
-
-.login_register {
-  font-size: 18px !important;
+  font-weight: 500;
 }
 
 .btn_login:hover {
@@ -271,7 +263,6 @@ h4 {
 
 .social a .bx:hover {
   background: var(--main-color);
-  color: white;
 }
 
 .links {
@@ -450,10 +441,17 @@ h4 {
   border-radius: 4rem;
 }
 
+.login_input,
+.login_button {
+  border: none;
+  font-size: medium;
+}
+
 .login_input {
   width: 100%;
   background: none;
   color: white;
+  padding-block: 1rem;
 }
 
 .login_input::placeholder {
@@ -494,14 +492,6 @@ h4 {
   }
 }
 
-.bg_filter_nav {
-  background-color: #0e664f95;
-}
-
-.bg_filter_nav h4 {
-  color: #fff;
-}
-
 /*Ivan*/
 /*Shop Page*/
 #product1 {
@@ -511,6 +501,7 @@ h4 {
 #product1 .pro-container {
   display: flex;
   justify-content: space-between;
+  padding-top: 20px;
   flex-wrap: wrap;
 }
 
@@ -528,27 +519,13 @@ h4 {
   background-color: #fff;
 }
 
-/* Cards  */
-.product-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  border-radius: 1rem;
-  border: 1px solid #e1e1e1;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  height: 25rem;
-}
-
 #product1 .pro img {
   border-radius: 25px;
   width: 100%;
 }
 
 #product1 .pro:hover {
-  box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.383);
+  box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.06);
 }
 
 #product1 .pro .des {
@@ -596,7 +573,6 @@ h4 {
   #product1 .pro {
     width: 40%;
   }
-
   #pagination {
     margin-top: 20px;
     display: flex;
@@ -609,13 +585,11 @@ h4 {
   #product1 .pro {
     width: 100%;
   }
-
   #product1 .pro .cart {
     position: absolute;
     bottom: 20px;
     right: 10px;
   }
-
   #pagination {
     margin-top: 20px;
     display: flex;
@@ -625,21 +599,27 @@ h4 {
 }
 
 /* Page Product */
+
+#page-header {
+  background: url(../images/banneroff.jpg);
+  width: 100%;
+  height: 40vh;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 14px;
+}
+
 #page-header h2,
 #page-header p {
   color: #fff;
 }
 
-.main_login {
-  height: 85vh;
-}
-
 .section-p1 {
   padding: 40px 80px;
-}
-
-.main_shop {
-  background-color: #ebdbc8;
 }
 
 #pagination {
@@ -651,7 +631,7 @@ h4 {
 
 #pagination a {
   text-decoration: none;
-  background: #05550e;
+  background: #088178;
   padding: 15px 20px;
   border-radius: 4px;
   color: #fff;
@@ -749,24 +729,20 @@ h4 {
   }
 }
 
-/*Shop HTML*/
-.c-item {
-  height: 530px;
-}
-
-.c-img {
-  width: 100%;
-}
-
-#offcanvasNavbar {
-  background-color: #577e6c;
-}
-
-#icon_filter {
-  width: 2rem;
-}
-
 /* BLOG Page */
+
+#page-header {
+  background: url(../images/banneroff.jpg);
+  width: 100%;
+  height: 40vh;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 14px;
+}
 
 #blog {
   padding: 150px 150px 0 150px;
@@ -1008,7 +984,6 @@ h4 {
   #cart-add {
     padding: 20px;
   }
-
   #coupon,
   #subtotal {
     width: 100%;
@@ -1021,25 +996,20 @@ h4 {
     display: flex;
     flex-direction: column;
   }
-
   #coupon,
   #subtotal {
     margin-bottom: 30px;
   }
-
   #coupon {
     width: 100%;
   }
-
   #subtotal {
     width: 100%;
     padding: 20px;
   }
-
   #cart table thead td {
     font-size: 12px;
   }
-
   #cart table tbody td {
     font-size: 12px;
   }
@@ -1164,7 +1134,6 @@ h4 {
   #form-details {
     padding: 40px;
   }
-
   #form-details form {
     width: 50%;
   }
@@ -1174,28 +1143,23 @@ h4 {
   .section-p1 {
     padding: 20px;
   }
-
   /* Contact Page  */
   #contact-details {
     display: flex;
     flex-direction: column;
   }
-
   #contact-details .details {
     width: 100%;
     margin-bottom: 30px;
   }
-
   #contact-details .map {
     width: 100%;
   }
-
   #form-details {
     margin: 10px;
     padding: 30px 10px;
     flex-wrap: wrap;
   }
-
   #form-details form {
     width: 100%;
     margin-bottom: 30px;
@@ -1242,108 +1206,89 @@ h4 {
   #about-head {
     flex-direction: column;
   }
-
   #about-head img {
     width: 100%;
     margin-bottom: 20px;
   }
-
   #about-head div {
     padding-left: 0;
   }
-
   #about-app .video {
     width: 100%;
   }
 }
 
-/* Button Cart */
-.custom-button {
-  position: fixed;
-  top: 20px;
-  right: 20px;
+/* Ultimos cambios */
+/* Manager Page */
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
-[v-cloak] {
-  display: none;
+.formAdd {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.cart-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+.form-group label {
+  font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group textarea,
+.form-group input[type="number"],
+.form-group select,
+.form-group input[type="url"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.form-group textarea {
+  height: 100px;
+}
+
+.buttonAdd {
+  background-color: var(--main-color);
+  color: #fff;
+  padding: 10px 20px;
   border: none;
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
-  font-size: 18px;
+  border-radius: 3px;
   cursor: pointer;
+  font-weight: bold;
   transition: background-color 0.3s ease;
 }
 
-.a {
-  height: 25rem;
-  object-fit: contain;
+.buttonAdd:hover {
+  background-color: var(--second-color);
 }
 
-/* Estilo para el botón "Agregar" (verde) */
-.add-button {
-  background-color: #28a745;
-  color: #fff;
-}
-
-/* Estilo para el botón "Quitar" (rojo) */
-.remove-button {
-  background-color: #dc3545;
-  color: #fff;
-}
-
-/* Estilo para el botón "Eliminar" (rojo oscuro) */
-.delete-button {
-  background-color: #8b0000;
-  color: #fff;
-}
-
-/* Cambio de color al pasar el mouse */
-.cart-button:hover {
-  filter: brightness(1.2);
-}
-
-/* Estilos para el spinner a pantalla completa */
-.fullscreen-spinner-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #fff;
-  /* Fondo blanco */
+/* Cards  */
+.product-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
+  flex-wrap: wrap;
+  gap: 1rem;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 1px solid #e1e1e1;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  height: 25rem;
 }
 
-/* Estilos para el spinner */
-.spinner {
-  border: 4px solid rgba(255, 255, 255, 0.3);
-  border-top: 4px solid #007bff;
-  /* Color del spinner */
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  animation: spin 1s linear infinite;
-  /* Animación de giro */
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
+/* Shop */
+.main_shop {
+  background-color: #ebdbc8;
+  margin-bottom: 2rem;
 }
 
 /* Footer */
@@ -1363,13 +1308,13 @@ footer .col {
 }
 
 footer h4 {
-  font-size: 20px;
+  font-size: 14px;
   padding-bottom: 20px;
 }
 
 footer p {
   margin: 0 0 8px 0;
-  font-size: 15px;
+  font-size: 13px;
 }
 
 footer a {
@@ -1395,8 +1340,8 @@ footer a:hover {
 }
 
 .logoFooter {
-  height: 8rem;
-  width: 8rem;
+  margin-bottom: 30px;
+  width: 5rem;
 }
 
 footer .install .row1 img {
@@ -1414,34 +1359,6 @@ footer .col h4 {
   color: #465b52;
   font-size: 13px;
   margin-top: 20px;
-}
-
-#prodetails {
-  min-height: 20rem;
-}
-
-#manager {
-  background-color: #e1e1e1;
-}
-
-.accordion-item {
-  background-color: #e2e9e1;
-  color: black;
-  font-size: large;
-}
-
-.btn-add {
-  background-color: #e2e9e1;
-  width: 15rem;
-}
-
-#app_link {
-  text-decoration: none;
-  color: #05550e;
-}
-
-#main_about {
-  background-color: #e1e1e1;
 }
 
 /* Account Page */
@@ -1616,7 +1533,6 @@ footer .col h4 {
     padding: 20px;
     gap: 3rem;
   }
-
   .img-account {
     width: 26rem;
   }
@@ -1644,11 +1560,9 @@ footer .col h4 {
   top: 20px;
   right: 20px;
 }
-
 [v-cloak] {
   display: none;
 }
-
 .cart-button {
   display: inline-flex;
   align-items: center;
@@ -1661,7 +1575,6 @@ footer .col h4 {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-
 /* Estilo para el botón "Agregar" (verde) */
 .add-button {
   background-color: #28a745;
@@ -1684,7 +1597,6 @@ footer .col h4 {
 .cart-button:hover {
   filter: brightness(1.2);
 }
-
 /* Estilos para el spinner a pantalla completa */
 .fullscreen-spinner-container {
   position: fixed;
@@ -1692,42 +1604,32 @@ footer .col h4 {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #fff;
-  /* Fondo blanco */
+  background-color: #fff; /* Fondo blanco */
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 9999;
 }
 
-/* Estilos alerta Manager */
-.swal-confirm-button {
-  background-color: #4caf50; /* Green */
-  color: white;
-}
-
-.swal-confirm-button:hover {
-  background-color: #45a049; /* Darker green on hover */
-}
-
 /* Estilos para el spinner */
 .spinner {
   border: 4px solid rgba(255, 255, 255, 0.3);
-  border-top: 4px solid #007bff;
-  /* Color del spinner */
+  border-top: 4px solid #007bff; /* Color del spinner */
   border-radius: 50%;
   width: 50px;
   height: 50px;
-  animation: spin 1s linear infinite;
-  /* Animación de giro */
+  animation: spin 1s linear infinite; /* Animación de giro */
 }
 
 @keyframes spin {
   0% {
     transform: rotate(0deg);
   }
-
   100% {
     transform: rotate(360deg);
   }
+}
+
+.active-ancores {
+  color: #28a745 !important;
 }
