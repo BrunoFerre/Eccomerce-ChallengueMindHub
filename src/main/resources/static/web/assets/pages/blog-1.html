@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--Metadata-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Matoffee | Blog</title>
+    <!--Favicon-->
+    <link rel="shortcut icon" href="../images/favicon.png" type="image/x-icon">
+    <!--Link to CSS-->
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/style1.css">
+    <!--Box Icons-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+
+</head>
+
+<body style="background-color: #ebdbc8;">
+
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top" id="login">
+        <div class="container-fluid">
+            <a class="navbar-brand logo fs-1 d-flex align-items-center justify-content-center gap-3" href="#"><img
+                    src="../images/favicon_mate.png" alt="logo">
+                <h1>Matoffee</h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+                    <li><a href="../../index.html">Home</a></li>
+                    <li><a href="./shop.html">Shop</a></li>
+                    <li><a href="./about.html">About Us</a></li>
+                    <li><a href="./blog.html">Blog</a></li>
+                    <template v-if="!isLogin">
+                        <li><a href="./login1.html">Log In</a></li>
+                    </template>
+                    <template v-else>
+                        <li><button @click="logOut" class="btn bg-danger-subtle">Log out</button></li>
+                        <li><a href="./cart.html"><i class="bi bi-cart"></i></a></li>
+                    </template>
+            </div>
+        </div>
+    </nav>
+
+    <!--Carousel-->
+    <header class="d-flex p-2 justify-content-evenly gap-2" style="background-color: #ebdbc8;">
+        <img src="../images/mate_carousel.webp" alt="" class="w-50 rounded-4">
+        <img src="../images/granocafe.jpg" alt="" class="w-50 rounded-4">
+    </header>
+
+    <main class="container-fluid mt-5 mb-3 px-5">
+        <div class="row">
+            <!-- Imagen de la izquierda -->
+            <div class="col-md-8">
+                <article class="article">
+                    <!-- Título del artículo -->
+                    <h2 class="article-title">Matoffe Offers Discounts Throughout October</h2>
+
+                    <!-- Contenido del artículo -->
+                    <div class="article-content">
+                        <p>
+                            We are excited to announce that during the month of October, at Matoffe, your trusted coffee
+                            and mate store, you will have the opportunity to enjoy incredible discounts and special
+                            offers. If you're a coffee or mate lover, this is the perfect time to stock up and save!
+                        </p>
+                        <h2>Coffee Offers</h2>
+                        <p>
+                            For all coffee enthusiasts, Matoffe offers a wide variety of high-quality coffee beans, from
+                            the smoothest to the most intense. During October, you can enjoy exclusive discounts on our
+                            selection of coffee. Whether you prefer whole bean, ground, or capsule coffee, we have
+                            options for every taste. Don't miss the chance to savor your dream coffee at irresistible
+                            prices!
+                        </p>
+                        <!-- Continúa con el contenido de tu artículo aquí -->
+                        <h2>Mate Products Offers</h2>
+                        <p>
+                            If you're a mate fanatic, we also have something special for you. At Matoffe, we understand
+                            the importance of preparing a good mate, which is why we offer an exceptional range of yerba
+                            mate and mate accessories. Throughout the month of October, you'll find outstanding
+                            discounts on our mate products. From high-quality yerba to beautiful bombillas and artisanal
+                            mates, everything you need to enjoy this traditional South American beverage can be found at
+                            Matoffe.
+                        </p>
+                        <h2>How to Take Advantage of These Offers</h2>
+                        <p>
+                            Taking advantage of these incredible offers is straightforward. Visit our website or come to
+                            our physical store, where our friendly staff will be happy to help you find your favorite
+                            products. If you shop online, simply add your desired items to the cart, and the discounts
+                            will be applied automatically at checkout. It's that easy!
+                        </p>
+                        <div class="row">
+
+                            <!-- Inserta otra imagen aquí -->
+
+                        </div>
+                    </div>
+                </article>
+            </div>
+            <!-- Imagen de la derecha -->
+            <div class=" col-md-4">
+                <div class="article-image">
+                    <!-- Inserta aquí tu imagen con la clase "img-fluid" para hacerla responsive -->
+                    <img src="../images/mate_2.jpg" alt="Imagen Destacada" class="img-fluid rounded-4">
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+	<!--Pie de pagina-->
+	<footer class="col-12 d-flex align-items-center d-flex flex-wrap gap-5 justify-content-evenly p-4">
+        <img class="logoFooter" src="../images/favicon_mate.png" alt="logo">
+        <div>
+            <h4>Contact</h4>
+            <p><strong>Address:</strong> Calle 123, Colonia, 12345</p>
+            <p><strong>Phone:</strong> +1 5589 55488 55</p>
+            <p><strong>Hours:</strong> 10:00 - 18:00, Mon - Sat</p>
+        </div>
+        <div class="follow">
+            <h4>Follow Us</h4>
+            <div class="social">
+                <a href="https://www.facebook.com/"><i class='bx bxl-facebook'></i></a>
+                <a href="https://www.whatsapp.com/"><i class='bx bxl-whatsapp'></i></a>
+                <a href="https://www.youtube.com/"><i class='bx bxl-youtube'></i></a>
+                <a href=""><i class='bx bxl-github'></i></a>
+                <a href="https://www.instagram.com/"><i class='bx bxl-instagram'></i></a>
+            </div>
+        </div>
+    </footer>
+    <p class="copyright"> &#169; Cohort-49 All Right Reserved </p>	
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@3.2.29/dist/vue.global.prod.js"></script>
+<script src="../scripts/shop.js"></script>
+<script src="../scripts/login.js"></script>
+
+</html>

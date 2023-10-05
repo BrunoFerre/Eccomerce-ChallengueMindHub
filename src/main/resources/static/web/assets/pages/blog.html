@@ -17,36 +17,43 @@
 
 </head>
 
-<body>
+<body style="background-color: #ebdbc8;">
     <!--Navbar-->
-   <!--Navbar-->
-	<nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
-		<div class="container-fluid">
-			<a class="navbar-brand logo fs-1 d-flex align-items-center justify-content-center gap-3" href="#"><img
-					src="../images/favicon_mate.png" alt="logo">
-				<h1>Matoffee</h1>
-			</a>
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
-					<li><a href="./shop.html">Shop</a></li>
-					<li><a href="./about.html">About Us</a></li>
-					<li><a href="#">Blog</a></li>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top" id="login">
+        <div class="container-fluid">
+            <a class="navbar-brand logo fs-1 d-flex align-items-center justify-content-center gap-3" href="#"><img
+                    src="../images/favicon_mate.png" alt="logo">
+                <h1>Matoffee</h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+                    <li><a href="../../index.html">Home</a></li>
+                    <li><a href="./shop.html">Shop</a></li>
+                    <li><a href="./about.html">About Us</a></li>
+                    <li><a href="#" class="active-ancores">Blog</a></li>
                     <li><a href="./account.html">Account</a></li>
-					<li><a href="#" class="btn bg-danger-subtle">Log out</a></li>
-					<li><a href="#cart"><i class="bi bi-cart"></i></a></li>
-			</div>
-		</div>
-	</nav>
+                    <template v-if="!isLogin">
+                        <li><a href="./login1.html">Log In</a></li>
+                    </template>
+                    <template v-else>
+                        <li><button @click="logOut" class="btn bg-danger-subtle">Log out</button></li>
+                        <li><a href="./cart.html"><i class="bi bi-cart"></i></a></li>
+                    </template>
+            </div>
+        </div>
+    </nav>
+    <!--Carousel-->
+    <header class="d-flex p-2 justify-content-evenly gap-2">
+        <img src="../images/mate_carousel.webp" alt="" class="w-50 rounded-4">
+        <img src="../images/granocafe.jpg" alt="" class="w-50 rounded-4">
+    </header>
+
     <main>
-        <section id="page-header">
-            <h2>#readmore</h2>
-            <p>Read all case studies about our products!</p>
-        </section>
 
         <section id="blog">
             <div class="blog-box">
@@ -54,55 +61,58 @@
                     <img src="../images/2.jpeg" alt="">
                 </div>
                 <div class="blog-details">
-                    <h4>sdadsa asdasd asda </h4>
-                    <p>dsadasdsadasd</p>
-                    <a href="">CONTINUE READING</a>
+                    <h4>Matofee has discounts for the month of October</h4>
+                    <p>During the month of October there will be offers on coffee and mate products</p>
+                    <a href="./blog-1.html">CONTINUE READING</a>
                 </div>
                 <H1>13/09</H1>
             </div>
             <div class="blog-box">
                 <div class="blog-img">
-                    <img src="../images/2.jpeg" alt="">
+                    <img src="../images/blog1.jpeg" alt="">
                 </div>
                 <div class="blog-details">
-                    <h4>sdadsa asdasd asda </h4>
-                    <p>dsadasdsadasd</p>
+                    <h4>Yerba mate was captured in the pages of National Geographic</h4>
+                    <p>This shows the space that national infusion is gaining in the world.</p>
                     <a href="">CONTINUE READING</a>
                 </div>
-                <H1>13/09</H1>
+                <H1>17/09</H1>
             </div>
             <div class="blog-box">
                 <div class="blog-img">
-                    <img src="../images/2.jpeg" alt="">
+                    <img src="../images/blog2.jpg" alt="">
                 </div>
                 <div class="blog-details">
-                    <h4>sdadsa asdasd asda </h4>
-                    <p>dsadasdsadasd</p>
+                    <h4>Yerba from northeastern Argentina available to everyone</h4>
+                    <p>The activity, with free admission, will take place on Saturday, August 26 and Sunday, August 27,
+                        2023 in the Ocre hall of La Rural in the city of Buenos Aires.</p>
                     <a href="">CONTINUE READING</a>
                 </div>
-                <H1>13/09</H1>
+                <H1>25/09</H1>
             </div>
             <div class="blog-box">
                 <div class="blog-img">
-                    <img src="../images/2.jpeg" alt="">
+                    <img src="../images/blog3.png" alt="">
                 </div>
                 <div class="blog-details">
-                    <h4>sdadsa asdasd asda </h4>
-                    <p>dsadasdsadasd</p>
+                    <h4>WHAT IS THE BEST COFFEE MAKER FOR MAKING CAPPUCCINO? (IN 2023)</h4>
+                    <p>Dare to prepare your favorite coffee at home with your own coffee maker to make cappuccino....
+                    </p>
                     <a href="">CONTINUE READING</a>
                 </div>
-                <H1>13/09</H1>
+                <H1>29/09</H1>
             </div>
             <div class="blog-box">
                 <div class="blog-img">
-                    <img src="../images/2.jpeg" alt="">
+                    <img src="../images/blog4.png" alt="">
                 </div>
                 <div class="blog-details">
-                    <h4>sdadsa asdasd asda </h4>
-                    <p>dsadasdsadasd</p>
+                    <h4>DIFFERENCES BETWEEN NORMAL COFFEE MAKER AND EXPRESS COFFEE MAKER</h4>
+                    <p>Do you suppose all coffee is the same? Well no. The main differences between a normal coffee
+                        maker and...</p>
                     <a href="">CONTINUE READING</a>
                 </div>
-                <H1>13/09</H1>
+                <H1>1/10</H1>
             </div>
         </section>
 
@@ -114,7 +124,7 @@
 
     </main>
 
-<!--Pie de pagina-->
+    <!--Pie de pagina-->
     <footer class="col-12 d-flex align-items-center d-flex flex-wrap gap-5 justify-content-evenly p-4">
         <img class="logoFooter" src="../images/favicon_mate.png" alt="logo">
         <div>
@@ -141,5 +151,6 @@
     crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@3.2.29/dist/vue.global.prod.js"></script>
+<script src="../scripts/login.js"></script>
 
 </html>

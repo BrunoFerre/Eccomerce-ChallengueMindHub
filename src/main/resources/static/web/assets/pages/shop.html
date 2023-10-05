@@ -13,13 +13,14 @@
 	<!--Favicon-->
 	<link rel="shortcut icon" href="../images/favicon.png" type="image/x-icon">
 	<!--Link to CSS-->
+	<link rel="stylesheet" href="../style/style.css">
 	<link rel="stylesheet" href="../style/style1.css">
 	<!--Box Icons-->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 
 </head>
 
-<body>
+<body style="background-color: #ebdbc8;">
 
 	<!--Navbar-->
 	<nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top" id="login">
@@ -35,15 +36,16 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
-					<li><a href="#">Shop</a></li>
+					<li><a href="../../index.html">Home</a></li>
+					<li><a href="./shop.html" class="active-ancores">Shop</a></li>
 					<li><a href="./about.html">About Us</a></li>
 					<li><a href="./blog.html">Blog</a></li>
 					<li><a href="./account.html">Account</a></li>
 					<template v-if="!isLogin">
-						<li><a href="./login1.html"></a></li>
+						<li><a href="./login1.html">Log In</a></li>
 					</template>
 					<template v-else>
-						<li><button @click="logOut" class="btn bg-danger-subtle">Log out</button></li>
+						<li><button @click.prevent="logOut" type="button" class="btn bg-danger-subtle">Log out</button></li>
 						<li><a href="./cart.html"><i class="bi bi-cart"></i></a></li>
 					</template>
 			</div>
@@ -51,18 +53,18 @@
 	</nav>
 
 	<!--Carousel-->
-	<header class="d-flex p-2 justify-content-evenly gap-2 main_shop">
-		<img src="../images/mate_carousel.webp" alt="" class="w-50 rounded-2">
-		<img src="../images/granocafe.jpg" alt="" class="w-50 rounded-2">
+	<header class="d-flex p-2 justify-content-evenly gap-2" style="background-color: #ebdbc8;">
+		<img src="../images/mate_carousel.webp" alt="" class="w-50 rounded-4">
+		<img src="../images/granocafe.jpg" alt="" class="w-50 rounded-4">
 	</header>
 
-	<main id="app" class="main_shop " v-cloak>
+	<main id="app" class="main_shop p-1" v-cloak>
 		<div class="d-flex justify-content-between container-fluid px-3 bg_filter_nav">
 			<div class="d-flex align-items-center justify-content-center gap-3">
 				<h4>Search items: </h4>
-				<button class="btn btn-login btn-lg my-3 align-items-center justify-content-center" type="button" data-bs-toggle="offcanvas"
-					data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"><i
-						class="bi bi-funnel"></i></button>
+				<button class="btn btn-login btn-lg my-3 align-items-center justify-content-center" type="button"
+					data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
+					aria-controls="offcanvasScrolling"><i class="bi bi-funnel"></i></button>
 				<div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
 					id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
 					<div class="offcanvas-header">
@@ -104,9 +106,13 @@
 			</div>
 			<div class="d-flex align-items-center justify-content-center gap-3">
 				<h4>Cart</h4>
-				<button class="btn btn-login btn-lg my-3" type="button" data-bs-toggle="offcanvas"
-					data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i
-						class="bi bi-cart-check"></i></button>
+				<button class="position-relative btn btn-success btn-lg my-3 m-3" type="button"
+					data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i
+						class="bi bi-cart-check"></i><span
+						class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+						{{cart.length}}
+						<span class="visually-hidden">unread messages</span>
+					</span></button>
 				<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
 					aria-labelledby="offcanvasRightLabel">
 					<div class="offcanvas-header">
@@ -139,18 +145,35 @@
 						<div :style="{ backgroundImage: 'url(' + product.image + ')' }" class="product-container"></div>
 					</a>
 					<div class="des">
-						<span>Matoffee</span>
-						<h5>{{ product.name }}</h5>
-						<div class="start">
-							<i class="bi bi-star-fill"></i>
-							<i class="bi bi-star-fill"></i>
-							<i class="bi bi-star-fill"></i>
-							<i class="bi bi-star-fill"></i>
-							<i class="bi bi-star-fill"></i>
-						</div>
-						<h4>${{ product.price }}</h4>
-					</div>
-					<a href="#" @click="addToCart(product)"><i class="bi bi-cart2 cart"></i></a>
+                        <template v-if="product.discount>0">
+                            <span class="card-offer"></span>
+                        </template>
+                        <span>Matoffee</span>
+                        <h5>{{ product.name }}</h5>
+                        <div class=" start">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                        <template v-if="product.discount>0">
+                            <div class="price-container col-5">
+                                <h4 class="original-price">${{ product.price }}</h4>
+                                <h4 class="discounted-price">{{formatPrice(product.price - (product.price *
+                                    product.discount) / 100) }}</h4>
+                            </div>
+                        </template>
+                        <template v-else>
+                            <h4>${{ product.price }}</h4>
+                        </template>
+                    </div>
+					<template v-if="cart.some (item => item.id === product.id)">
+						<a @click.prevent="addToCart(product)"><i class="bi bi-cart2 cart text-bg-danger"></i></a>
+					</template>
+					<template v-else>
+						<a @click.prevent="addToCart(product) "><i class="bi bi-cart2 cart"></i></a>
+					</template>
 				</div>
 				<p v-else> No hay productos</p>
 			</div>
@@ -166,26 +189,26 @@
 	</main>
 
 	<!--Pie de pagina-->
-	<footer class="col-12 d-flex align-items-center d-flex flex-wrap gap-5 justify-content-evenly p-2">
-		<img class="logoFooter" src="../images/favicon_mate.png" alt="logo">
-		<div>
-			<h4>Contact</h4>
-			<p><strong>Address:</strong> Calle 123, Colonia, 12345</p>
-			<p><strong>Phone:</strong> +1 5589 55488 55</p>
-			<p><strong>Hours:</strong> 10:00 - 18:00, Mon - Sat</p>
-		</div>
-		<div class="follow">
-			<h4>Follow Us</h4>
-			<div class="social">
-				<a href="https://www.facebook.com/"><i class='bx bxl-facebook'></i></a>
-				<a href="https://www.whatsapp.com/"><i class='bx bxl-whatsapp'></i></a>
-				<a href="https://www.youtube.com/"><i class='bx bxl-youtube'></i></a>
-				<a href=""><i class='bx bxl-github'></i></a>
-				<a href="https://www.instagram.com/"><i class='bx bxl-instagram'></i></a>
-			</div>
-		</div>
-		<p class="copyright text-light"> &#169; Cohort-49 All Right Reserved </p>
-	</footer>
+	<footer class="col-12 d-flex align-items-center d-flex flex-wrap gap-5 justify-content-evenly p-4">
+        <img class="logoFooter" src="../images/favicon_mate.png" alt="logo">
+        <div>
+            <h4>Contact</h4>
+            <p><strong>Address:</strong> Calle 123, Colonia, 12345</p>
+            <p><strong>Phone:</strong> +1 5589 55488 55</p>
+            <p><strong>Hours:</strong> 10:00 - 18:00, Mon - Sat</p>
+        </div>
+        <div class="follow">
+            <h4>Follow Us</h4>
+            <div class="social">
+                <a href="https://www.facebook.com/"><i class='bx bxl-facebook'></i></a>
+                <a href="https://www.whatsapp.com/"><i class='bx bxl-whatsapp'></i></a>
+                <a href="https://www.youtube.com/"><i class='bx bxl-youtube'></i></a>
+                <a href=""><i class='bx bxl-github'></i></a>
+                <a href="https://www.instagram.com/"><i class='bx bxl-instagram'></i></a>
+            </div>
+        </div>
+    </footer>
+    <p class="copyright"> &#169; Cohort-49 All Right Reserved </p>	
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"

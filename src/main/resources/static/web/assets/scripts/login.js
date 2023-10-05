@@ -1,8 +1,8 @@
 const appLogin = Vue.createApp({
     data() {
         return {
-            email: '',
-            password: '',
+            email: 'karenbuitrago2519@gmail.com',
+            password: '123456',
             firstName: '',
             lastName: '',
             showRegistrationForm: false,
@@ -18,24 +18,24 @@ const appLogin = Vue.createApp({
         login() {
             console.log(this.email);
             console.log(this.password);
-            axios.post('/api/login','email='+this.email+'&password='+this.password)
-            .then(response => {
-                if(this.email.includes('@admi')){
-                    location.href = 'pages'
-                }else{
-                    location.href = './shop.html'
-                }
-                localStorage.setItem('isLoggedIn', 'true')
-                this.verifyiLogin();
-            }).catch(error => {
-                console.log(error)
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Something went wrong!',
-                    footer: 'Please try again!'
+            axios.post('/api/login', 'email=' + this.email + '&password=' + this.password)
+                .then(response => {
+                    if (this.email.includes('@admi')) {
+                        location.href = 'pages'
+                    } else {
+                        location.href = './shop.html'
+                    }
+                    localStorage.setItem('isLoggedIn', 'true')
+                    this.verifyiLogin();
+                }).catch(error => {
+                    console.log(error)
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Something went wrong!',
+                        footer: 'Please try again!'
+                    })
                 })
-            })
         },
         verifyiLogin() {
             let login = localStorage.getItem('isLoggedIn');
@@ -63,11 +63,11 @@ const appLogin = Vue.createApp({
                 showLoaderOnConfirm: true,
                 preConfirm: login => {
                     return axios
-                        .post("/api/person/add",  Person)
+                        .post("/api/person/add", Person)
                         .then(response => {
                             console.log(this.email);
                             console.log(this.password);
-                                this.login();
+                            this.login();
                         })
                         .catch(error => {
                             Swal.fire({
@@ -89,7 +89,7 @@ const appLogin = Vue.createApp({
                     this.isLogin = false
                     console.log(response);
                     localStorage.removeItem('isLoggedIn');
-                    window.location.href ='../../index.html';
+                    window.location.href = '../../index.html';
                 })
                 .catch(error => {
                     console.log(error);

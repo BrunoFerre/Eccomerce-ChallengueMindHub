@@ -4,12 +4,12 @@ createApp({
         return {
             client: [],
             purchase: [],
-            street: "",
-            number: "",
-            city: "",
-            apartment: "",
-            floor: "",
-            zip: "",
+            street: "Calle Esperanza",
+            number: 1236,
+            city: "Santiago",
+            apartment: "12A",
+            floor: 2,
+            zip: "7500908E",
         };
     },
     created() {

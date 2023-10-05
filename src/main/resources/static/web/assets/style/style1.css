@@ -1864,6 +1864,53 @@ footer .col h4 {
     transform: translate(-50%, -130%);
 }
 
-.img-animate{
+.img-animate {
     width: 30rem;
+}
+
+/*Index*/
+.active-ancores {
+    color: #28a745 !important;
+}
+
+/*Product*/
+.small-img-group {
+    display: flex;
+    margin-top: 8px;
+    gap: 1rem;
+}
+
+/*cart*/
+.bi:hover {
+    cursor: pointer !important;
+}
+
+.card-offer::before {
+    content: "OFFER";
+    /* Texto de oferta */
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #00cc66;
+    color: white;
+    padding: 5px 10px;
+    font-weight: bold;
+    border-top-left-radius: 20px;
+}
+
+.price-container {
+    display: flex;
+    align-items: center;
+}
+
+.original-price {
+    text-decoration: line-through;
+    margin-right: 10px;
+    color: #888;
+}
+
+.discounted-price {
+    color: #00cc66;
+    font-weight: bold;
+
 }
