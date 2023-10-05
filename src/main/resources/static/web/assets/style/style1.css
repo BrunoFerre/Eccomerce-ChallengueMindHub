@@ -666,8 +666,8 @@ h4 {
 
 .small-img-group{
     display: flex;
-    justify-content: space-between!important;
-    margin-top: 3px;
+    margin-top: 8px;
+    gap: 1rem;
 }
 
 .small-img-col{
@@ -1650,3 +1650,11 @@ footer .col h4 {
     }
   }
   
+  .buttonProduct {
+    background-color: var(--main-color);
+    color: #fff;
+    padding: 15px 20px;
+    outline: none;
+    border: none;
+    
+}

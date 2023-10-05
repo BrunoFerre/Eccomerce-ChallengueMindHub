@@ -2,129 +2,219 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!--Bootstrap-->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-	<title>Matoffee | Manager</title>
-	<!--Favicon-->
-	<link rel="shortcut icon" href="./assets/images/favicon.png" type="image/x-icon">
-	<!--Link to CSS-->
-	<link rel="stylesheet" href="./assets/style/style1.css">
-	<!--Box Icons-->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Favicon-->
+    <link rel="shortcut icon" href="../images/favicon.png" type="image/x-icon">
+    <!--Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!--Remixicons-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
+    <!--Boxicons-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="./assets/style/style1.css">
+    <title>Log In | Matoffee</title>
 </head>
 
 <body>
-	<body>
-		<!--Navbar-->
-		<nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
-			<div class="container-fluid">
-				<a class="navbar-brand logo fs-1 d-flex align-items-center justify-content-center gap-3" href="#"><img
-						src="./assets/images/favicon_mate.png" alt="logo">
-					<h1>Matoffee</h1>
-				</a>
-				<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-					data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-					aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
-						<li><a href="./index.html">Home</a></li>
-						<li><a href="#" class="btn bg-danger-subtle">Log out</a></li>
-				</div>
-			</div>
-		</nav>
-	
-	<div class="blank_space">
+    <!-- Navbar-->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand logo fs-1 d-flex align-items-center justify-content-center gap-3" href="#"><img
+                    src="./assets/images/favicon_mate.png" alt="logo">
+                <h1>Matoffee</h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#" class="btn bg-danger-subtle">Log out</a></li>
+            </div>
+        </div>
+    </nav>
 
-	</div>
-	<!--Home-->
-	<main id="app" class="mb-4">
+    <main class="d-flex flex-column align-items-center container-fluid my-3 p-4 gap-5" id="manager">
+        <div class="accordion accordion-flush col-11" id="accordionFlushExample">
+            <!--Accordion Uno-->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        Accordion Item #1
+                    </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <div class="container gap-1 pt-2 pb-2">
+                            <div class="row align-items-center justify-content-center">
+                                <div class="col-md-6 d-flex flex-column gap-2">
+                                    <label for="productName" class="form-label">Product Name</label>
+                                    <input v-model="productName" class="form-control" type="text" name="productName"
+                                        id="productName">
 
+                                    <label for="price" class="form-label">Price</label>
+                                    <input v-model="productPrice" class="form-control" type="number" name="price"
+                                        id="price">
 
-		<div class="container" >
-			<h2>Create New Product</h2>
-			<form class="formAdd" action="/products/add" method="POST">
-				<div class="form-group">
-					<label for="name">Product Name:</label>
-					<input type="text" id="name" name="name" required>
-				</div>
-				<div class="form-group">
-					<label for="description">Description:</label>
-					<textarea id="description" name="description" required></textarea>
-				</div>
-				<div class="form-group">
-					<label for="price">Price:</label>
-					<input type="number" id="price" name="price" step="0.01" required>
-				</div>
-				<div class="form-group">
-					<label for="stock">Stock:</label>
-					<input type="number" id="stock" name="stock" required>
-				</div>
-				<div class="form-group">
-					<label for="category">Category:</label>
-					<select id="category" name="category" required>
-						<option value="MATES">MATES</option>
-						<!-- Add other category options here -->
-					</select>
-				</div>
-				<div class="form-group">
-					<label for="color">Color:</label>
-					<select id="color" name="color" required>
-						<option value="GOLD">GOLD</option>
-						<!-- Add other color options here -->
-					</select>
-				</div>
-				<div class="form-group">
-					<label for="discount">Discount:</label>
-					<input type="number" id="discount" name="discount" step="0.01" required>
-				</div>
-				<div class="form-group">
-					<label for="image">Image URL:</label>
-					<input type="url" id="image" name="image" required>
-				</div>
-				<div class="form-group">
-					<label for="imageCollection">Image Collection URLs:</label>
-					<textarea id="imageCollection" name="imageCollection"></textarea>
-				</div>
-				<button class="buttonAdd" type="submit">Create Product</button>
-			</form>
-		</div>
+                                    <label for="stock" class="form-label">Stock</label>
+                                    <input v-model="productStock" class="form-control" type="number" name="stock"
+                                        id="stock">
 
-		<div class="container">
-			<h2>Manage Products</h2>
-			<form class="formFilter" id="filterForm">
-				<div class="form-group">
-					<label for="productId">Select a Product:</label>
-					<select id="productId" name="productId">
-						<option value="">Select</option>
-						<!-- Agrega opciones de productos dinámicamente desde tu backend -->
-					</select>
-				</div>
-				<button type="button" onclick="filterProducts()">Filter</button>
-			</form>
-			<div class="product-details" id="productDetails">
-				<!-- Aquí se mostrarán los detalles del producto seleccionado -->
-			</div>
-		</div>
-	
+                                    <label for="category" class="form-label">Category</label>
+                                    <input v-model="productCategory" type="text" class="form-control" name="category"
+                                        id="category" placeholder="Category in capital letters">
 
+                                    <label for="color">Color</label>
+                                    <input v-model="productColor" class="form-control" type="text" name="color"
+                                        id="color" placeholder="Color in capital letters">
+
+                                    <label class="form-label" for="discount">Discount</label>
+                                    <input v-model="productDiscount" class="form-control" type="number" name="discount"
+                                        id="discount">
+
+                                </div>
+
+                                <div class="col-md-6 d-flex flex-column gap-2 align-items-center"
+                                    style="padding-top: 0.4rem;">
+                                    <label for="descrition" class="form-label">Description</label>
+                                    <textarea v-model="productDescription" class="form-control" name="descrition"
+                                        id="descrition" cols="31" rows="11"></textarea>
+
+                                    <label class="form-label" for="image">Image</label>
+                                    <input v-model="productImage" class="form-control" type="text" name="image"
+                                        id="image">
+
+                                    <label for="imageCollection" class="form-label pb-1">Image Collection</label>
+                                    <input v-model="preImageCollection" class="form-control" type="text"
+                                        name="imageCollection" id="imageCollection"
+                                        placeholder="Separate the urls by ','">
+
+                                </div>
+                                <button type="button" class="btn btn-add mt-3">Add Product</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Accordion Dos-->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        Accordion Item #2
+                    </button>
+                </h2>
+                <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body justify-content-center align-items-center">
+                        <label for="productId">Product Id</label>
+                        <input v-model="updatePriceId" type="number" name="productId" id="productId">
+                        <label for="newPrice">New Price</label>
+                        <input v-model="updatePriceValue" type="number" name="newPrice" id="newPrice">
+                        <button @click="updatePrice" type="button" class="btn btn-success">Update Price</button>
+                        <label for="productId">Product Id</label>
+                        <input v-model="updateStockId" type="number" name="productId" id="productId">
+                        <label for="newStock">New Stock</label>
+                        <input v-model="updateStockValue" type="number" name="newStock" id="newStock">
+                    </div>
+                </div>
+            </div>
+            <!--Accordion Tres-->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                        Accordion Item #3
+                    </button>
+                </h2>
+                <div id="flush-collapseThree" class="accordion-collapse collapse"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <label for="productId">Product Id</label>
+                        <input type="number" name="productId" id="productId">
+                        <label for="newStock">New Stock</label>
+                        <input type="number" name="newStock" id="newStock">
+                    </div>
+                </div>
+            </div>
+            <!--Accordion Cuatro-->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                        Accordion Item #3
+                    </button>
+                </h2>
+                <div id="flush-collapseFour" class="accordion-collapse collapse"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <label for="productId">Product Id</label>
+                        <input type="number" name="productId" id="productId">
+                        <label for="newStock">New Discount</label>
+                        <input type="number" name="newStock" id="newStock">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Color</th>
+                </tr>
+            </thead>
+            <tbody>
+                <template v-for="item of products">
+                    <tr>
+                        <th scope="row">{{item.id}}</th>
+                        <td>{{item.name}}</td>
+                        <td>{{formatPrice(item.price)}}</td>
+                        <td>{{item.stock}}</td>
+                        <td>{{item.category}}</td>
+                        <td>{{item.color}}</td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
     </main>
-	<footer class="contact" id="contact">
-		<p>Matoffee</p>
-		<p>&#169; Cohort-49 All Right Reserved </p>
-	</footer>
-	<!--Scripts-->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-	crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/vue@3.2.29/dist/vue.global.prod.js"></script>
-	<script src="/web/assets/scripts/manager.js"></script>
+
+    <!--Pie de pagina-->
+    <footer class="col-12 d-flex align-items-center d-flex flex-wrap gap-5 justify-content-evenly p-4">
+        <img class="logoFooter" src="./assets/images/favicon_mate.png" alt="logo">
+        <div>
+            <h4>Contact</h4>
+            <p><strong>Address:</strong> Calle 123, Colonia, 12345</p>
+            <p><strong>Phone:</strong> +1 5589 55488 55</p>
+            <p><strong>Hours:</strong> 10:00 - 18:00, Mon - Sat</p>
+        </div>
+        <div class="follow">
+            <h4>Follow Us</h4>
+            <div class="social">
+                <a href="https://www.facebook.com/"><i class='bx bxl-facebook'></i></a>
+                <a href="https://www.whatsapp.com/"><i class='bx bxl-whatsapp'></i></a>
+                <a href="https://www.youtube.com/"><i class='bx bxl-youtube'></i></a>
+                <a href=""><i class='bx bxl-github'></i></a>
+                <a href="https://www.instagram.com/"><i class='bx bxl-instagram'></i></a>
+            </div>
+        </div>
+    </footer>
+    <p class="copyright"> &#169; Cohort-49 All Right Reserved </p>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.2.29/dist/vue.global.prod.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- <script src="../scripts/landingPage.js"></script> -->
+    <script src="../scripts/manager.js"></script>
 </body>
 
 </html>
