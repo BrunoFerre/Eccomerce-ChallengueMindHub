@@ -11,7 +11,6 @@ public class PersonDTO {
     private String firstname;
     private String lastname;
     private String email;
-    private String phone;
     private PersonType personType;
 
     private String password;
@@ -27,7 +26,6 @@ public class PersonDTO {
         this.firstname = person.getFirstname();
         this.lastname = person.getLastname();
         this.email = person.getEmail();
-        this.phone = person.getPhone();
         this.personType = person.getUserType();
         this.address = person.getAdress().stream().map(AdressDTO::new).collect(Collectors.toSet());
         this.purchaseOrder = person.getPurchaseOrder().stream().map(PurchaseOrderDTO::new).collect(Collectors.toSet());
@@ -54,10 +52,6 @@ public class PersonDTO {
 
     public String getEmail() {
         return email;
-    }
-
-    public String getPhone() {
-        return phone;
     }
 
     public PersonType getUserType() {

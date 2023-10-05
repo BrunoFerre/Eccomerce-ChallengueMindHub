@@ -14,7 +14,6 @@ public class Person {
     private String firstname;
     private String lastname;
     private String email;
-    private String phone;
     private String password;
     private PersonType userType;
     @OneToMany(mappedBy = "person",fetch = FetchType.EAGER)
@@ -28,11 +27,10 @@ public class Person {
     public Person() {
     }
 
-    public Person(String firstname, String lastname, String email, String phone, String password, PersonType personType) {
+    public Person(String firstname, String lastname, String email, String password, PersonType personType) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
-        this.phone = phone;
         this.password = password;
         this.userType = personType;
     }
@@ -79,13 +77,6 @@ public class Person {
         this.email = email;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
 
     public String getPassword() {
         return password;

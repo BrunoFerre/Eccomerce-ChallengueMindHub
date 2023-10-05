@@ -39,7 +39,7 @@ public class WebAuthorization {
 
                 .antMatchers(HttpMethod.DELETE, "/api/comments/delete", "/api/answers/delete").hasAuthority("CLIENT")
 
-                .antMatchers(HttpMethod.POST, "/api/products/add").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.POST, "/api/products/add", "/api/person/addAdmin").hasAuthority("ADMIN")
 
                 .antMatchers(HttpMethod.GET, "/api/person/all").hasAuthority("ADMIN")
 

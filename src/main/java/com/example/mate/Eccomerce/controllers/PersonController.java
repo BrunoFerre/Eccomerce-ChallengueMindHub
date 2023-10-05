@@ -57,7 +57,7 @@ public class PersonController {
             return new ResponseEntity<>("Email already exists", HttpStatus.BANDWIDTH_LIMIT_EXCEEDED);
         }
 
-        Person person = new Person(personDTO.getFirstname(), personDTO.getLastname(), personDTO.getEmail(), "s", passwordEncoder.encode(personDTO.getPassword()), PersonType.CLIENT);
+        Person person = new Person(personDTO.getFirstname(), personDTO.getLastname(), personDTO.getEmail(), passwordEncoder.encode(personDTO.getPassword()), PersonType.CLIENT);
         personRepository.save(person);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -76,13 +76,10 @@ public class PersonController {
         if (personRepository.existsByEmail(personDTO.getEmail())){
             return new ResponseEntity<>("Email already exists", HttpStatus.BAD_REQUEST);
         }
-        if (personDTO.getPhone().isBlank()){
-            return new ResponseEntity<>("Phone is required", HttpStatus.BAD_REQUEST);
-        }
         if (personDTO.getPassword().isBlank()){
             return new ResponseEntity<>("Password is required", HttpStatus.BAD_REQUEST);
         }
-        Person person = new Person(personDTO.getFirstname(), personDTO.getLastname(), personDTO.getEmail(), personDTO.getPhone(), personDTO.getPassword(), PersonType.ADMIN);
+        Person person = new Person(personDTO.getFirstname(), personDTO.getLastname(), personDTO.getEmail(), passwordEncoder.encode(personDTO.getPassword()), PersonType.ADMIN);
         personRepository.save(person);
         return new ResponseEntity<>("Welcome to the admin", HttpStatus.CREATED);
     }
