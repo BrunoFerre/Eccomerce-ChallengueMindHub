@@ -25,6 +25,11 @@ public class PersonController {
     public List<PersonDTO> getAll(){
         return personRepository.findAll().stream().map(PersonDTO::new).collect(Collectors.toList());
     }
+    @GetMapping("/current")
+    public PersonDTO getCurrent(Authentication authentication){
+        Person person = personRepository.findByEmail(authentication.getName());
+        return new PersonDTO(person);
+    }
     @GetMapping("/{id}")
     public ResponseEntity<Object> getById(@PathVariable long id, Authentication authentication){
         if (authentication == null){
@@ -43,10 +48,6 @@ public class PersonController {
         if (personDTO.getEmail().isBlank()) {
             return new ResponseEntity<>("Email is invalid or required", HttpStatus.FAILED_DEPENDENCY);
         }
-        if (personDTO.getPassword().isBlank()) {
-            return new ResponseEntity<>("Password is invalid or required", HttpStatus.FORBIDDEN);
-        }
-
         if (personDTO.getFirstname().isBlank()) {
             return new ResponseEntity<>("Firstname is required", HttpStatus.NOT_ACCEPTABLE);
         }

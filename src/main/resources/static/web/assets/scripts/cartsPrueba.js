@@ -9,12 +9,25 @@ createApp({
             cardNumber: "",
             dueDate: "",
             cvv: "",
+            client: [],
         };
     },
     created() {
         this.getData();
+        this.getPerson();
     },
     methods: {
+        getPerson() {
+            axios.get('/api/person/current')
+            .then((response) => {
+                this.client = response.data;
+                console.log(this.client);
+                this.purchase = this.client.purchaseOrder
+                console.log(this.purchase);
+            }).catch((error) => {
+                console.log(error);
+            });
+        },
         getData() {
             this.cart = JSON.parse(localStorage.getItem('cart')) ?? [];
             axios.get('/api/products')
@@ -60,7 +73,7 @@ createApp({
         },
         pay() {
             let payObj = {
-                addressId: 2,
+                addressId: this.client.address[0].id,
                 paymentMethod: "DEBIT",
                 details: []
             }

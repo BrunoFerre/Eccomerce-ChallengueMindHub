@@ -9,10 +9,11 @@ const app = Vue.createApp({
             inputSearch: '',
             fil: [],
             filerByPrice: [],
-            page2: [],
+            pageA: [],
             remaingProducts: [],
             cart: [],
-            isLogin: false
+            isLogin: false,
+            productosPorPag: 18,
         };
     },
     created() {
@@ -85,15 +86,13 @@ const app = Vue.createApp({
                 return product.name.includes('mate') || product.description.includes('mate')
             })
         },
-        page(page) {
-            if (page == 1) {
-                this.fil = this.products.slice(0, 18).sort((a, b) => {
-                    return a.id - b.id;
-                })
-            } else {
-                this.fil = this.products.slice((page - 1) * 18, page * 18).sort((a, b) => {
-                    return a.id - b.id;
-                })
+        page() {
+            const start = (this.page - 1) * this.productosPorPag;
+            const end = start + this.productosPorPag;
+            if(start< this.products.length){
+                const newProduct = this.products.slice(start, end);
+                this.products = this.products.concat(newProduct);
+                this.page++;
             }
         },
         local(product, accion) {
@@ -126,7 +125,7 @@ const app = Vue.createApp({
         filters() {
             this.fil = this.products.filter(product => {
                 return product.description.toLowerCase().includes(this.inputSearch.toLowerCase()) && (this.checkCategory.includes(product.category) || this.checkCategory.length == 0);
-            }).slice(0, 18).sort((a, b) => {
+            }).slice(0, this.productosPorPag).sort((a, b) => {
                 return a.id - b.id;
             });
         },

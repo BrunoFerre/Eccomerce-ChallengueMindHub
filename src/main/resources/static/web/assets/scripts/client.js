@@ -4,7 +4,6 @@ createApp({
         return {
             client: [],
             purchase: [],
-            showForm: true,
             street: "",
             number: "",
             city: "",
@@ -18,6 +17,15 @@ createApp({
     },
     methods: {
         getData() {
+            axios.get('/api/person/current')
+                .then((response) => {
+                    this.client = response.data;
+                    console.log(this.client);
+                    this.purchase = this.client.purchaseOrder
+                    console.log(this.purchase);
+                }).catch((error) => {
+                    console.log(error);
+                });
             axios.get('/api/purchase/history')
                 .then((response) => {
                     const purchase = response.data;
@@ -60,6 +68,23 @@ createApp({
                             })
                         });
                 }
+            })
+        },
+        getTicket(ticket) {
+            axios.get(`/api/ticket?ticket=${ticket}`,{ responseType: 'blob' })
+            .then(response => {
+                const blob = new Blob([response.data], { type: 'application/pdf' });
+                console.log(blob);
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'ticket.pdf';
+                a.click();
+                window.URL.revokeObjectURL(url);
+                location.reload()
+            })
+            .catch(error => {
+                console.log(error)
             })
         }
     }
