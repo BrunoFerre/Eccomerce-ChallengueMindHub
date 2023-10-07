@@ -25,7 +25,7 @@ public class EccomerceApplication {
 	public CommandLineRunner initData(PersonRepository personRepository, AdressRepository adressRepository, ProductRepository productRepository) {
 		return (args) -> {
 			Person admin = new Person("Bruno Marcos", "Ferreira",
-					"fbrunomarcos@gmail.com", "123456", passwordEncoder.encode("pass123"), PersonType.ADMIN);
+					"fbrunomarcos@gmail.com", passwordEncoder.encode("pass123"), PersonType.ADMIN);
 			Adress adress = new Adress("Calle Admin", 123, "Jardin America", "Casa", 2, true, "CP1239");
 			admin.addAdress(adress);
 			personRepository.save(admin);
@@ -386,21 +386,21 @@ public class EccomerceApplication {
 					List.of("https://stanleypm.vtexassets.com/arquivos/ids/156718-800-auto?v=638237542076700000&width=800&height=auto&aspect=true","https://stanleypm.vtexassets.com/arquivos/ids/156719-800-auto?v=638237542234000000&width=800&height=auto&aspect=true"));
 			productRepository.save(product22);
 
-			Product product23= new Product("CLASSIC STANLEY THERMO 950ml WITH HANDLE AND PRIMER CAP",
-					"This thermos is made for the toughest of the tough, for those who demand the best in durability and performance, QuadVac insulation (four layers), this is achieved by additionally covering the stainless steel walls with vacuum side layers." +
-							" Keeps your liquids hot for 40 hours." +
-							" No matter what you're doing or where you're going, this thermos is ready when you need it!",
-					145.14,
-					25,
-					CategoryProduct.THERMOS,
-					ColorProduct.GREEN,
-					18,
-					"https://stanleypm.vtexassets.com/arquivos/ids/156812-800-auto?v=638242706009430000&width=800&height=auto&aspect=true",
-					List.of("https://stanleypm.vtexassets.com/arquivos/ids/156813-800-auto?v=638242706270770000&width=800&height=auto&aspect=true","https://stanleypm.vtexassets.com/arquivos/ids/156814-800-auto?v=638242706606300000&width=800&height=auto&aspect=true"));
-			productRepository.save(product23);
+//			Product product23= new Product("CLASSIC STANLEY THERMO 950ml WITH HANDLE AND PRIMER CAP",
+//					"This thermos is made for the toughest of the tough, for those who demand the best in durability and performance, QuadVac insulation (four layers), this is achieved by additionally covering the stainless steel walls with vacuum side layers." +
+//							" Keeps your liquids hot for 40 hours." +
+//							" No matter what you're doing or where you're going, this thermos is ready when you need it!",
+//					145.14,
+//					25,
+//					CategoryProduct.THERMOS,
+//					ColorProduct.GREEN,
+//					18,
+//					"https://stanleypm.vtexassets.com/arquivos/ids/156812-800-auto?v=638242706009430000&width=800&height=auto&aspect=true",
+//					List.of("https://stanleypm.vtexassets.com/arquivos/ids/156813-800-auto?v=638242706270770000&width=800&height=auto&aspect=true","https://stanleypm.vtexassets.com/arquivos/ids/156814-800-auto?v=638242706606300000&width=800&height=auto&aspect=true"));
+//			productRepository.save(product23);
 
 			Product product24= new Product("STANLEY THERMO 1.4ML PINK WITH HANDLES AND PRIMER CAP",
-					"The word that comes to mind is \"iconic\": elegant design, robust construction and an indescribable attitude." +
+					"The word that comes to mind is iconic: elegant design, robust construction and an indescribable attitude." +
 							"Completely leak-proof and capable of keeping drinks hot for 40 hours, cold for 45 hours or iced for 6 days." +
 							"With the Stanley thermos you never have to worry about your water getting cold or your drink getting hot." +
 							"Thanks to its thick steel external wall, you will get thermal performance that will last you for years.",

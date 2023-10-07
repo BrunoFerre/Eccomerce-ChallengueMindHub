@@ -86,6 +86,11 @@ createApp({
                 .catch(error => {
                     console.log(error)
                 })
-        }
+        },
+        formatPrice(number) {
+            let reset = new Intl.NumberFormat('en-En', { style: 'currency', currency: 'USD' })
+            let balanceFormat = reset.format(number)
+            return balanceFormat
+        },
     }
 }).mount('#app')

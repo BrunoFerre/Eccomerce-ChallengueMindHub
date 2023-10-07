@@ -29,4 +29,9 @@ public class POServiceImplement implements POService {
     public void save(PurchaseOrder purchaseOrder) {
         purchaseOrderRepository.save(purchaseOrder);
     }
+
+    @Override
+    public PurchaseOrder findByTicket(String ticket) {
+        return purchaseOrderRepository.findByTicket(ticket);
+    }
 }

@@ -14,6 +14,7 @@
   <link rel="shortcut icon" href="./assets/images/favicon.png" type="image/x-icon">
   <!--Link to CSS-->
   <link rel="stylesheet" href="./assets/style/style1.css">
+  <link rel="stylesheet" href="./assets/style/style.css">
   <!--Box Icons-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 </head>
@@ -21,7 +22,7 @@
 <body>
 
   <!--Navbar-->
-  <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top" id="login">
     <div class="container-fluid">
       <a class="navbar-brand logo fs-1 d-flex align-items-center justify-content-center gap-3" href="#"><img
           src="./assets/images/favicon_mate.png" alt="logo">
@@ -32,10 +33,19 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li><a href="#" class="a_nav">Home</a></li>
-          <li><a href="./assets/pages/login1.html" class="a_nav">Log in</a></li>
-          <li><a href="./assets/pages/login1.html" class="a_nav">Register</a></li>
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+          <li><a href="#" class="a_nav active-ancores">Home</a></li>
+          <li><a href="./assets/pages/shop.html">Shop</a></li>
+          <li><a href="./assets/pages/about.html">About Us</a></li>
+          <li><a href="./assets/pages/blog.html">Blog</a></li>
+          <template v-if="!isLogin">
+            <li><a href="./assets/pages/login1.html">Log In</a></li>
+          </template>
+          <template v-else>
+            <li><a href="./assets/pages/account.html">Account</a></li>
+            <li><button @click="logOutIndex" class="btn bg-danger-subtle">Log out</button></li>
+            <li><a href="./assets/pages/cart.html"><i class="bi bi-cart"></i></a></li>
+          </template>
       </div>
     </div>
   </nav>
@@ -57,74 +67,88 @@
 
   <!--Home-->
   <main id="app">
-    <section id="product1" class="section-p1">
-      <div class="pro-container" data-aos="fade-up">
-        <div v-if="productHome.length>0" class="pro" :key="product.id" v-for="product of productHome">
-          <a :href="'product.html?id=' + product.id">
-            <div :style="{ backgroundImage: 'url('+product.image+')' }" class="product-container"></div>
-          </a>
-          <div class="des">
-            <span>Matoffee</span>
-            <h5>{{ product.name }}</h5>
-            <div class="start">
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-            </div>
-            <h4>${{ product.price }}</h4>
-          </div>
-          <a href="#" @click="addToCart(product)"><i class="bi bi-cart2 cart"></i></a>
-        </div>
-        <p v-else> No hay productos</p>
-      </div>
-
-    </section>
-
-    <!--Acerca de nosotros resumen-->
-    <section class="aboutUs" id="about_us">
-      <div class="heading mb-4">
-        <span id="aboutUs">The Story</span>
-        <h1>About Us</h1>
-      </div>
-      <div class="container-fluid">
-        <div class="d-flex align-items-center">
-          <video autoplay class=" d-none d-sm-block col-6 rounded-4 p-3">
-            <source src="./assets/images/preparando _cafe.mp4" type="video/mp4">
-          </video>
-          <div>
-            <h2 class="fw-bold sub-title">The beginning of everything</h2>
-            <p>Our store started with the purpose of giving happiness to our customers through typical South
-              American drinks. We are a group of 4 entrepreneurs between Argentina, Chile and Colombia who
-              want to bring to the whole world the American culture and drinks that have existed for
-              decades,
-              bringing one and a thousand stories to the whole world.</p>
-          </div>
-        </div>
-        <div class="mt-4 d-flex flex-column">
-
-          <div class="d-flex mt-3 flex-column flex-lg-row justify-content-between">
-            <div class="col-12 col-lg-6">
-              <h3 class="fw-bold fst-italic sub-title">Coffee</h3>
-              <p>
-                One of the best known beverages worldwide is coffee, this beverage known for its diverse
-                preparations could not be missing in our catalog. With its peculiar aroma we want to
-                captivate you and give you the pleasure of tasting every drop of quality.
-              </p>
-            </div>
-            <div class="col-12 col-lg-6">
-              <h3 class="fw-bold fst-italic sub-title">Mate</h3>
-              <p>
-                Mate is a drink with South American origins that has been around for decades. Since its discovery it has
-                been a predominant drink in Argentina, Uruguay and Paraguay. It is obtained from the mate plant and its
-                main grower is Argentina.
-              </p>
+    <div v-cloak>
+      <section id="product1" class="section-p1">
+        <div class="pro-container" data-aos="fade-up">
+          <div v-if="productHome.length>0" class="pro" :key="product.id" v-for="product of productHome">
+            <a :href="'product.html?id=' + product.id">
+              <div :style="{ backgroundImage: 'url(' + product.image + ')' }" class="product-container"></div>
+            </a>
+            <div class="des">
+              <template v-if="product.discount>0">
+                <span class="card-offer"></span>
+              </template>
+              <span>Matoffee</span>
+              <h5>{{ product.name }}</h5>
+              <div class=" start">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+              </div>
+              <template v-if="product.discount>0">
+                <div class="price-container col-5">
+                  <h4 class="original-price">${{ product.price }}</h4>
+                  <h4 class="discounted-price">{{formatPrice(product.price - (product.price *
+                    product.discount) / 100) }}</h4>
+                </div>
+              </template>
+              <template v-else>
+                <h4>${{ formatPrice(product.price) }}</h4>
+              </template>
             </div>
           </div>
+          <p class="w-100" v-else> No hay productos</p>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <!--Acerca de nosotros resumen-->
+      <section class="aboutUs" id="about_us">
+        <div class="heading mb-4">
+          <span id="aboutUs">The Story</span>
+          <h1>About Us</h1>
+        </div>
+        <div class="container-fluid">
+          <div class="d-flex align-items-center">
+            <video autoplay class=" d-none d-sm-block col-6 rounded-4 p-3">
+              <source src="./assets/images/preparando _cafe.mp4" type="video/mp4">
+            </video>
+            <div>
+              <h2 class="fw-bold sub-title">The beginning of everything</h2>
+              <p>Our store started with the purpose of giving happiness to our customers through typical South
+                American drinks. We are a group of 4 entrepreneurs between Argentina, Chile and Colombia who
+                want to bring to the whole world the American culture and drinks that have existed for
+                decades,
+                bringing one and a thousand stories to the whole world.</p>
+            </div>
+          </div>
+          <div class="mt-4 d-flex flex-column">
+
+            <div class="d-flex mt-3 flex-column flex-lg-row justify-content-between">
+              <div class="col-12 col-lg-6">
+                <h3 class="fw-bold fst-italic sub-title">Coffee</h3>
+                <p>
+                  One of the best known beverages worldwide is coffee, this beverage known for its diverse
+                  preparations could not be missing in our catalog. With its peculiar aroma we want to
+                  captivate you and give you the pleasure of tasting every drop of quality.
+                </p>
+              </div>
+              <div class="col-12 col-lg-6">
+                <h3 class="fw-bold fst-italic sub-title">Mate</h3>
+                <p>
+                  Mate is a drink with South American origins that has been around for decades. Since its discovery it
+                  has
+                  been a predominant drink in Argentina, Uruguay and Paraguay. It is obtained from the mate plant and
+                  its
+                  main grower is Argentina.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
 
   </main>
 
@@ -156,6 +180,7 @@
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="./assets/scripts/shop.js"></script>
+  <script src="./assets/scripts/login.js"></script>
 </body>
 
 </html>

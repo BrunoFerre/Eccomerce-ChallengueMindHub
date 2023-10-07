@@ -28,11 +28,10 @@ public class Person {
     public Person() {
     }
 
-    public Person(String firstname, String lastname, String email, String phone, String password, PersonType personType) {
+    public Person(String firstname, String lastname, String email, String password, PersonType personType) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
-        this.phone = phone;
         this.password = password;
         this.userType = personType;
     }

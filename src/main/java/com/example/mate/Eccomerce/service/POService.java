@@ -11,4 +11,6 @@ public interface POService {
 
     PurchaseOrder getPurchaseOrder(long id, Person current);
     void save(PurchaseOrder purchaseOrder);
+
+    PurchaseOrder findByTicket(String ticket);
 }

@@ -45,6 +45,23 @@ const app = Vue.createApp({
 
             this.saveCartToLocalStorage();
         },
+        addToCart(product) {
+            const cartItem = this.cart.find(item => item.id === product.id);
+
+            if (cartItem) {
+                // Si el producto ya está en el carrito, aumenta la cantidad
+                cartItem.quantity++;
+            } else {
+                // Si el producto no está en el carrito, agrégalo con cantidad 1
+                this.cart.push({ ...product, quantity: 1 });
+            }
+
+            // Guarda el carrito actualizado en el almacenamiento local
+            this.saveCartToLocalStorage();
+        },
+        saveCartToLocalStorage() {
+            localStorage.setItem('cart', JSON.stringify(this.cart));
+        },
         removeAllFromCart(id) {
             this.cart = this.cart.filter((item) => id !== item.id);
         },
@@ -106,25 +123,30 @@ const app = Vue.createApp({
             console.log(this.products);
             this.productHome = this.products.filter((product) => {
                 return product.discount > 0
-            }).splice(0,4)
+            }).splice(0, 4)
             console.log(this.productHome);
-        }
+        },
+        formatPrice(number) {
+            let reset = new Intl.NumberFormat('en-En', { style: 'currency', currency: 'USD' })
+            let balanceFormat = reset.format(number)
+            return balanceFormat
+        },
     },
     computed: {
         filters() {
             this.fil = this.products.filter(product => {
                 return product.description.toLowerCase().includes(this.inputSearch.toLowerCase()) && (this.checkCategory.includes(product.category) || this.checkCategory.length == 0);
-            }).slice(0, 18).sort((a, b) => {
+            }).slice(0, 16).sort((a, b) => {
                 return a.id - b.id;
             });
         },
         changeStorage() {
             window.addEventListener('storage', (event) => {
                 if (event.key === 'cart') {
-                    this.cart = JSON.parse(localStorage.getItem('cart')??[]);
+                    this.cart = JSON.parse(localStorage.getItem('cart') ?? []);
                 }
             })
-    },
-}
+        },
+    }
 });
 app.mount('#app');
