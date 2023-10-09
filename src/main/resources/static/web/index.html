@@ -71,7 +71,7 @@
       <section id="product1" class="section-p1">
         <div class="pro-container" data-aos="fade-up">
           <div v-if="productHome.length>0" class="pro" :key="product.id" v-for="product of productHome">
-            <a :href="'product.html?id=' + product.id">
+            <a :href="'/web/assets/pages/product.html?id=' + product.id">
               <div :style="{ backgroundImage: 'url(' + product.image + ')' }" class="product-container"></div>
             </a>
             <div class="des">
