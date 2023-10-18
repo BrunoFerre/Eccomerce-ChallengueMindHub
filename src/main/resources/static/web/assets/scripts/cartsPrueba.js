@@ -10,6 +10,7 @@ createApp({
             dueDate: "",
             cvv: "",
             client: [],
+
         };
     },
     created() {
@@ -19,14 +20,14 @@ createApp({
     methods: {
         getPerson() {
             axios.get('/api/person/current')
-            .then((response) => {
-                this.client = response.data;
-                console.log(this.client);
-                this.purchase = this.client.purchaseOrder
-                console.log(this.purchase);
-            }).catch((error) => {
-                console.log(error);
-            });
+                .then((response) => {
+                    this.client = response.data;
+                    console.log(this.client);
+                    this.purchase = this.client.purchaseOrder
+                    console.log(this.purchase);
+                }).catch((error) => {
+                    console.log(error);
+                });
         },
         getData() {
             this.cart = JSON.parse(localStorage.getItem('cart')) ?? [];
@@ -85,34 +86,34 @@ createApp({
                 payObj.details.push(this.obj)
             }
             console.log(payObj)
-                        axios.post("/api/purchase/purchaseOrder", payObj)
+            axios.post("/api/purchase/purchaseOrder", payObj)
+                .then(response => {
+                    console.log(response);
+                    const ticket = response.data
+                    console.log(ticket);
+                    axios.get(`/api/ticket?ticket=${ticket}`, { responseType: 'blob' })
                         .then(response => {
-                            console.log(response);
-                            const ticket = response.data
-                            console.log(ticket);
-                            axios.get(`/api/ticket?ticket=${ticket}`,{ responseType: 'blob' })
-                            .then(response => {
-                                const blob = new Blob([response.data], { type: 'application/pdf' });
-                                console.log(blob);
-                                const url = window.URL.createObjectURL(blob);
-                                const a = document.createElement('a');
-                                a.href = url;
-                                a.download = 'ticket.pdf';
-                                a.click();
-                                window.URL.revokeObjectURL(url);
-                                this.clearCart()
-                                location.reload()
-                            })
-                            .catch(error => {
-                                console.log(error)
-                            })
+                            const blob = new Blob([response.data], { type: 'application/pdf' });
+                            console.log(blob);
+                            const url = window.URL.createObjectURL(blob);
+                            const a = document.createElement('a');
+                            a.href = url;
+                            a.download = 'ticket.pdf';
+                            a.click();
+                            window.URL.revokeObjectURL(url);
+                            this.clearCart()
+                            location.reload()
                         })
                         .catch(error => {
-                                console.log(error.response.data.text()
-                                .then(res=>{
-                                    console.log(res);
-                                }));
-                            });
+                            console.log(error)
+                        })
+                })
+                .catch(error => {
+                    console.log(error.response.data.text()
+                        .then(res => {
+                            console.log(res);
+                        }));
+                });
         },
         showFormPay() {
             this.showForm = !this.showForm;
@@ -137,24 +138,31 @@ createApp({
                 showLoaderOnConfirm: true,
                 preConfirm: login => {
                     return axios.post("https://homebanking-production-0510.up.railway.app/api/payment_point", cardDate).then(response => {
-                            console.log(response);
-                            this.pay()
-                        })
+                        console.log(response);
+                        this.pay()
+                    })
                         .catch(error => {
                             console.log(error)
-                        
+
                         })
                 }
             })
         },
-        computed: {
-            changeStorage() {
-                window.addEventListener('storage', (event) => {
-                    if (event.key === 'cart') {
-                        this.cart = JSON.parse(localStorage.getItem('cart')) ?? [];
-                    }
-                })
-            }
+        formatPrice(number) {
+            let reset = new Intl.NumberFormat('en-En', { style: 'currency', currency: 'USD' })
+            let balanceFormat = reset.format(number)
+            return balanceFormat
         }
-}
+    },
+    computed: {
+        changeStorage() {
+            window.addEventListener('storage', (event) => {
+                if (event.key === 'cart') {
+                    this.cart = JSON.parse(localStorage.getItem('cart')) ?? [];
+                }
+            })
+        }
+    }
+
+
 }).mount('#app');

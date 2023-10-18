@@ -17,10 +17,9 @@
 
 </head>
 
-<body>
+<body style="background-color: #ebdbc8;">
     <!--Navbar-->
-    <!--Navbar-->
-    <nav id="login" class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top" id="login">
         <div class="container-fluid">
             <a class="navbar-brand logo fs-1 d-flex align-items-center justify-content-center gap-3" href="#"><img
                     src="../images/favicon_mate.png" alt="logo">
@@ -31,28 +30,30 @@
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div id="login" class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
                     <li><a href="../../index.html">Home</a></li>
                     <li><a href="./shop.html">Shop</a></li>
                     <li><a href="./about.html">About Us</a></li>
-                    <li><a href="#">Blog</a></li>
+                    <li><a href="#" class="active-ancores">Blog</a></li>
+                    <li><a href="./account.html">Account</a></li>
                     <template v-if="!isLogin">
-                        <li><a href="./login1.html">Login</a></li>
+                        <li><a href="./login1.html">Log In</a></li>
                     </template>
                     <template v-else>
                         <li><button @click="logOut" class="btn bg-danger-subtle">Log out</button></li>
+                        <li><a href="./cart.html"><i class="bi bi-cart"></i></a></li>
                     </template>
-                    <li> <a href="./cart.html"><i class="bi bi-cart"></i></a></li>
             </div>
         </div>
     </nav>
+    <!--Carousel-->
     <header class="d-flex p-2 justify-content-evenly gap-2">
         <img src="../images/mate_carousel.webp" alt="" class="w-50 rounded-4">
         <img src="../images/granocafe.jpg" alt="" class="w-50 rounded-4">
     </header>
-    <main>
 
+    <main>
 
         <section id="blog">
             <div class="blog-box">

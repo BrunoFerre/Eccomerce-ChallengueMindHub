@@ -1,4 +1,3 @@
-
 const appLogin = Vue.createApp({
     data() {
         return {
@@ -7,6 +6,8 @@ const appLogin = Vue.createApp({
             firstName: '',
             lastName: '',
             showRegistrationForm: false,
+            firstname1: '',
+            lastname1: '',
             isLogin: false
         };
     },
@@ -15,6 +16,8 @@ const appLogin = Vue.createApp({
     },
     methods: {
         login() {
+            console.log(this.email);
+            console.log(this.password);
             axios.post('/api/login', 'email=' + this.email + '&password=' + this.password)
                 .then(response => {
                     if (this.email.includes('@admi')) {
@@ -23,7 +26,7 @@ const appLogin = Vue.createApp({
                         location.href = './shop.html'
                     }
                     localStorage.setItem('isLoggedIn', 'true')
-                    this.verifyiLogin()
+                    this.verifyiLogin();
                 }).catch(error => {
                     console.log(error)
                     Swal.fire({
@@ -33,6 +36,14 @@ const appLogin = Vue.createApp({
                         footer: 'Please try again!'
                     })
                 })
+        },
+        verifyiLogin() {
+            let login = localStorage.getItem('isLoggedIn');
+            if (login) {
+                this.isLogin = true
+            } else {
+                this.isLogin = false
+            }
         },
         register() {
             let Person = {
@@ -54,10 +65,11 @@ const appLogin = Vue.createApp({
                     return axios
                         .post("/api/person/add", Person)
                         .then(response => {
+                            console.log(this.email);
+                            console.log(this.password);
                             this.login();
                         })
                         .catch(error => {
-                            console.log(error);
                             Swal.fire({
                                 icon: 'error',
                                 text: error.response.data,
@@ -77,20 +89,12 @@ const appLogin = Vue.createApp({
                     this.isLogin = false
                     console.log(response);
                     localStorage.removeItem('isLoggedIn');
-                    window.location.reload();
+                    window.location.href = '../../index.html';
                 })
                 .catch(error => {
                     console.log(error);
                 })
         },
-        verifyiLogin() {
-            let login = localStorage.getItem('isLoggedIn');
-            if (login) {
-                this.isLogin = true
-            } else {
-                this.isLogin = false
-            }
-        }
     },
 });
 appLogin.mount('#login');

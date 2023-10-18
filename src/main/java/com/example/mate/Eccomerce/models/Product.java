@@ -17,6 +17,8 @@ public class Product {
     private long id;
 
     private String name;
+    private String image;
+
 
     @Column(length = 10000)
     private String description;
@@ -31,8 +33,7 @@ public class Product {
 
     private double discount;
 
-    private String image;
-    
+
     private double averagePoints;
 
     private double actuallyTotalPoints;

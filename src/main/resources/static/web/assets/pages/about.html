@@ -17,9 +17,9 @@
 
 </head>
 
-<body>
+<body style="background-color: #ebdbc8;">
   <!--Navbar-->
-  <nav id="login" class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top" id="login">
     <div class="container-fluid">
       <a class="navbar-brand logo fs-1 d-flex align-items-center justify-content-center gap-3" href="#"><img
           src="../images/favicon_mate.png" alt="logo">
@@ -31,23 +31,23 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
-          <li><a href="./shop.html">Home</a></li>
+          <li><a href="../../index.html">Home</a></li>
           <li><a href="./shop.html">Shop</a></li>
-          <li><a href="#">About Us</a></li>
+          <li><a href="#" class="active-ancores">About Us</a></li>
           <li><a href="./blog.html">Blog</a></li>
+          <li><a href="./account.html">Account</a></li>
           <template v-if="!isLogin">
-            <li><a href="./login1.html">Login</a></li>
+            <li><a href="./login1.html">Log In</a></li>
           </template>
           <template v-else>
-            <li><a href="./account.html">Account</a></li>
             <li><button @click="logOut" class="btn bg-danger-subtle">Log out</button></li>
+            <li><a href="./cart.html"><i class="bi bi-cart"></i></a></li>
           </template>
-          <li><a href="./cart.html"><i class="bi bi-cart"></i></a></li>
       </div>
     </div>
   </nav>
 
-  <main>
+  <header>
     <section id="about-head" class="section-p1 c-item">
       <video src="../images/cafe_45.mp4" autoplay loop class="c-img d-none d-md-block w-50"></video>
       <div>
@@ -63,15 +63,20 @@
           united by
           culture, all united by purpose.</marquee>
     </section>
+  </header>
 
-    <section id="about-app">
-      <h1>Download Our <a href="">App</a></h1>
-      <div class="video">
+  <main id="main_about" class="p-2">
+    <h2 class="text-center">Download Our <a href="#" id="app_link">App</a></h2>
+    <section id="about-app" class="d-flex align-items-center gap-2 justify-content-center container-fluid">
+      <div class="w-50">
+        <h4>We are working to be closer to you, we will give you news soon with new updates and our app.</h4>
+      </div>
+      <div class="video w-50 d-none d-md-block">
         <video autoplay muted loop src="../images/coffee_-_46989 (1080p).mp4"></video>
       </div>
     </section>
 
-    <h1 class="d-flex justify-content-center">Contact Details</h1>
+    <h2 class="d-flex justify-content-center">Contact Details</h2>
     <section id="contact-details" class="section-p1">
       <div class="details">
         <span>GET IN TOUCH</span>
@@ -151,8 +156,8 @@
     </section>
 
   </main>
-  <!-- Pie de pagina-->
-  <footer class="col-12 d-flex align-items-center d-flex flex-wrap gap-5 justify-content-evenly p-4">
+  <!--Pie de pagina-->
+  <footer class="col-12 d-flex align-items-center d-flex flex-wrap gap-5 justify-content-evenly p-2">
     <img class="logoFooter" src="../images/favicon_mate.png" alt="logo">
     <div>
       <h4>Contact</h4>
@@ -170,8 +175,8 @@
         <a href="https://www.instagram.com/"><i class='bx bxl-instagram'></i></a>
       </div>
     </div>
+    <p class="copyright text-light"> &#169; Cohort-49 All Right Reserved </p>
   </footer>
-  <p class="copyright"> &#169; Cohort-49 All Right Reserved </p>
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
